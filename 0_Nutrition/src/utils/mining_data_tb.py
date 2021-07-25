@@ -133,6 +133,7 @@ class daily_intake:
 ####
 class filter_tool:
     ####
+    @staticmethod
     def rows_filter(df, filter_, positive = True):
         if positive:
             filtered_df = df[df["Category name"].isin(filter_)]
@@ -142,6 +143,7 @@ class filter_tool:
         return filtered_df
 
     ####
+    @staticmethod
     def multiple_filter(df, filters_, positive = True):
         dfs = []
         if positive:
