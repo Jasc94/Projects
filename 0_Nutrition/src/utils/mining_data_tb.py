@@ -231,11 +231,22 @@ class filter_tool:
         df : dataframe to apply the filter to
         '''
         try:
-            columns = ["Category name", "Category 2", "Category 3", nutrient]
+            columns = ["Food name", "Category name", "Category 2", "Category 3", nutrient]
             return df[columns].sort_values(by = nutrient, ascending = False)
         except:
             return "More than one row selected"
 
+####
+def nutrients_stats(df, category, measure = "mean", start = 3, end = -2):
+    nutrients_list = list(df.iloc[:, start:end].columns)
+
+    if measure == "mean":
+        stats = df.groupby(category).agg({nutrient : np.mean for nutrient in nutrients_list})
+    elif measure == "median":
+        stats = df.groupby(category).agg({nutrient : np.median for nutrient in nutrients_list})
+    else:
+        return "Invalid input for measure"
+    return stats.T
 
 #################### Daily Intake & Nutritional values ####################
 ####
@@ -248,13 +259,13 @@ class comparator:
     ####
     def __comparator(self):
         # Merge first foods series with daily intake series
-        comparison = pd.merge(self.daily_intake, self.foods[0], how = "outer", left_index = True, right_index = True)
+        comparison = pd.merge(self.daily_intake, self.foods[0], how = "left", left_index = True, right_index = True)
 
         # If there's more than one item in foods list...
         if len(self.foods) > 1:
             # then merge the rest of the items with the dataframe we just created
             for food in self.foods[1:]:
-                comparison = pd.merge(comparison, food, how = "outer", left_index = True, right_index = True)
+                comparison = pd.merge(comparison, food, how = "left", left_index = True, right_index = True)
 
 
         # To conclude, iterate over all food elements
@@ -321,13 +332,12 @@ class stats:
 
 #################### Data Prep for Visualization ####################
 ####
-def color_mapper(df):
+def color_mapper(df, column, mapper):
     color_map = {}
 
     for ind, row in df.iterrows():
-        if row["Origin"] == "Plant-based":
-            color_map[ind] = "blue"
-        else:
-            color_map[ind] = "red"
-
+        for key, val in mapper.items():
+            if row[column] == key:
+                color_map[ind] = val
+    
     return color_map

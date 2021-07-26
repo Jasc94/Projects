@@ -92,7 +92,8 @@ if menu == "Resources Facts":
                                        height = 30))
                           )
 
-        color_map = md.color_mapper(selection)
+        mapper = {"Plant-based" : "blue", "Animal-based" : "red"}
+        color_map = md.color_mapper(selection, "Origin", mapper)
         fig = px.bar(selection, x = selection.index, y = chosen_resource,
                      color = color_map.keys(), color_discrete_map = color_map)
 
@@ -130,56 +131,12 @@ if menu == "Nutrition Facts":
     #### Section title
     st.title("This is the nutrition facts section")
 
-    #### Filters
-    st.subheader("You can filter the data using the checkboxes")
-    cols = st.beta_columns(2)
-
-    cols[0].write("Positive filters")
-    positive_filters = ["Milks", "Cheese", "Other Animal Products", "Meats", "Chicken", "Fish",
-                        "Milk Substitutes", "Beans", "Soy Products", "Nuts", "Other Veggie Products"]
-
-    positive_checkboxes = []
-    for filter_ in positive_filters:
-        checkbox = cols[0].checkbox(filter_)
-        if checkbox:
-            positive_checkboxes.append(filter_)
-
-    cols[1].write("Negative filters")
-    negative_filters = ["Others", "Baby Food", "Desserts And Snacks", "Drinks", "Sandwiches", "Prepared Dishes", "Sauces"]
-
-    negative_checkboxes = []
-    for filter_ in negative_filters:
-        checkbox = cols[1].checkbox(filter_)
-        if checkbox:
-            negative_checkboxes.append(filter_)
-
-    filtered_df = nutrition_df
-    filter_tool = md.filter_tool
-
-    if len(positive_checkboxes) > 0:
-        f_ = filter_tool.multiple_filter(positive_checkboxes)
-        filtered_df = filter_tool.rows_selector(filtered_df, f_)
-    
-    st.write(filtered_df.shape)
-
-
-
-
-    # cols[0].checkbox("Milks")
-    # cols[0].checkbox("Cheese")
-    # cols[0].checkbox("Other Animal Products")
-    # cols[0].checkbox("Meats")
-    # cols[0].checkbox("Chicken")
-    # cols[0].checkbox("Fish")
-    # cols[0].checkbox("Milk Substitutes")
-    # cols[0].checkbox("Beans")
-    # cols[0].checkbox("Soy Products")
-    # cols[0].checkbox("Nuts")
-    # cols[0].checkbox("Other Veggie Products")
-
-
     # To choose between subsections
     submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Top products", "Food groups", "Foods"])
+
+    # Common tools for this section
+    filter_tool = md.filter_tool
+    filtered_df = nutrition_df
     
     # Subsection 1
     if submenu == "Top products":
@@ -188,7 +145,103 @@ if menu == "Nutrition Facts":
         entries = st.sidebar.slider(label = "How many foods?", min_value = 5, max_value = 50, 
                                     value = 5, step = 5)
 
-        filter_tool = md.filter_tool
-        table = filter_tool.nutrient_selector(nutrition_df, chosen_nutrient).head(entries)
+        #### Filters
+        expander = st.beta_expander("You can filter the data using the checkboxes")
 
-        st.write(table)
+        # Expander to hide the filders
+        with expander:
+            # Two columns for the filters
+            cols = st.beta_columns(2)
+            # Positive filters on the left column
+            cols[0].write("Positive filters")
+            positive_filters = ["Milks", "Cheese", "Other Animal Products", "Meats", "Chicken", "Fish",
+                                "Milk Substitutes", "Beans", "Soy Products", "Nuts", "Other Veggie Products"]
+
+            # Empty list to save the marked checkboxes
+            positive_checkboxes = []
+            # Iterate over every checkbox
+            for filter_ in positive_filters:
+                checkbox = cols[0].checkbox(filter_)
+                # If they are marked, then append it to the empty list
+                if checkbox:
+                    positive_checkboxes.append(filter_)
+
+            # Negative filters on the right column
+            cols[1].write("Negative filters")
+            negative_filters = ["Others", "Baby Food", "Desserts And Snacks", "Drinks", "Sandwiches", "Prepared Dishes", "Sauces"]
+
+            # Similar functioning as for positive filters
+            negative_checkboxes = []
+            for filter_ in negative_filters:
+                checkbox = cols[1].checkbox(filter_)
+                if checkbox:
+                    negative_checkboxes.append(filter_)
+
+        # If positive_checkboxes list isn't empty...
+        if len(positive_checkboxes) > 0:
+            # Then filter the data
+            f_ = filter_tool.multiple_filter(positive_checkboxes)
+            filtered_df = filter_tool.rows_selector(filtered_df, f_)
+
+        # If negative_checkboxes list isn't empty...
+        if len(negative_checkboxes) > 0:
+            # Then filter the data further
+            f_ = filter_tool.multiple_filter(negative_checkboxes)
+            filtered_df = filter_tool.rows_selector(filtered_df, f_, False)
+        
+        # Then, we apply the column filter to the filtered dataframe
+        table = filter_tool.column_selector(filtered_df, chosen_nutrient).head(entries)
+        ### Data prep for visualization
+        mapper = {"Plant-based" : "blue", "Animal-based" : "red", "Not Classified" : "grey"}
+        color_map = md.color_mapper(table.set_index("Food name"), "Category 3", mapper)
+        fig = px.bar(table, x = "Food name", y = chosen_nutrient,
+                     color = color_map.keys(), color_discrete_map = color_map, height = 800)
+
+        fig.update(layout_showlegend=False)
+
+        st.write(fig)
+        st.table(table)
+    
+    if submenu == "Food groups":
+        # ### User input
+        st.sidebar.write("To calculate Daily Intake")
+        gender = st.sidebar.radio("Gender", options = ["Male", "Female"]).lower()
+        age = st.sidebar.slider(label = "Age", min_value = 20, max_value = 70, value = 20, step = 10)
+
+        st.sidebar.write("To calculate nutrients")
+        measure = st.sidebar.radio("Measure of center", options = ["Mean", "Median"]).lower()
+
+        st.subheader("Food group filters")
+        col1, col2, col3 = st.beta_columns(3)
+
+        food_groups_stats = md.nutrients_stats(nutrition_df, "Category 2", measure)
+        food_groups = []
+
+        # Checkboxes divided in three blocks (purely design reasons)
+        for food_group in food_groups_stats.columns[:4]:
+            checkbox = col1.checkbox(label = food_group)
+            if checkbox:
+                food_groups.append(food_group)
+
+        for food_group in food_groups_stats.columns[4:8]:
+            checkbox = col2.checkbox(label = food_group)
+            if checkbox:
+                food_groups.append(food_group)
+
+        for food_group in food_groups_stats.columns[8:12]:
+            checkbox = col3.checkbox(label = food_group)
+            if checkbox:
+                food_groups.append(food_group)
+
+        if len(food_groups) > 0:
+            #### Data prep for visualization
+            daily_intake_object = md.daily_intake(gender, age)
+            daily_intake = daily_intake_object.get_data(daily_intake_df)
+
+            foods = [food_groups_stats[column] for column in food_groups_stats[food_groups].columns]
+
+            comparator = md.comparator(foods, daily_intake)
+            comparison = comparator.comparison
+            to_plot = comparator.to_plot()
+
+            st.table(to_plot)
