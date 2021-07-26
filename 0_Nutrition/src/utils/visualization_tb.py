@@ -23,53 +23,51 @@ import mining_data_tb as md
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Daily Intake & Nutritional values ####################
 ####
-def full_comparison_plot(comparisons):
-    '''
-    This function plots the full comparison of foods: vs daily intake, carbs and fats, cholesterol, energy. It returns the figure, so you need to put a plt.show() after this function to avoid having it double plotted.
+def full_comparison_plot(comparisons, fontsize = 18, legendsize = 20, figsize = (20, 20)):
+    comparison_di, comparison_fats, comparison_chol, comparison_kcal = comparisons
 
-    args : comparisons -> list of dataframes. Usually the output of the full_comparison function.
-    '''
-    # Unpack the dataframes
-    comparison_di, comparison_fats, comparison_cholesterol, comparison_energy = comparisons
-
-    # Create a figure with 4 axes
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize = (20, 20))
-
-    # list of food groups in the dataframes
-    food_groups = comparison_di["%OfDI"].unique()
-    # calculate the amount of colors we need for the plots
-    n_colors = len(food_groups)
-
-    # create the palette with the calculated amount of colors
+    sns.set_theme()
+    n_colors = len(comparison_kcal["Food"].unique())
     palette = sns.color_palette("Paired", n_colors = n_colors)
 
-    # ax1 : Daily intake
-    sns.barplot(x = "Values", y = "Nutrient", hue = "%OfDI", data = comparison_di, palette = palette, ax = ax1)
+    fig, ax = plt.subplots(2, 2, figsize = (20, 20))
 
-    ax1.axvline(x=100, color='r', linestyle='dashed')
+    # AX1
+    sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_di, palette = palette, ax = ax[0][0])
+    ax[0][0].axvline(x = 100, color = "r", linestyle = "dashed")
 
-    ax1.set_title("% Of the Recommended Daily Intake", fontdict = {'fontsize': 20,
-        'fontweight' : "bold"}, pad = 15)
+    ax[0][0].set_title("% Of the Recommended Daily Intake", fontdict = {'fontsize': 20, 'fontweight' : "bold"}, pad = 15)
+    ax[0][0].tick_params(axis = 'y', which = 'major', labelsize = fontsize)
+    ax[0][0].set_xlabel("")
+    ax[0][0].set_ylabel("")
+    ax[0][0].legend(prop={'size': legendsize})
 
-    # ax2: Fats
-    # This one works for the three remaining axes
-    sns.barplot(x = "Values", y = "Nutrient", hue = "Food group", data = comparison_fats, palette = palette, ax = ax2)
+    # AX2
+    sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_fats, palette = palette, ax = ax[0][1])
 
-    ax2.set_title("Fats (g)", fontdict = {'fontsize': 20,
-        'fontweight' : "bold"}, pad = 15)
+    ax[0][1].set_title("Fats & Carbs (g)", fontdict = {'fontsize': 20, 'fontweight' : "bold"}, pad = 15)
+    ax[0][1].tick_params(axis = 'y', which = 'major', labelsize = fontsize)
+    ax[0][1].set_xlabel("")
+    ax[0][1].set_ylabel("")
+    ax[0][1].legend().set_visible(False)
 
-    # ax3: Cholesterol
-    sns.barplot(x = "Values", y = "Food group", data = comparison_cholesterol, palette = palette, ax = ax3)
+    # AX3
+    sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_chol, palette = palette, ax = ax[1][0])
 
-    ax3.set_title("Cholesterol (mg)", fontdict = {'fontsize': 20,
-        'fontweight' : "bold"}, pad = 15)
+    ax[1][0].set_title("Cholesterol (mg)", fontdict = {'fontsize': 20, 'fontweight' : "bold"}, pad = 15)
+    ax[1][0].tick_params(axis = 'y', which = 'major', labelsize = fontsize)
+    ax[1][0].set_xlabel("")
+    ax[1][0].set_ylabel("")
+    ax[1][0].legend().set_visible(False)
 
-    # ax4: Energy
-    sns.barplot(x = "Values", y = "Food group", data = comparison_energy, palette = palette, ax = ax4)
+    # AX4
+    sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_kcal, palette = palette, ax = ax[1][1])
 
-    ax4.set_title("Energy (Kcal)", fontdict = {'fontsize': 20,
-        'fontweight' : "bold"}, pad = 15)
+    ax[1][1].set_title("Energy (kcal)", fontdict = {'fontsize': 20, 'fontweight' : "bold"}, pad = 15)
+    ax[1][1].tick_params(axis = 'y', which = 'major', labelsize = fontsize)
+    ax[1][1].set_xlabel("")
+    ax[1][1].set_ylabel("")
+    ax[1][1].legend().set_visible(False)
 
     fig.tight_layout(pad = 3)
-
     return fig

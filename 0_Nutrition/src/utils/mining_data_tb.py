@@ -301,33 +301,86 @@ class comparator:
 
 
 #################### Resources ####################
-class stats:
-    #### Stats for a joint plot
-    @staticmethod
-    def calculate(df, resources_list):
-        '''
-        This function calculates the center measures for the given resources belonging to the given dataframe.
+class comparator:
+    def __init__(self, foods, daily_intake):
+        self.foods = foods
+        self.daily_intake = daily_intake
 
-        args : 
-        df -> dataframe with the resources (cleaned)
-        resources_list -> resources to be compared
-        '''
-        stats = df.groupby("Origin").agg({resource : (np.mean, np.median) for resource in resources_list})
-        
-        return stats
+        self.comparison_di = self.__daily_intake_comparator()
+        self.comparison_fats = self.comparator(['Sugars, total (g)',
+       'Carbohydrate (g)', 'Total Fat (g)', 'Fatty acids, total saturated (g)',
+       'Fatty acids, total monounsaturated (g)',
+       'Fatty acids, total polyunsaturated (g)'])
+        self.comparison_chol = self.comparator(['Cholesterol (mg)'])
+        self.comparison_kcal = self.comparator(["Energy (kcal)"])
 
-    #### Transformation for easier visualization
-    @staticmethod
-    def to_plot(stats):
-        '''
-        This function organizes the dataframe in a way that can be then plot with a bar graph.
 
-        args : stats -> dataframe with the stats for the resources
-        '''
-        to_plot = stats.unstack()
-        to_plot = to_plot.reset_index()
-        to_plot.columns = ["Resource", "Mean_median", "Origin", "Values"]
-        return to_plot
+    ####
+    def daily_intake_table(self):
+        # Merge first foods series with daily intake series
+        comparison_di = pd.merge(self.daily_intake, self.foods[0], how = "left", left_index = True, right_index = True)
+
+        # If there's more than one item in foods list...
+        if len(self.foods) > 1:
+            # then merge the rest of the items with the dataframe we just created
+            for food in self.foods[1:]:
+                comparison_di = pd.merge(comparison_di, food, how = "left", left_index = True, right_index = True)
+
+
+        # To conclude, iterate over all food elements
+        for food in self.foods:
+            # Calculate the % of the daily nutrient intake the food provides with
+            comparison_di[f"Relative - {food.name} (%)"] = (comparison_di.loc[:, food.name] / comparison_di.loc[:, "Daily Intake"]) * 100
+
+        return comparison_di
+
+    ####
+    def __daily_intake_comparator(self):
+        # We get the columns with the relative nutritional values of the foods
+        rel_comparison = self.daily_intake_table().iloc[:, -len(self.foods):]
+
+        # We'll save the dataframes in the following list
+        relatives = []
+
+        # Iterate over the columns in comparison
+        for column in rel_comparison.columns:
+            # Get the Series coresponding to the food column
+            rel = rel_comparison.loc[:, column]
+            # Get nutrients out of the index
+            rel = rel.reset_index()
+            # Add a column with the food name
+            rel["Food"] = column[11:]
+            # Rename the columns for later use
+            rel.columns = ["Nutrient", "Value", "Food"]
+            # add the dataframe to our list
+            relatives.append(rel)
+
+        # Once we have all the dataframes, we'll stack them together vertically and return it
+        return pd.concat(relatives)
+
+    ####
+    def comparator(self, filter_):
+        processed_foods = []
+
+        for food in self.foods:
+            # Filter food nutrients
+            data = food[filter_]
+            # Get nutrients' names out of the index
+            data = data.reset_index()
+            # We need a new Series object for the food name
+            food_name = pd.Series([food.name for i in range(len(data))])
+            # Concat everything together
+            data = pd.concat([data, food_name], axis = 1)
+            # Rename the columns
+            data.columns = ["Nutrient", "Value", "Food"]
+            # Append this new df to our list
+            processed_foods.append(data)
+
+        return pd.concat(processed_foods, axis = 0)
+
+    ####
+    def get_comparisons(self):
+        return self.comparison_di, self.comparison_fats, self.comparison_chol, self.comparison_kcal
 
 
 #################### Data Prep for Visualization ####################

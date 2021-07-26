@@ -42,7 +42,7 @@ resources_df, nutrition_df, daily_intake_df = get_data()
 ##################################################### INTERFACE #####################################################
 ####
 menu = st.sidebar.selectbox("Menu:",
-                            options = ["Home", "Resources Facts", "Nutrition Facts"])
+                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "Glossary", "API"])
 
 ####
 if menu == "Home":
@@ -203,7 +203,7 @@ if menu == "Nutrition Facts":
         st.table(table)
     
     if submenu == "Food groups":
-        # ### User input
+        #### User input
         st.sidebar.write("To calculate Daily Intake")
         gender = st.sidebar.radio("Gender", options = ["Male", "Female"]).lower()
         age = st.sidebar.slider(label = "Age", min_value = 20, max_value = 70, value = 20, step = 10)
@@ -211,37 +211,107 @@ if menu == "Nutrition Facts":
         st.sidebar.write("To calculate nutrients")
         measure = st.sidebar.radio("Measure of center", options = ["Mean", "Median"]).lower()
 
-        st.subheader("Food group filters")
-        col1, col2, col3 = st.beta_columns(3)
+        expander = st.beta_expander("Food group filters")
+        with expander:
+            col1, col2, col3 = st.beta_columns(3)
 
-        food_groups_stats = md.nutrients_stats(nutrition_df, "Category 2", measure)
-        food_groups = []
+            food_groups_stats = md.nutrients_stats(nutrition_df, "Category 2", measure)
+            food_groups = []
 
-        # Checkboxes divided in three blocks (purely design reasons)
-        for food_group in food_groups_stats.columns[:4]:
-            checkbox = col1.checkbox(label = food_group)
-            if checkbox:
-                food_groups.append(food_group)
+            # Checkboxes divided in three blocks (purely design reasons)
+            for food_group in food_groups_stats.columns[:4]:
+                checkbox = col1.checkbox(label = food_group)
+                if checkbox:
+                    food_groups.append(food_group)
 
-        for food_group in food_groups_stats.columns[4:8]:
-            checkbox = col2.checkbox(label = food_group)
-            if checkbox:
-                food_groups.append(food_group)
+            for food_group in food_groups_stats.columns[4:8]:
+                checkbox = col2.checkbox(label = food_group)
+                if checkbox:
+                    food_groups.append(food_group)
 
-        for food_group in food_groups_stats.columns[8:12]:
-            checkbox = col3.checkbox(label = food_group)
-            if checkbox:
-                food_groups.append(food_group)
+            for food_group in food_groups_stats.columns[8:12]:
+                checkbox = col3.checkbox(label = food_group)
+                if checkbox:
+                    food_groups.append(food_group)
 
         if len(food_groups) > 0:
             #### Data prep for visualization
             daily_intake_object = md.daily_intake(gender, age)
             daily_intake = daily_intake_object.get_data(daily_intake_df)
 
+            # I get the series for each food group (as I need them that way later on) and save them in a list
             foods = [food_groups_stats[column] for column in food_groups_stats[food_groups].columns]
 
+            # Make comparisons, using a comparator object
             comparator = md.comparator(foods, daily_intake)
-            comparison = comparator.comparison
-            to_plot = comparator.to_plot()
+            comparisons = comparator.get_comparisons()
+            
+            # Save the plot as a figure
+            fig = vi.full_comparison_plot(comparisons)
 
-            st.table(to_plot)
+            st.write(fig)
+            st.table(comparator.daily_intake_table())
+    
+    if submenu == "Foods":
+        #### User input
+        st.sidebar.write("To calculate Daily Intake")
+        gender = st.sidebar.radio("Gender", options = ["Male", "Female"]).lower()
+        age = st.sidebar.slider(label = "Age", min_value = 20, max_value = 70, value = 20, step = 10)
+
+        #### Data prep for visualization
+        daily_intake_object = md.daily_intake(gender, age)
+        daily_intake = daily_intake_object.get_data(daily_intake_df)
+
+        st.subheader("Food filters")
+
+        # Filter the data by food groups, to make easier for the user to find the foods he wants to compare
+        food_group_filter = st.selectbox('Food groups:',
+                                         options = nutrition_df["Category 2"].unique())
+
+        # Button to show the foods in the chosen food group
+        filter_button = st.button("Show foods")
+        filtered_df = nutrition_df[nutrition_df["Category 2"] == food_group_filter]
+        filtered_df = filtered_df["Food name"]
+
+        #st.write(nutrition_df.head(2))
+
+        # Form to enter the foods to extract the data for
+        with st.form("Submit"):
+            chosen_foods = st.text_area("Foods you want to compare. Make sure you enter one value each line")
+            submit_button = st.form_submit_button("Submit")
+        
+        # Once the user sends the info, plot everything
+        if submit_button:
+            # As the input is sent as string, let's split it by the line break
+            chosen_foods = chosen_foods.split("\n")
+            chosen_foods = list(filter(None, chosen_foods))     # Filter the extra line breaks
+            df_ = nutrition_df.set_index("Food name")
+            to_plot = [df_.loc[food, :] for food in chosen_foods]
+
+            # ### Data preparation
+            comparator = md.comparator(to_plot, daily_intake)
+            comparisons = comparator.get_comparisons()
+
+            fig = vi.full_comparison_plot(comparisons)
+
+            # ### Data visualization
+            st.subheader(f"Visualization of\n{chosen_foods}")
+            st.pyplot(fig)
+
+        if filter_button:
+            st.table(filtered_df)
+
+####
+if menu == "Health Facts":
+    #da.health_facts()
+    pass
+
+####
+if menu == "Glossary":
+    #da.glossary()
+    pass
+
+####
+if menu == "API":
+    #da.api()
+    pass
