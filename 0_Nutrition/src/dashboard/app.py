@@ -28,15 +28,20 @@ import utils.visualization_tb as vi
 def get_data():
     # Path to data
     environment_data_path = fo.path_to_folder(2, "data" + sep + "environment")
+    health_data_path = fo.path_to_folder(2, "data" + sep + "health" + sep + "7_cleaned_data")
 
     # Load data
+    # Environment-related data
     resources_df = pd.read_csv(environment_data_path + "resources.csv", index_col = 0)
     nutrition_df = pd.read_csv(environment_data_path + "nutritional_values.csv", index_col = 0)
     daily_intake_df = pd.read_csv(environment_data_path + "daily_intakes.csv")
+    # Health related data
+    health_df = pd.read_csv(health_data_path + sep + "cleaned_data.csv", index_col = 0)
     
-    return resources_df, nutrition_df, daily_intake_df
+    return resources_df, nutrition_df, daily_intake_df, health_df
 
-resources_df, nutrition_df, daily_intake_df = get_data()
+# Save dataframes as variables
+resources_df, nutrition_df, daily_intake_df, health_df = get_data()
 
 
 ##################################################### INTERFACE #####################################################
