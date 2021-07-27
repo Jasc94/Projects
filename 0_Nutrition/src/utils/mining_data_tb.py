@@ -497,6 +497,8 @@ class dataset:
         self.df = None
 
         # Processed data for ML
+        self.X = None
+        self.y = None
         self.X_train = None
         self.X_test = None
         self.y_train = None
@@ -767,3 +769,23 @@ class dataset:
 
         # Cross validation
         self.kfold = RepeatedStratifiedKFold(n_splits = cv, n_repeats = epochs, random_state = seed)
+
+    #########
+    def full_model_data(self, scaler = False, balance = None, seed = 42):
+        # Independent variables
+        X = np.array(self.df.iloc[:, 1:])
+
+        # Dependent variable
+        y = np.array(self.df.iloc[:, 0])
+
+        # Data scaling
+        if scaler:
+            scaler = StandardScaler()
+            X = scaler.fit_transform(X)
+
+        # Balancing data
+        if balance != None:
+            sm = SMOTE(sampling_strategy = balance, random_state = seed, n_jobs = -1)
+            X, y = sm.fit_resample(X, y)
+
+        return X, y

@@ -153,9 +153,6 @@ class ml_model:
         self.recall = self.cm[1][1] / (self.cm[1][1] + self.cm[1][0])
         self.f1_score = 2 * ((self.precision * self.recall) / (self.precision + self.recall))
 
-        ##### Roc curve
-        self.precisions, self.recalls, self.thresholds = metrics.precision_recall_curve(self.y_test, self.prediction, pos_label = 1)
-
         if verb:
             print("Train structure:", self.train_structure)
             print("Test structure:", self.test_structure)
@@ -171,6 +168,32 @@ class ml_model:
             print("Precision:", self.precision)
             print("Recall:", self.recall)
             print("F1 score:", self.f1_score)
+
+    #########
+    def ready_to_use(self, X, y, verb = False):
+        self.model.fit(X, y)
+
+        score = self.model.score(X, y)
+        predictions = self.model.predict(X)
+        cm = metrics.confusion_matrix(y, predictions)
+
+        accuracy = (cm[0][0] + cm[1][1]) / cm.sum()
+        precision = cm[1][1] / (cm[1][1] + cm[0][1])
+        recall = cm[1][1] / (cm[1][1] + cm[1][0])
+        f1_score = 2 * ((precision * recall) / (precision + recall))
+
+        if verb:
+            print("Model results - Full data")
+            print(">Score:", score)
+            print("#" * 75)
+            print("Confusion matrix")
+            print(cm)
+            print("#" * 75)
+            print("Precision metrics")
+            print("Accuracy:", accuracy)
+            print("Precision:", precision)
+            print("Recall:", recall)
+            print("F1 score:", f1_score)
 
     #########
     def ml_predictions(self, to_predict):

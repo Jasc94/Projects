@@ -73,6 +73,7 @@ def full_comparison_plot(comparisons, fontsize = 18, legendsize = 20, figsize = 
     return fig
 
 ##################################################### HEALTH DATA FUNCTIONS #####################################################
+####
 class eda_plotter():
     #####
     @staticmethod
@@ -186,5 +187,70 @@ class eda_plotter():
         sns.heatmap(df.corr(), annot = True, linewidths = .1,
                     cmap = "Blues", xticklabels = False,
                     yticklabels = features_names, cbar = False)
+
+        return fig
+
+####
+class ml_model_plotter():
+    '''
+    Class to plot machine learning model results
+    '''
+    #####
+    @staticmethod
+    def train_val_plot(ml_model, figsize = (14, 6)):
+        '''
+        It plots training scores vs validation scores. It returns a figure
+        '''
+        fig = plt.figure(figsize = figsize)
+        sns.set_theme()
+
+        sns.lineplot(data = [ml_model.train_scores, ml_model.val_scores], markers = True, dashes = False)
+
+        plt.ylabel("Score")
+        plt.xlabel("Round")
+        plt.legend(["Train score", "Validation score"])
+        
+        return fig
+
+    #####
+    @staticmethod
+    def test_metrics(ml_model, figsize = (12, 12)):
+        '''
+        It plots the metrics after training with the full training data and testing with the test data. It returns a figure
+        '''
+        # Calculate the row/column totals for later use
+        row_sums = ml_model.cm.sum(axis = 1, keepdims = True)
+        column_sums = ml_model.cm.sum(axis = 0, keepdims = True)
+        
+        # Relative values to column/row sums
+        rel_row = (ml_model.cm / row_sums) * 100
+        rel_col = (ml_model.cm / column_sums) * 100
+
+        # Plot
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize = figsize, sharex = True, sharey = True)
+
+        first_row_palette = sns.color_palette("light:b", as_cmap=True)
+        second_row_palette = sns.light_palette("seagreen", as_cmap=True)
+        fmt = "g"
+
+        # ax1
+        sns.heatmap(ml_model.cm, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax1, cbar = False, fmt = fmt)
+        ax1.set_ylabel("Actual class")
+        ax1.set_title("Confusion matrix")
+
+        # ax2
+        sns.heatmap((ml_model.cm / ml_model.cm.sum()) * 100, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax2, cbar = False, fmt = fmt)
+        ax2.set_ylabel("Actual class")
+        ax2.set_title("Confusion matrix - relative")
+
+        # ax3
+        sns.heatmap(rel_row, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax3, cbar = False, fmt = fmt)
+        ax3.set_xlabel("Predicted class")
+        ax3.set_title("Relative to row sum (Recall)")
+
+        # ax4
+        sns.heatmap(rel_col, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax4, cbar = False, fmt = fmt)
+        ax4.set_xlabel("Predicted class")
+        ax4.set_title("Relative to col sum (Precision)")
 
         return fig
