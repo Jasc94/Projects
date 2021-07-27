@@ -1,9 +1,21 @@
 import streamlit as st
 
+import numpy as np
 import pandas as pd
 
 import plotly.express as px
 import plotly.graph_objects as go
+
+import joblib
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split, RepeatedStratifiedKFold
+from sklearn import metrics
+from sklearn.preprocessing import StandardScaler
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers, models, callbacks
+from keras.models import load_model
 
 import sys, os
 
@@ -28,20 +40,37 @@ import utils.visualization_tb as vi
 def get_data():
     # Path to data
     environment_data_path = fo.path_to_folder(2, "data" + sep + "environment")
-    health_data_path = fo.path_to_folder(2, "data" + sep + "health" + sep + "7_cleaned_data")
+    health_data_path = fo.path_to_folder(2, "data" + sep + "health")
 
     # Load data
     # Environment-related data
     resources_df = pd.read_csv(environment_data_path + "resources.csv", index_col = 0)
     nutrition_df = pd.read_csv(environment_data_path + "nutritional_values.csv", index_col = 0)
     daily_intake_df = pd.read_csv(environment_data_path + "daily_intakes.csv")
-    # Health related data
-    health_df = pd.read_csv(health_data_path + sep + "cleaned_data.csv", index_col = 0)
-    
-    return resources_df, nutrition_df, daily_intake_df, health_df
 
-# Save dataframes as variables
-resources_df, nutrition_df, daily_intake_df, health_df = get_data()
+    # Health related data
+    health_df = pd.read_csv(health_data_path + "7_cleaned_data" + sep + "cleaned_data.csv", index_col = 0)
+    # Object for the variables' names
+    vardata = md.variables_data()
+    vardata.load_data(health_data_path + "6_variables" + sep + "0_final_variables.csv")
+    
+    return resources_df, nutrition_df, daily_intake_df, health_df, vardata
+
+####
+@st.cache
+def get_models():
+    # Models path
+    models_path = fo.path_to_folder(2, "models")
+
+    # Load models
+    logistic = joblib.load(models_path + "BM_LogisticRegression.pkl")
+    #nn = models.load_model(models_path + "NN.h5")
+    
+    return logistic
+
+# Save dataframes and models as variables
+resources_df, nutrition_df, daily_intake_df, health_df, vardata = get_data()
+logistic = get_models()
 
 
 ##################################################### INTERFACE #####################################################
@@ -309,7 +338,59 @@ if menu == "Nutrition Facts":
 ####
 if menu == "Health Facts":
     #da.health_facts()
-    pass
+    #### Title
+    st.title("This is the health facts section")
+
+    submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Exploration", "Health Prediction"])
+    
+    if submenu == "Exploration":
+        st.header("In this section, you can explore the relation between different health indicators: demographics, dietary, and more.")
+
+        sort_by = st.sidebar.radio("Sort by:", options = ["Variable nomenclature", "Variable description"])
+
+        translation = {
+            "Variable nomenclature" : "vAr_nAmE",
+            "Variable description" : "var_descr",
+        }
+
+        # Table
+        table_header = ["Variable name", "Variable description"]
+
+        to_show = vardata.df.iloc[:, [0, 1, -2]].sort_values(by = translation[sort_by])
+        table_data = [to_show.iloc[:, 0].values,
+                    to_show.iloc[:, 1].values
+                    ]
+
+        table = go.Figure(data = go.Table(
+                        columnwidth = [40, 100],
+                        header = dict(values = table_header,
+                        fill_color = "#3D5475",
+                        align = "left",
+                        font = dict(size = 20, color = "white")),
+
+                        cells = dict(values = table_data,
+                        fill_color = "#7FAEF5",
+                        align = "left",
+                        font = dict(size = 16),
+                        height = 30)
+                        ))
+        table.update_layout(height = 300, margin = dict(l = 0, r = 0, b = 0, t = 0))
+        
+        st.write(table)
+    
+        ##### SECTION 2: Chossing and plotting variables
+        st.header("2) Choose and plot some variables")
+
+        # Plot filters
+        st.sidebar.subheader("2) Data plotting")
+        y = st.sidebar.text_input("Choose your target variable (y):")
+        X = st.sidebar.text_area("Choose your explanatory variables (X):")
+        X = X.split("\n")
+
+        button = st.sidebar.button("Submit selection")
+
+    if submenu == "Health Prediction":
+        pass
 
 ####
 if menu == "Glossary":

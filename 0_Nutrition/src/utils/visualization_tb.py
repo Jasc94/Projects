@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from sklearn import metrics
+
 import sys, os
 
 # Helpers
@@ -240,6 +242,87 @@ class ml_model_plotter():
 
         # ax2
         sns.heatmap((ml_model.cm / ml_model.cm.sum()) * 100, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax2, cbar = False, fmt = fmt)
+        ax2.set_ylabel("Actual class")
+        ax2.set_title("Confusion matrix - relative")
+
+        # ax3
+        sns.heatmap(rel_row, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax3, cbar = False, fmt = fmt)
+        ax3.set_xlabel("Predicted class")
+        ax3.set_title("Relative to row sum (Recall)")
+
+        # ax4
+        sns.heatmap(rel_col, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax4, cbar = False, fmt = fmt)
+        ax4.set_xlabel("Predicted class")
+        ax4.set_title("Relative to col sum (Precision)")
+
+        return fig
+
+
+####
+class nn_plotter():
+    '''
+    Class to plot neural network model results
+    '''
+    @staticmethod
+    def model_progression(history):
+        '''
+        It plots model accuracy and loss function.
+        args:
+        history: keras history attribute
+        '''
+        accuracy = history.history["binary_accuracy"]
+        loss = history.history["loss"]
+
+        fig, ax = plt.subplots(1, 2, figsize = (12, 6))
+        ax[0].plot(accuracy)
+        ax[0].set_title("Binary Accuracy")
+        ax[1].plot(loss, c = "orange")
+        ax[1].set_title("Loss")
+        return fig
+
+    @staticmethod
+    def test_results(model, dataset, figsize = (14, 14)):
+        '''
+        It plots the metrics after training with the full training data and testing with the test data. It returns a figure
+        '''
+        X_train = dataset.X_train
+        y_train = dataset.y_train
+        X_test = dataset.X_test
+        y_test = dataset.y_test
+
+        ##### Batches structure
+        y_t_unique, y_t_counts = np.unique(y_train, return_counts=True)
+        y_v_unique, y_v_counts = np.unique(y_test, return_counts=True)
+
+        # Predictions
+        predictions = model.predict(X_test)
+        predictions2 = np.array([1 if (prediction > .5) else 0 for prediction in predictions])
+
+        ##### Confusion Matrix
+        cm = metrics.confusion_matrix(y_test, predictions2)
+
+        # Calculate the row/column totals for later use
+        row_sums = cm.sum(axis = 1, keepdims = True)
+        column_sums = cm.sum(axis = 0, keepdims = True)
+
+        # Relative values to column/row sums
+        rel_row = (cm / row_sums) * 100
+        rel_col = (cm / column_sums) * 100
+
+        # Plot
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize = figsize, sharex = True, sharey = True)
+
+        first_row_palette = sns.color_palette("light:b", as_cmap=True)
+        second_row_palette = sns.light_palette("seagreen", as_cmap=True)
+        fmt = "g"
+
+        # ax1
+        sns.heatmap(cm, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax1, cbar = False, fmt = fmt)
+        ax1.set_ylabel("Actual class")
+        ax1.set_title("Confusion matrix")
+
+        # ax2
+        sns.heatmap((cm / cm.sum()) * 100, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax2, cbar = False, fmt = fmt)
         ax2.set_ylabel("Actual class")
         ax2.set_title("Confusion matrix - relative")
 

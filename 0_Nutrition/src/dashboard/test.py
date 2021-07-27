@@ -17,4 +17,4 @@ import utils.folder_tb as fo
 import utils.mining_data_tb as md
 import utils.visualization_tb as vi
 
-print(fo.path_to_folder(2, "data" + sep + "environment"))
+print(fo.path_to_folder(2, "models"))
