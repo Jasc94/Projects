@@ -23,7 +23,10 @@ import mining_data_tb as md
 
 
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
-#################### Daily Intake & Nutritional values ####################
+#################### Resources ####################
+
+
+#################### Daily Intake & Nutritional ####################
 ####
 def full_comparison_plot(comparisons, fontsize = 18, legendsize = 20, figsize = (20, 20)):
     comparison_di, comparison_fats, comparison_chol, comparison_kcal = comparisons
