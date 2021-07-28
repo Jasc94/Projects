@@ -111,6 +111,33 @@ def read_json_to_dict(json_fullpath):
 
 
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
+#################### Resources ####################
+def combine_data(df, column1, column2):
+    '''
+    This function combines two foods' values in the resources data. For instancem "Tofu" and "Tofu (soybeans)", as they are the same food, and one has the missing values of the other.
+
+    args :
+    column1 -> Should be the name of the food1 in the dataframe
+    column2 -> Should be the name of the food2 in the dataframe
+    df -> dataframe we pull the data from according to the given names
+    '''
+    # To store the new values of combining both columns
+    new_values = []
+
+    # Iterate through the length of the column1 (both columns should have the same length)
+    for i in range(len(df.loc[column1])):
+        # If column1 is nan, return the value of the other column
+        if np.isnan(df.loc[column1][i]):
+            new_values.append(df.loc[column2][i])
+        # else, keep the one from column 1
+        else:
+            new_values.append(df.loc[column1][i])
+
+    # Join the values together with an index (should be the same for both columns)
+    # and transpose it
+    df = pd.DataFrame(new_values, index = df.loc[column1].index, columns = [column1 + "_"])
+    return df.T
+
 #################### Daily Intake ####################
 class daily_intake:
     def __init__(self, gender, age):
@@ -301,57 +328,6 @@ class comparator:
     def __init__(self, foods, daily_intake):
         self.foods = foods
         self.daily_intake = daily_intake
-        self.comparison = self.__comparator()
-
-    ####
-    def __comparator(self):
-        # Merge first foods series with daily intake series
-        comparison = pd.merge(self.daily_intake, self.foods[0], how = "left", left_index = True, right_index = True)
-
-        # If there's more than one item in foods list...
-        if len(self.foods) > 1:
-            # then merge the rest of the items with the dataframe we just created
-            for food in self.foods[1:]:
-                comparison = pd.merge(comparison, food, how = "left", left_index = True, right_index = True)
-
-
-        # To conclude, iterate over all food elements
-        for food in self.foods:
-            # Calculate the % of the daily nutrient intake the food provides with
-            comparison[f"Relative - {food.name}"] = (comparison.loc[:, food.name] / comparison.loc[:, "Daily Intake"]) * 100
-
-        return comparison
-
-    ####
-    def to_plot(self):
-        # We get the columns with the relative nutritional values of the foods
-        rel_comparison = self.comparison.iloc[:, -len(self.foods):]
-
-        # We'll save the dataframes in the following list
-        relatives = []
-
-        # Iterate over the columns in comparison
-        for column in rel_comparison.columns:
-            # Get the Series coresponding to the food column
-            rel = rel_comparison.loc[:, column]
-            # Get nutrients out of the index
-            rel = rel.reset_index()
-            # Add a column with the food name
-            rel["Food"] = column[11:]
-            # Rename the columns for later use
-            rel.columns = ["Nutrient", "Comparison", "Food"]
-            # add the dataframe to our list
-            relatives.append(rel)
-
-        # Once we have all the dataframes, we'll stack them together vertically and return it
-        return pd.concat(relatives)
-
-
-#################### Resources ####################
-class comparator:
-    def __init__(self, foods, daily_intake):
-        self.foods = foods
-        self.daily_intake = daily_intake
 
         self.comparison_di = self.__daily_intake_comparator()
         self.comparison_fats = self.comparator(['Sugars, total (g)',
@@ -431,7 +407,7 @@ class comparator:
 
 
 #################### Data Prep for Visualization ####################
-####
+#### 
 def color_mapper(df, column, mapper):
     color_map = {}
 

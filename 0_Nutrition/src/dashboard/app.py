@@ -5,6 +5,7 @@ import pandas as pd
 
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.figure_factory as ff
 
 import joblib
 from sklearn.linear_model import LogisticRegression
@@ -49,12 +50,13 @@ def get_data():
     daily_intake_df = pd.read_csv(environment_data_path + "daily_intakes.csv")
 
     # Health related data
-    health_df = pd.read_csv(health_data_path + "7_cleaned_data" + sep + "cleaned_data.csv", index_col = 0)
+    cleaned_health_df = pd.read_csv(health_data_path + "7_cleaned_data" + sep + "cleaned_data.csv", index_col = 0)
+    raw_health_df = pd.read_csv(health_data_path + "7_cleaned_data" + sep + "raw_data.csv", index_col = 0)
     # Object for the variables' names
     vardata = md.variables_data()
     vardata.load_data(health_data_path + "6_variables" + sep + "0_final_variables.csv")
     
-    return resources_df, nutrition_df, daily_intake_df, health_df, vardata
+    return resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata
 
 ####
 @st.cache
@@ -69,7 +71,7 @@ def get_models():
     return logistic
 
 # Save dataframes and models as variables
-resources_df, nutrition_df, daily_intake_df, health_df, vardata = get_data()
+resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
 logistic = get_models()
 
 
@@ -107,7 +109,7 @@ if menu == "Resources Facts":
         st.subheader(f"You are currently checking the top {entries} by **{chosen_resource}**")
 
         # Data filtering
-        selection = resources_df[["Origin", chosen_resource]].sort_values(by = chosen_resource, ascending = False).head(entries)
+        selection = resources_df[["Origin", chosen_resource]].sort_values(by = chosen_resource, ascending = False).head(entries).applymap(lambda x: md.round_number(x, 2))
         
         # Creating table/plots
         header = ["Food"] + list(selection.columns)
@@ -131,13 +133,15 @@ if menu == "Resources Facts":
         fig = px.bar(selection, x = selection.index, y = chosen_resource,
                      color = color_map.keys(), color_discrete_map = color_map)
 
+        fig.update(layout_showlegend=False)
+
         # Data visualization
         st.write(fig)
         st.write(table)
         #st.table(selection)
 
     #### Subsection 2
-    else:        
+    if submenu == "Comparator":        
         #### Filters
         measure = st.sidebar.radio("Measure", options = ["Median", "Mean"]).lower()
 
@@ -145,7 +149,7 @@ if menu == "Resources Facts":
         st.subheader(f"You are currently checking the {measure} for the resource **{chosen_resource}**")
 
         #### Data extraction and prep
-        stats_object = md.stats
+        stats_object = md.stats()
 
         stats = stats_object.calculate(resources_df, [chosen_resource])
         to_plot = stats_object.to_plot(stats)
@@ -353,10 +357,14 @@ if menu == "Health Facts":
             "Variable description" : "var_descr",
         }
 
+        filter_by = st.sidebar.radio("Filter by:", options = ["Demographics", "Dietary", "Examination", "Laboratory", "Questionnaire"])
+
         # Table
         table_header = ["Variable name", "Variable description"]
 
         to_show = vardata.df.iloc[:, [0, 1, -2]].sort_values(by = translation[sort_by])
+        to_show = to_show[to_show.component == filter_by]
+
         table_data = [to_show.iloc[:, 0].values,
                     to_show.iloc[:, 1].values
                     ]
@@ -389,8 +397,165 @@ if menu == "Health Facts":
 
         button = st.sidebar.button("Submit selection")
 
+        # Plots
+        if button:
+            # Data preprocessing
+            features = [y] + X
+            data = raw_health_df.loc[:, features]
+            filtered_data = data.dropna()
+
+            # Data description and some processing for later plotting
+            data_stats = filtered_data.describe().T
+            data_stats = data_stats.reset_index()
+            data_stats = data_stats.drop("count", axis = 1)
+            data_stats = data_stats.applymap(lambda x: md.round_number(x, 2))
+            data_columns = list(data_stats.columns)
+
+            # Correlations
+            corr = np.array(filtered_data.corr().applymap(lambda x: round(x, 2)))
+
+            # Get variables' descriptions
+            y_descr = vardata.var_descr_detector(y)
+            X_descr = vardata.vars_descr_detector(X, cut = 30)
+            descrs = [y] + X_descr
+
+            # Stats table
+            table_header = data_columns
+            table_data = [data_stats.iloc[:, column].values for column in range(len(data_columns))]
+
+            # Table with variables' info
+            table = go.Figure(data = go.Table(
+                            columnwidth = [20, 10, 10, 10, 10, 10, 10, 10],
+                            header = dict(values = table_header,
+                            fill_color = "#3D5475",
+                            align = "left",
+                            font = dict(size = 20, color = "white")),
+
+                            cells = dict(values = table_data,
+                            fill_color = "#7FAEF5",
+                            align = "left",
+                            font = dict(size = 16),
+                            height = 30)
+                            ))
+
+            # To adjust the height of the table and avoid as much as possible too much white space
+            if len(features) < 6:
+                table.update_layout(autosize = False, width = 600, height = 150,
+                                    margin = dict(l = 0, r = 0, b = 0, t = 0))
+            else:
+                table.update_layout(autosize = False, width = 600, height = 200,
+                                    margin = dict(l = 0, r = 0, b = 0, t = 0))
+
+            # Show the table
+            st.write(table)
+
+            ### Data insights
+            # Expander
+            expander = st.beta_expander("Insights on the data")
+            with expander:
+                st.write("**Chosen variables**:")
+                for feature in features:
+                    st.write(vardata.var_descr_detector(feature, nom_included = True))
+                
+                st.write("**Number of observations**:")
+                st.write(f"- Before dropping the NaN values:\t{data.shape[0]}")
+                st.write(f"- After dropping the NaN values:\t{filtered_data.shape[0]}")
+                st.write("\n")
+                st.write("**Target variable (y) values**:")
+                st.table(filtered_data.loc[:, y].value_counts())
+
+                nahnes_url = "https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017"
+                st.write("More info in the following link:")
+                st.markdown(nahnes_url, unsafe_allow_html=True)
+
+            ### Correlation plot
+            st.write(y_descr)
+            colorscale = [[0, "white"], [1, "cornflowerblue"]]
+            correlation_plot = ff.create_annotated_heatmap(corr,
+                                                        #x = descrs,
+                                                        y = descrs,
+                                                        colorscale = colorscale)
+            # Show the correlation plot
+            st.write(correlation_plot)
+
+            # Distribution plots for each chosen variable
+            for x in X:
+                x_descr = vardata.var_descr_detector(x, cut = 30, nom_included = True)
+                expander = st.beta_expander(x_descr)
+
+                # within expanders to ease the navigability
+                with expander: 
+                    to_plot = filtered_data.loc[:, [y, x]].dropna()
+                    histogram = px.histogram(to_plot, x = x, color = y,
+                                            marginal = "box",
+                                            labels = {x : x_descr},
+                                            width = 600)
+                    st.write(histogram)
+
     if submenu == "Health Prediction":
-        pass
+        st.sidebar.write("Predict whether or not you can have a cardiovascular disease")
+        predict_button = st.sidebar.button("Predict health")
+
+        # Form for the prediction
+        expander = st.beta_expander("Find out if you are at risk of heart disease")
+
+        with expander:
+            cols = st.beta_columns(3)
+            # Col 1
+            GENDER = cols[0].text_input("Gender", value = "Female")
+            if GENDER == "Female":
+                FEMALE = 1
+                MALE = 0
+            else:
+                FEMALE = 0
+                MALE = 1
+            RIDAGEYR = cols[0].text_input("Age", value = 43)
+            BPXDI1 = cols[0].text_input("Diastolic: Blood pressure (mm Hg)", value = 68)
+            BPXSY1 = cols[0].text_input("Systolic: Blood pressure (mm Hg)", value = 121) 
+            BMXWT = cols[0].text_input("Weight (kg)", value = 79)
+
+            # Col 2
+            BMXWAIST = cols[1].text_input("Waist Circumference (cm)", value = 97)
+            LBXTC = cols[1].text_input("Total Cholesterol (mg/dL) *", value = 183)
+            LBXSGL = cols[1].text_input("Glucose (mg/dL) *", value = 100)
+            MEANCHOL = cols[1].text_input("Cholesterol (gmg **", value = 290)
+            MEANTFAT = cols[1].text_input("Total Fat (g) **", value = 78)
+
+            # Col 3
+            MEANSFAT = cols[2].text_input("Total Saturated Fatty Acis (g) **", value = 25)
+            MEANSUGR = cols[2].text_input("Total Sugar (g) **", value = 103)
+            MEANFIBE = cols[2].text_input("Total Fiber (g) **", value = 16)
+            MEANTVB6 = cols[2].text_input("Total Vitamin B6 (mg) **", value = 2)
+
+            # Annotations
+            st.write("\* Blood levels", value = 68)
+            st.write("** Usual intake (diet habits)", value = 68)
+
+            # Gathering all the form data
+            to_predict = [RIDAGEYR, BPXDI1, BPXSY1, BMXWT, BMXWAIST, LBXTC,
+                        LBXSGL, MEANCHOL, MEANTFAT, MEANSFAT, MEANSUGR, MEANFIBE,
+                        MEANTVB6, FEMALE, MALE]
+
+        # Predictions
+        if predict_button:
+            # Processing data for the model
+            to_predict = [md.to_float(val) for val in to_predict]
+            to_predict_arr = np.array(to_predict).reshape(1, -1)
+
+            # Prediction
+            ml_prediction = logistic.predict(to_predict_arr)
+            
+            # Note to the user
+            st.sidebar.write("Scroll down to see the prediction!")
+
+            #Showing the prediction
+            if ml_prediction[0] == 1:
+                st.subheader("You are at risk of having a coronary disease")
+                st.write("This results are an estimation and you should always check with your doctor.")
+            else:
+                st.subheader("You are not at risk of having a coronary disease")
+                st.write("This results are an estimation and you should always check with your doctor.")
+            pass
 
 ####
 if menu == "Glossary":
