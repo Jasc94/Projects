@@ -112,31 +112,44 @@ def read_json_to_dict(json_fullpath):
 
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Resources ####################
-def combine_data(df, column1, column2):
-    '''
-    This function combines two foods' values in the resources data. For instancem "Tofu" and "Tofu (soybeans)", as they are the same food, and one has the missing values of the other.
+class merger:
+    @staticmethod
+    def __merge_cols(df, column1, column2):
+        '''
+        This function combines two foods' values in the resources data. For instancem "Tofu" and "Tofu (soybeans)", as they are the same food, and one has the missing values of the other.
 
-    args :
-    column1 -> Should be the name of the food1 in the dataframe
-    column2 -> Should be the name of the food2 in the dataframe
-    df -> dataframe we pull the data from according to the given names
-    '''
-    # To store the new values of combining both columns
-    new_values = []
+        args :
+        column1 -> Should be the name of the food1 in the dataframe
+        column2 -> Should be the name of the food2 in the dataframe
+        df -> dataframe we pull the data from according to the given names
+        '''
+        # To store the new values of combining both columns
+        new_values = []
 
-    # Iterate through the length of the column1 (both columns should have the same length)
-    for i in range(len(df.loc[column1])):
-        # If column1 is nan, return the value of the other column
-        if np.isnan(df.loc[column1][i]):
-            new_values.append(df.loc[column2][i])
-        # else, keep the one from column 1
-        else:
-            new_values.append(df.loc[column1][i])
+        # Iterate through the length of the column1 (both columns should have the same length)
+        for i in range(len(df.loc[column1])):
+            # If column1 is nan, return the value of the other column
+            if np.isnan(df.loc[column1][i]):
+                new_values.append(df.loc[column2][i])
+            # else, keep the one from column 1
+            else:
+                new_values.append(df.loc[column1][i])
 
-    # Join the values together with an index (should be the same for both columns)
-    # and transpose it
-    df = pd.DataFrame(new_values, index = df.loc[column1].index, columns = [column1 + "_"])
-    return df.T
+        # Join the values together with an index (should be the same for both columns)
+        # and transpose it
+        df = pd.DataFrame(new_values, index = df.loc[column1].index, columns = [column1 + "_"])
+        return df.T
+
+    @staticmethod
+    def multiple_merge_cols(df, cols_list):
+        to_append = []
+        for cols in cols_list:
+            new = merger.__merge_cols(df, cols[0], cols[1])
+            df = df.drop(cols, axis = 0)
+            to_append.append(new)
+
+        return df.append(to_append)
+
 
 #################### Daily Intake ####################
 class daily_intake:
@@ -233,6 +246,7 @@ class filter_tool:
         animal_products = milks + cheese + other_animal_products + meats + chicken + fish
         veggie_products = milk_substitutes + beans + soy_products + nuts + other_veggie_products
 
+        full = animal_products + veggie_products
 
         filters_map = {
                         "Others" : others,
@@ -254,7 +268,8 @@ class filter_tool:
                         "Nuts" : nuts,
                         "Other Veggie Products" : other_veggie_products,
                         "Animal Products" : animal_products,
-                        "Veggie Products" : veggie_products
+                        "Veggie Products" : veggie_products,
+                        "full" : full
                     }
         
         return filters_map[key]
@@ -309,6 +324,20 @@ class filter_tool:
             return df[columns].sort_values(by = nutrient, ascending = False)
         except:
             return "More than one row selected"
+
+    ####
+    @staticmethod
+    def create_category(df, new_category, initial_value, new_values):
+        # Create new column
+        df[new_category] = initial_value
+
+        for pair in new_values:
+            # Get the index of the foods whose "Category name" appead in the list
+            condition = df[df["Category name"].isin(pair[1])].index
+            # Assign new value to those rows that match de condition
+            df.loc[condition, new_category] = pair[0]
+
+        return df
 
 ####
 def nutrients_stats(df, category, measure = "mean", start = 3, end = -2):
