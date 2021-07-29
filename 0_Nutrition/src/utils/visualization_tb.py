@@ -24,7 +24,61 @@ import mining_data_tb as md
 
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Resources ####################
+class resources_plotter():
+    @staticmethod
+    def resources_plot(data, x, title = None, figsize = (12, 12)):
+        # 1) Filter & sort the data
+        data = data.sort_values(by = x, ascending = False)
+        
+        # 2) Get the names of the foods that are missing this value
+        missing_values = list(data[data[x].isna()].index)
+        
+        # Then, remove them
+        data = data.dropna()
 
+        # 3) Plot format
+        sns.set_theme()
+
+        # 4) Figure and axis
+        fig, ax = plt.subplots(1, 1, figsize = figsize)
+
+        # Actual plot
+        sns.barplot(x = data[x], y = data.index, data = data, palette = "RdBu", ax = ax)
+        
+        # 5) Some extras
+        if title:
+            plt.title(title,
+                    fontdict = {'fontsize': 20,
+                                'fontweight' : "bold"},
+                    pad = 15)
+
+        plt.xlabel(title)
+        plt.ylabel("Foods")
+        
+        # Add the missing values as note at the bottom of the plot
+        textstr = f"We don't have the values for the following foods:\n{missing_values}"
+        plt.text(0.25, 0.05, textstr, fontsize = 12, transform = plt.gcf().transFigure)
+
+        return fig
+
+    @staticmethod
+    def stats_plot(data, x, y, hue):
+        # calculate the number of axes depending on the resources in the dataframe
+        number_of_axes = len(data[x].unique())
+
+        # plot as many axes as needed
+        fig, axes = plt.subplots(1, number_of_axes, figsize = (15, 7))
+
+        # Create a list with the resources for later use
+        resources = list(data[x].unique())
+
+        # Plot in all the axes
+        for index in range(number_of_axes):
+            sns.barplot(x = x, y = y, hue = hue,
+                        data = data[data[x] == resources[index]], ax = axes[index], ci = None)
+            axes[index].set_title(resources[index], fontdict = {'fontsize': 14, 'fontweight' : "bold"})
+
+        return fig
 
 #################### Daily Intake & Nutritional ####################
 ####

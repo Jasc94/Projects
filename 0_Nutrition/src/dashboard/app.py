@@ -67,18 +67,22 @@ def get_models():
     # Load models
     logistic = joblib.load(models_path + "BM_LogisticRegression.pkl")
     #nn = models.load_model(models_path + "NN.h5")
+
+    # Load models' insights
+    models1_insights = pd.read_csv(models_path + "model_comparison_noscale_nobalance.csv", index_col = 0)
+    models2_insights = pd.read_csv(models_path + "model_comparison_scaled_balanced.csv", index_col = 0)
     
-    return logistic
+    return logistic, models1_insights, models2_insights
 
 # Save dataframes and models as variables
 resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
-logistic = get_models()
+logistic, models1_insights, models2_insights = get_models()
 
 
 ##################################################### INTERFACE #####################################################
 ####
 menu = st.sidebar.selectbox("Menu:",
-                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "Glossary", "API"])
+                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API"])
 
 ####
 if menu == "Home":
@@ -116,18 +120,20 @@ if menu == "Resources Facts":
         data = selection.reset_index().T
 
         table = go.Figure(data = go.Table(
-                            columnwidth = [40, 30, 30],
+                            columnwidth = [50, 50, 40],
                             header = dict(values = header,
-                                         fill_color = "#3D5475",
+                                         fill_color = "#5B5B5E",
                                          align = "left",
                                          font = dict(size = 20, color = "white")),
                           cells = dict(values = data,
-                                       fill_color = "#7FAEF5",
+                                       fill_color = "#CBCBD4",
                                        align = "left",
                                        font = dict(size = 16),
                                        height = 30))
                           )
 
+        table.update_layout(height = 300, margin = dict(l = 0, r = 0, b = 0, t = 0))
+        st.write(table)
         mapper = {"Plant-based" : "blue", "Animal-based" : "red"}
         color_map = md.color_mapper(selection, "Origin", mapper)
         fig = px.bar(selection, x = selection.index, y = chosen_resource,
@@ -149,18 +155,27 @@ if menu == "Resources Facts":
         st.subheader(f"You are currently checking the {measure} for the resource **{chosen_resource}**")
 
         #### Data extraction and prep
-        stats_object = md.stats()
+        resources_stats = md.resources_stats()
 
-        stats = stats_object.calculate(resources_df, [chosen_resource])
-        to_plot = stats_object.to_plot(stats)
+        stats = resources_stats.table(resources_df, resources_df.columns[:-1], "Origin")
+        to_plot = resources_stats.to_plot(stats, [chosen_resource])
 
-        fig = px.bar(to_plot[to_plot["Mean_median"] == measure], x = "Resource", y = "Values",
-                                color = "Origin", color_discrete_map = {"Animal-based" : "red", "Plant-based" : "blue"},
-                                barmode = "group")
+        translator = {"Total emissions" : "Total emissions (kg)",
+                      "Land use per 1000kcal" : "Land use in squared meters (m2)",
+                      "Land use per kg" : "Land use in squared meters (m2)",
+                      "Land use per 100g protein" : "Land use in squared meters (m2)",
+                      "Freshwater withdrawls per 1000kcal" : "Freshwater withdrawls in liters (l)",
+                      "Freshwater withdrawls per kg" : "Freshwater withdrawls in liters (l)",
+                      "Freshwater withdrawls per 100g protein" : "Freshwater withdrawls in liters (l)"}
+
+        fig = px.bar(to_plot[to_plot["Measure"] == measure], x = "Resource", y = "Values", color = "Origin", color_discrete_map = {"Animal-based" : "red", "Plant-based" : "blue"}, barmode = "group", labels = {"Values" : translator[chosen_resource]})
 
         #### Data visualization
         st.write(fig)
-        st.table(stats.T)
+        expander = st.beta_expander("Insights on the data")
+        with expander:
+            table = to_plot[to_plot["Measure"] == measure]
+            st.table(table)
 
 
 ####
@@ -274,8 +289,10 @@ if menu == "Nutrition Facts":
 
         if len(food_groups) > 0:
             #### Data prep for visualization
-            daily_intake_object = md.daily_intake(gender, age)
-            daily_intake = daily_intake_object.get_data(daily_intake_df)
+            di_object = md.daily_intake()
+            daily_intake = di_object.get_data(daily_intake_df, gender, age)
+            # daily_intake_object = md.daily_intake(gender, age)
+            # daily_intake = daily_intake_object.get_data(daily_intake_df)
 
             # I get the series for each food group (as I need them that way later on) and save them in a list
             foods = [food_groups_stats[column] for column in food_groups_stats[food_groups].columns]
@@ -288,7 +305,7 @@ if menu == "Nutrition Facts":
             fig = vi.full_comparison_plot(comparisons)
 
             st.write(fig)
-            st.table(comparator.daily_intake_table())
+            st.table(comparisons[0].set_index("Food"))
     
     if submenu == "Foods":
         #### User input
@@ -297,8 +314,8 @@ if menu == "Nutrition Facts":
         age = st.sidebar.slider(label = "Age", min_value = 20, max_value = 70, value = 20, step = 10)
 
         #### Data prep for visualization
-        daily_intake_object = md.daily_intake(gender, age)
-        daily_intake = daily_intake_object.get_data(daily_intake_df)
+        di_object = md.daily_intake()
+        daily_intake = di_object.get_data(daily_intake_df, gender, age)
 
         st.subheader("Food filters")
 
@@ -446,9 +463,6 @@ if menu == "Health Facts":
                 table.update_layout(autosize = False, width = 600, height = 200,
                                     margin = dict(l = 0, r = 0, b = 0, t = 0))
 
-            # Show the table
-            st.write(table)
-
             ### Data insights
             # Expander
             expander = st.beta_expander("Insights on the data")
@@ -493,7 +507,7 @@ if menu == "Health Facts":
                     st.write(histogram)
 
     if submenu == "Health Prediction":
-        st.sidebar.write("Predict whether or not you can have a cardiovascular disease")
+        st.sidebar.write("Predict whether or not you can have a coronary disease")
         predict_button = st.sidebar.button("Predict health")
 
         # Form for the prediction
@@ -518,7 +532,7 @@ if menu == "Health Facts":
             BMXWAIST = cols[1].text_input("Waist Circumference (cm)", value = 97)
             LBXTC = cols[1].text_input("Total Cholesterol (mg/dL) *", value = 183)
             LBXSGL = cols[1].text_input("Glucose (mg/dL) *", value = 100)
-            MEANCHOL = cols[1].text_input("Cholesterol (gmg **", value = 290)
+            MEANCHOL = cols[1].text_input("Cholesterol (gm) **", value = 290)
             MEANTFAT = cols[1].text_input("Total Fat (g) **", value = 78)
 
             # Col 3
@@ -529,7 +543,8 @@ if menu == "Health Facts":
 
             # Annotations
             st.write("\* Blood levels", value = 68)
-            st.write("** Usual intake (diet habits)", value = 68)
+            st.write("** Usual daily intake (diet habits)", value = 68)
+            st.markdown("<i>Predictions are made using a Logistic Regresion Machine Learning model. If you want some more insights about the accuracy of this models, please head to the 'Models' section</i>", unsafe_allow_html = True)
 
             # Gathering all the form data
             to_predict = [RIDAGEYR, BPXDI1, BPXSY1, BMXWT, BMXWAIST, LBXTC,
@@ -555,7 +570,30 @@ if menu == "Health Facts":
             else:
                 st.subheader("You are not at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
-            pass
+
+####
+if menu == "ML Models":
+    st.header("Models without data scaling or balancing")
+    st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
+    st.table(models1_insights)
+
+    st.header("Models with data scaling and balancing")
+    st.write("These models were trained and tested using the modified data. This means, scaling and balancing the data")
+    st.table(models2_insights)
+
+    st.header("Conclusions")
+    st.write("Although the models in the second table show lower scores, they reached higher recall levels, meaning that they were able to detect better positive cases of the coronary disease, which was the goal.\nFor this reason, the model used for the prediction section is the LogisticRegression with max_iter = 500 and warm start.")
+
+    ### Correlation plot
+    # st.write(y_descr)
+    # colorscale = [[0, "white"], [1, "cornflowerblue"]]
+    # correlation_plot = ff.create_annotated_heatmap(corr,
+    #                                             #x = descrs,
+    #                                             y = descrs,
+    #                                             colorscale = colorscale)
+    # # Show the correlation plot
+    # st.write(correlation_plot)
+    
 
 ####
 if menu == "Glossary":

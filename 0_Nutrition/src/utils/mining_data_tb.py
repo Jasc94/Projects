@@ -150,17 +150,30 @@ class merger:
 
         return df.append(to_append)
 
+class resources_stats():
+    @staticmethod
+    def table(df, columns, group_by):
+        # Group by "group_by" and calculate the mean and median for every column in columns
+        stats = df.groupby(group_by).agg({column : (np.mean, np.median) for column in columns})
+        return stats
+
+    @staticmethod
+    def to_plot(stats, columns):
+        # Filter the data to plot
+        to_plot = stats.loc[:, columns]
+        # Some extra processing
+        to_plot = to_plot.unstack().reset_index()
+        # Renaming the columns
+        to_plot.columns = ["Resource", "Measure", "Origin", "Values"]
+
+        return to_plot
+
 
 #################### Daily Intake ####################
 class daily_intake:
-    def __init__(self, gender, age):
-        self.gender = gender.lower()
-        self.age = age
-        self.url = None
-        self.data = None
-
-    ####
-    def __data_selection(self, df):
+    
+    @staticmethod
+    def __data_selection(df, gender, age):
         '''
         The function goes to the daily intake csv file, where all the links are stored and with the given parameters, returns the corresponding url.
 
@@ -169,36 +182,40 @@ class daily_intake:
         age -> multiple of 10, between 20 and 70
         df -> dataframe with the urls
         '''
-        self.url = df[(df["gender"] == self.gender) & (df["age"] == self.age)]["url"].values[0]
+        url = df[(df["gender"] == gender) & (df["age"] == age)]["url"].values[0]
 
-    ####
-    def __clean_data(self, s):
+        return url
+
+    @staticmethod
+    def __clean_data(s):
         # Clear number formats
-        self.data = mapper(s)
+        data = mapper(s)
 
         # Drop unnecessary column
-        self.data = self.data.drop("Iodine")
+        data = data.drop("Iodine")
 
         # Rename Series object
-        self.data.name = "Daily Intake"
+        data.name = "Daily Intake"
 
         # Rename index
-        self.data.index = ["Protein (g)", "Water (g)", "Fiber, total dietary (g)", "Vitamin A, RAE (mcg)", "Thiamin (mg)", "Riboflavin (mg)", "Niacin (mg)", "Vitamin B-6 (mg)", "Vitamin B-12 (mcg)", "Folate, total (mcg)", "Vitamin C (mg)", "Calcium (mg)", "Iron (mg)", "Magnesium (mg)", "Potassium (mg)", "Sodium (mg)", "Zinc (mg)"]
+        data.index = ["Protein (g)", "Water (g)", "Fiber, total dietary (g)", "Vitamin A, RAE (mcg)", "Thiamin (mg)", "Riboflavin (mg)", "Niacin (mg)", "Vitamin B-6 (mg)", "Vitamin B-12 (mcg)", "Folate, total (mcg)", "Vitamin C (mg)", "Calcium (mg)", "Iron (mg)", "Magnesium (mg)", "Potassium (mg)", "Sodium (mg)", "Zinc (mg)"]
         
         # Transform liter values to gram (for consistency purposes)
-        self.data["Water (g)"] = liter_to_gram(self.data["Water (g)"])
+        data["Water (g)"] = liter_to_gram(data["Water (g)"])
 
-    ####
-    def get_data(self, df):
+        return data
+
+    @staticmethod
+    def get_data(df, gender, age):
         '''
         This function takes the url (return by pick_daily_intake) and pulls the daily intake data from it. It returns a pandas Series
 
         args :
         url -> url where daily intake data is stored
         '''
-        self.__data_selection(df)
+        url = daily_intake.__data_selection(df, gender, age)
 
-        r = requests.get(self.url)
+        r = requests.get(url)
         soup = BeautifulSoup(r.text, "lxml")
 
         di_table = soup.find(id = "tbl-calc")
@@ -212,9 +229,9 @@ class daily_intake:
                 di_dict[items[0].text] = items[1].text
 
         s = pd.Series(di_dict)
-        self.__clean_data(s)
+        data = daily_intake.__clean_data(s)
 
-        return self.data
+        return data
 
 #################### Nutritional values ####################
 ####
