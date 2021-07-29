@@ -4,6 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.figure_factory as ff
+
 from sklearn import metrics
 
 import sys, os
@@ -79,6 +83,7 @@ class resources_plotter():
             axes[index].set_title(resources[index], fontdict = {'fontsize': 14, 'fontweight' : "bold"})
 
         return fig
+
 
 #################### Daily Intake & Nutritional ####################
 ####
@@ -394,3 +399,163 @@ class nn_plotter():
         ax4.set_title("Relative to col sum (Precision)")
 
         return fig
+
+
+##################################################### STREAMLIT PLOTLY FUNCTIONS #####################################################
+class plotly_plotter:
+
+    #################### Resources ####################
+    @staticmethod
+    def resources_table(data, header, height = 300):
+        """This function generates a table with plotly to show in Streamlit.
+
+        Args:
+            data (dataframe): data to plot
+            header (list): list with the items that go into the table header
+            height (int, optional): Height in pixels of the table. Defaults to 300.
+
+        Returns:
+            object: plotly table
+        """
+        table = go.Figure(
+            data = go.Table(
+                            columnwidth = [50, 50, 40],
+                            header = dict(values = header,
+                                        fill_color  = "#5B5B5E",
+                                        align = "left",
+                                        font = dict(size = 20, color = "white")),
+                            cells = dict(values = data,
+                                        fill_color = "#CBCBD4",
+                                        align = "left",
+                                        font = dict(size = 16),
+                                        height = 30)
+                            ))
+
+        table.update_layout(height = height, margin = dict(l = 0, r = 0, b = 0, t = 0))
+        return table
+
+    @staticmethod
+    def resources_comparator(data, x, y, color, color_discrete_map, labels_map, kind):
+        """This function generates a plotly bar graph.
+
+        Args:
+            data (dataframe): data to plot
+            x (str): Dataframe column that should be plotted in the x-axis
+            y (str): Dataframe column that should be plotted in the y-axis
+            color (str): Dataframe column that should be used to color the bars
+            color_discrete_map (dict): column : color
+            labels_map (dict): column : desired label
+            kind (str): Two options: "foods" or "groups". If foods, it will show the graph for those items. If groups, it will adapt the graph. 
+
+        Returns:
+            object: plotly graph
+        """
+        if kind == "foods":
+            fig = px.bar(data, x = x, y = y,
+                        color = color, color_discrete_map = color_discrete_map,
+                        labels = labels_map)
+
+            fig.update(layout_showlegend=False)
+        elif kind == "groups":
+            fig = px.bar(data, x = x, y = y,
+                         color = color, color_discrete_map = color_discrete_map,
+                         barmode = "group", labels = labels_map)
+        
+        else:
+            fig = "Not available"
+
+        return fig
+
+    #################### NUTRITION ####################
+    @staticmethod
+    def top_foods(data, x, y, color, color_discrete_map, height = 800):
+        """It returns a plotly bar graph.
+
+        Args:
+            data (dataframe): data to plot
+            x (str): Dataframe column that should be plotted in the x-axis
+            y (str): Dataframe column that should be plotted in the y-axis
+            color (list): values to color
+            color_discrete_map (dict): pairs value : color. The values must match the ones in the list passed into the color argument
+            height (int, optional): Height in pixels of the table. Defaults to 800.
+
+        Returns:
+            object: plotly graph
+        """
+        fig = px.bar(data, x = x, y = y,
+                     color = color, color_discrete_map = color_discrete_map, height = height)
+
+        fig.update(layout_showlegend=False)
+
+        return fig
+
+    #################### HEALTH ####################
+    @staticmethod
+    def health_table(data, header, height = 300):
+        """This function generates a table with plotly to show in Streamlit.
+
+        Args:
+            data (dataframe): data to plot
+            header (list): list with the items that go into the table header
+            height (int, optional): Height in pixels of the table. Defaults to 300
+
+        Returns:
+            object: plotly table
+        """
+        table = go.Figure(data = go.Table(
+                        columnwidth = [40, 100],
+                        header = dict(values = header,
+                        fill_color = "#3D5475",
+                        align = "left",
+                        font = dict(size = 20, color = "white")),
+
+                        cells = dict(values = data,
+                        fill_color = "#7FAEF5",
+                        align = "left",
+                        font = dict(size = 16),
+                        height = 30)
+                        ))
+
+        table.update_layout(height = height, margin = dict(l = 0, r = 0, b = 0, t = 0))
+
+        return table
+
+    @staticmethod
+    def health_correlation(corr, y, colorscale):
+        """This function generates a heatmap with plotly.
+
+        Args:
+            corr (dataframe): correlation matrix
+            y (list): labels for the y-axis
+            colorscale (list): list of lists like this: [[min_val, color], [max_val, color]]
+
+        Returns:
+            object: plotly graph
+        """
+        fig = ff.create_annotated_heatmap(corr,
+                                          y = y,
+                                          colorscale = colorscale)
+
+        return fig
+
+    @staticmethod
+    def health_hist(data, x, color, labels, width = 600):
+        """This function generates a histogram with plotly.
+
+        Args:
+            data (dataframe): data to plot
+            x (str): Dataframe column that should be plotted in the x-axis
+            color (str): Dataframe column that should be used to color the bars
+            labels (dict): pairs axis : label. For instance, {x : labels}
+            width (int, optional): Width in pixels of the table. Defaults to 600.
+
+        Returns:
+            [type]: [description]
+        """
+        fig = px.histogram(data, x = x, color = color,
+                           marginal = "box",
+                           labels = labels,
+                           width = width)
+
+        return fig
+        

@@ -78,21 +78,19 @@ def get_models():
 resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
 logistic, models1_insights, models2_insights = get_models()
 
-# For later use
-plotly_plotter = vi.plotly_plotter
 
 ##################################################### INTERFACE #####################################################
 ####
 menu = st.sidebar.selectbox("Menu:",
                             options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API"])
 
-############################ HOME ############################
+####
 if menu == "Home":
     #da.home()
     st.title("Food, Environment & Health")
 
 
-############################ RESOURCES FACTS ############################
+####
 if menu == "Resources Facts":
     #da.resources_facts()
     # To choose between subsections
@@ -113,44 +111,55 @@ if menu == "Resources Facts":
                       "Freshwater withdrawls per kg" : "Freshwater withdrawls in liters (l)",
                       "Freshwater withdrawls per 100g protein" : "Freshwater withdrawls in liters (l)"}
 
-    
-
     #### Subsection 1
     if submenu == "Food & Resources":
-        #### User input
+        # User input
         entries = st.sidebar.slider(label = "Entries:", min_value = 10,
                                     max_value = 50, value = 10, step = 10)
 
         # Page title
         st.subheader(f"You are currently checking the top {entries} by **{chosen_resource}**")
 
-        #### Data filtering
+        # Data filtering
         selection = resources_df[["Origin", chosen_resource]].sort_values(by = chosen_resource, ascending = False).head(entries).applymap(lambda x: md.round_number(x, 2)).dropna()
         
-        #### Creating table/plots
-        # 1) Data table
-        # 1.1) Create plotter object
-        
+        # Creating table/plots
+        resources_plotter = vi.streamlit_plotter()
 
-        # 1.2) Choose header and data of the table
         header = ["Food"] + list(selection.columns)
         data = selection.reset_index().T
 
-        # 1.3) Create table
-        table = plotly_plotter.resources_table(data, header)
+        # table = go.Figure(data = go.Table(
+        #                     columnwidth = [50, 50, 40],
+        #                     header = dict(values = header,
+        #                                  fill_color = "#5B5B5E",
+        #                                  align = "left",
+        #                                  font = dict(size = 20, color = "white")),
+        #                   cells = dict(values = data,
+        #                                fill_color = "#CBCBD4",
+        #                                align = "left",
+        #                                font = dict(size = 16),
+        #                                height = 30))
+        #                   )
 
-        # 2) Plot
-        # 2.1) Some data we need for the plot
+        # table.update_layout(height = 300, margin = dict(l = 0, r = 0, b = 0, t = 0))
+
+        table = resources_plotter.resources_table(data, header)
+
         mapper = {"Plant-based" : "blue", "Animal-based" : "red"}
         color_map = md.color_mapper(selection, "Origin", mapper)
-        labels_map = {chosen_resource : translator[chosen_resource], "index" : "Foods"}
-        
-        # 2.2) Create the plot with the chosen data
-        fig = plotly_plotter.resources_comparator(data = selection, x = selection.index, y = chosen_resource, color = color_map.keys(), color_discrete_map = color_map, labels_map = labels_map, kind = "foods")
+        # fig = px.bar(selection, x = selection.index, y = chosen_resource,
+        #              color = color_map.keys(), color_discrete_map = color_map, labels = {chosen_resource : translator[chosen_resource], "index" : "Foods"})
 
-        #### Data visualization
+        # fig.update(layout_showlegend=False)
+
+        labels_map = {chosen_resource : translator[chosen_resource], "index" : "Foods"}
+        fig = resources_plotter.food_resources_plot(selection, selection.index, chosen_resource, color_map.keys(), color_map, labels_map)
+
+        # Data visualization
         st.write(fig)
         st.write(table)
+        #st.table(selection)
 
     #### Subsection 2
     if submenu == "Comparator":        
@@ -161,42 +170,27 @@ if menu == "Resources Facts":
         st.subheader(f"You are currently checking the {measure} for the resource **{chosen_resource}**")
 
         #### Data extraction and prep
-        # 1) Create stats object
         resources_stats = md.resources_stats()
 
-        # 2) Calculate the stats that go into the table
         stats = resources_stats.table(resources_df, resources_df.columns[:-1], "Origin")
-
-        # 3) Transformations before plotting
         to_plot = resources_stats.to_plot(stats, [chosen_resource])
-        to_plot = to_plot[to_plot["Measure"] == measure]
 
-        # 4) Plot
-        # Extra parameters for the plotter
-        color_map = {"Animal-based" : "red", "Plant-based" : "blue"}
-        labels_map = {"Values" : translator[chosen_resource]}
-
-        # The actual plot
-        fig = plotly_plotter.resources_comparator(data = to_plot, x = "Resource", y = "Values", color = "Origin", color_discrete_map = color_map, labels_map = labels_map, kind = "groups")
+        fig = px.bar(to_plot[to_plot["Measure"] == measure], x = "Resource", y = "Values", color = "Origin", color_discrete_map = {"Animal-based" : "red", "Plant-based" : "blue"}, barmode = "group", labels = {"Values" : translator[chosen_resource]})
 
         #### Data visualization
-        # Plot
         st.write(fig)
-
         expander = st.beta_expander("Insights on the data")
         with expander:
-            # Data table
             table = to_plot[to_plot["Measure"] == measure]
             st.table(table)
 
 
-############################ NUTRITION FACTS ############################
+####
 if menu == "Nutrition Facts":
     #da.nutrition_facts()
     #### Section title
     st.title("This is the nutrition facts section")
 
-    #### User input
     # To choose between subsections
     submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Top products", "Food groups", "Foods"])
 
@@ -206,15 +200,15 @@ if menu == "Nutrition Facts":
     
     # Subsection 1
     if submenu == "Top products":
-        #### User input
+        # User input
         chosen_nutrient = st.sidebar.selectbox("Nutrient", options = nutrition_df.columns[3:-2])
         entries = st.sidebar.slider(label = "How many foods?", min_value = 5, max_value = 50, 
                                     value = 5, step = 5)
 
-        
-        # Expander to hide the filters
+        #### Filters
         expander = st.beta_expander("You can filter the data using the checkboxes")
 
+        # Expander to hide the filders
         with expander:
             # Two columns for the filters
             cols = st.beta_columns(2)
@@ -223,7 +217,6 @@ if menu == "Nutrition Facts":
             positive_filters = ["Milks", "Cheese", "Other Animal Products", "Meats", "Chicken", "Fish",
                                 "Milk Substitutes", "Beans", "Soy Products", "Nuts", "Other Veggie Products"]
 
-            #### Filters
             # Empty list to save the marked checkboxes
             positive_checkboxes = []
             # Iterate over every checkbox
@@ -244,7 +237,6 @@ if menu == "Nutrition Facts":
                 if checkbox:
                     negative_checkboxes.append(filter_)
 
-        #### Data filtering and processing
         # If positive_checkboxes list isn't empty...
         if len(positive_checkboxes) > 0:
             # Then filter the data
@@ -259,16 +251,14 @@ if menu == "Nutrition Facts":
         
         # Then, we apply the column filter to the filtered dataframe
         table = filter_tool.column_selector(filtered_df, chosen_nutrient).head(entries)
-
-        #### Plotting
-        # Extras for the plotter
+        ### Data prep for visualization
         mapper = {"Plant-based" : "blue", "Animal-based" : "red", "Not Classified" : "grey"}
         color_map = md.color_mapper(table.set_index("Food name"), "Category 3", mapper)
+        fig = px.bar(table, x = "Food name", y = chosen_nutrient,
+                     color = color_map.keys(), color_discrete_map = color_map, height = 800)
 
-        # Plotter
-        fig = plotly_plotter.top_foods(data = table, x = "Food name", y = chosen_nutrient, color = color_map.keys(), color_discrete_map = color_map)
+        fig.update(layout_showlegend=False)
 
-        #### Data visualization
         st.write(fig)
         st.table(table)
     
@@ -373,7 +363,7 @@ if menu == "Nutrition Facts":
         if filter_button:
             st.table(filtered_df)
 
-############################ HEALTH FACTS ############################
+####
 if menu == "Health Facts":
     #da.health_facts()
     #### Title
@@ -403,8 +393,20 @@ if menu == "Health Facts":
                     to_show.iloc[:, 1].values
                     ]
 
+        table = go.Figure(data = go.Table(
+                        columnwidth = [40, 100],
+                        header = dict(values = table_header,
+                        fill_color = "#3D5475",
+                        align = "left",
+                        font = dict(size = 20, color = "white")),
 
-        table = plotly_plotter.health_table(table_data, table_header)
+                        cells = dict(values = table_data,
+                        fill_color = "#7FAEF5",
+                        align = "left",
+                        font = dict(size = 16),
+                        height = 30)
+                        ))
+        table.update_layout(height = 300, margin = dict(l = 0, r = 0, b = 0, t = 0))
         
         st.write(table)
     
@@ -490,10 +492,12 @@ if menu == "Health Facts":
             ### Correlation plot
             st.write(y_descr)
             colorscale = [[0, "white"], [1, "cornflowerblue"]]
-
-            corr_plot = plotly_plotter.health_correlation(corr, descrs, colorscale)
+            correlation_plot = ff.create_annotated_heatmap(corr,
+                                                        #x = descrs,
+                                                        y = descrs,
+                                                        colorscale = colorscale)
             # Show the correlation plot
-            st.write(corr_plot)
+            st.write(correlation_plot)
 
             # Distribution plots for each chosen variable
             for x in X:
@@ -503,10 +507,11 @@ if menu == "Health Facts":
                 # within expanders to ease the navigability
                 with expander: 
                     to_plot = filtered_data.loc[:, [y, x]].dropna()
-                    labels = {x : x_descr}
-
-                    hist = plotly_plotter.health_hist(to_plot, x, y, labels)
-                    st.write(hist)
+                    histogram = px.histogram(to_plot, x = x, color = y,
+                                            marginal = "box",
+                                            labels = {x : x_descr},
+                                            width = 600)
+                    st.write(histogram)
 
     if submenu == "Health Prediction":
         st.sidebar.write("Predict whether or not you can have a coronary disease")
@@ -573,7 +578,7 @@ if menu == "Health Facts":
                 st.subheader("You are not at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
 
-############################ ML MODELS ############################
+####
 if menu == "ML Models":
     st.header("Models without data scaling or balancing")
     st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
@@ -585,15 +590,24 @@ if menu == "ML Models":
 
     st.header("Conclusions")
     st.write("Although the models in the second table show lower scores, they reached higher recall levels, meaning that they were able to detect better positive cases of the coronary disease, which was the goal.\nFor this reason, the model used for the prediction section is the LogisticRegression with max_iter = 500 and warm start.")
+
+    ### Correlation plot
+    # st.write(y_descr)
+    # colorscale = [[0, "white"], [1, "cornflowerblue"]]
+    # correlation_plot = ff.create_annotated_heatmap(corr,
+    #                                             #x = descrs,
+    #                                             y = descrs,
+    #                                             colorscale = colorscale)
+    # # Show the correlation plot
+    # st.write(correlation_plot)
     
 
-############################ GLOSSARY ############################
+####
 if menu == "Glossary":
     #da.glossary()
     pass
 
-
-############################ API ############################
+####
 if menu == "API":
     #da.api()
     pass
