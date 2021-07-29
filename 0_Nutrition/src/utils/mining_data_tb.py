@@ -36,6 +36,14 @@ import folder_tb as fo
 ########### NUMBER PROCESSORS
 ####
 def to_string(x):
+    """It possible, the function transforms value to string. Else, it returns the same value
+
+    Args:
+        x (any): Any value can be entered to the function
+
+    Returns:
+        str: value converted to string
+    """
     try:
         return str(x)
     except:
@@ -43,6 +51,14 @@ def to_string(x):
 
 ####
 def to_float(x):
+    """It possible, the function transforms value to float. Else, it returns the same value
+
+    Args:
+        x (any): Any value can be entered to the function
+
+    Returns:
+        float: value converted to float
+    """
     try:
         return float(x)
     except:
@@ -50,6 +66,14 @@ def to_float(x):
 
 ####
 def num_cleaning(x):
+    """The function gets number out of strings if possible. For instance, "13.47 €" will be converted to 13.47.
+
+    Args:
+        x (str): numerical value in str format that needs cleaning
+
+    Returns:
+        float: value converted to float
+    """
     try:
         return re.match(r'[\d]*[\.\d]*', x)[0]
     except:
@@ -57,9 +81,15 @@ def num_cleaning(x):
 
 ####
 def round_number(x, dec):
-    '''
-    It tries to round a value. It it can't, it will return the value with no modification
-    '''
+    """It possible, the function rounds a value. Else, it returns the same value
+
+    Args:
+        x (float): Any value can be entered to the function
+        dec (int): Number of decimals to keep
+
+    Returns:
+        float: value round "dec" decimals
+    """
     try:
         return round(x, dec)
     except:
@@ -67,14 +97,38 @@ def round_number(x, dec):
     
 ####
 def gram_to_liter(x):
+    """Converts gram units to liter units
+
+    Args:
+        x (int, float): value to convert to liters
+
+    Returns:
+        float: x value converted to liters
+    """
     return x * 0.001
 
 ####
 def liter_to_gram(x):
+    """Converts liter units to gram units
+
+    Args:
+        x (int, float): value to convert to grams
+
+    Returns:
+        float: x value converted to grams
+    """
     return x * 1000
 
 ####
 def mapper(data):
+    """Applis num_cleaning and to_float to a dataframe
+
+    Args:
+        data (dataframe): Dataframe to apply "num_cleaning" and "to_float" functions on
+
+    Returns:
+        [type]: [description]
+    """
     try:
         data.shape[1]       # This is actually to check whether it is a DataFrame or not
         return data.applymap(num_cleaning).applymap(to_float)
@@ -83,11 +137,14 @@ def mapper(data):
 
 ####
 def read_json(fullpath):
-    '''
-    This function reads the json an returns it in a format we can work with it
+    """It opens a json file
 
-    args : fullpath -> path to the json to be read
-    '''
+    Args:
+        fullpath (str): Path to json file
+
+    Returns:
+        json: read json file
+    """
     with open(fullpath, "r") as json_file:
         read_json_ = json.load(json_file)
 
@@ -109,7 +166,7 @@ def read_json_to_dict(json_fullpath):
     except Exception as error:
         raise ValueError(error)
 
-
+## -----> CONTINUE HERE COMMENTING FUNCTIONS
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Resources ####################
 class merger:

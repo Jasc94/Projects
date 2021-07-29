@@ -86,13 +86,13 @@ plotly_plotter = vi.plotly_plotter
 menu = st.sidebar.selectbox("Menu:",
                             options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API"])
 
-############################ HOME ############################
+############################ Home ############################
 if menu == "Home":
     #da.home()
     st.title("Food, Environment & Health")
 
 
-############################ RESOURCES FACTS ############################
+############################ Resources Facts ############################
 if menu == "Resources Facts":
     #da.resources_facts()
     # To choose between subsections
@@ -190,7 +190,7 @@ if menu == "Resources Facts":
             st.table(table)
 
 
-############################ NUTRITION FACTS ############################
+############################ Nutrition Facts ############################
 if menu == "Nutrition Facts":
     #da.nutrition_facts()
     #### Section title
@@ -373,7 +373,7 @@ if menu == "Nutrition Facts":
         if filter_button:
             st.table(filtered_df)
 
-############################ HEALTH FACTS ############################
+############################ Health Facts ############################
 if menu == "Health Facts":
     #da.health_facts()
     #### Title
@@ -596,4 +596,45 @@ if menu == "Glossary":
 ############################ API ############################
 if menu == "API":
     #da.api()
-    pass
+    selection = st.sidebar.radio("Choose data:",
+                                 options = ["Resources",
+                                            "Nutrition",
+                                            "Health",
+                                            "Health variables"])
+    url = ""
+
+    if selection == "Resources":
+        try:
+            url = f"{url}/resources"
+            data = pd.read_json(url)
+            st.table(data.head(10))
+        except:
+            st.header("It wasn't possible to gather the data")
+            st.write("Please confirm that the server is running")
+    
+    if selection == "Nutrition":
+        try:
+            url = f"{url}/nutrition"
+            data = pd.read_json(url)
+            st.table(data.head(10))
+        except:
+            st.header("It wasn't possible to gather the data")
+            st.write("Please confirm that the server is running")
+
+    if selection == "Health":
+        try:
+            url = f"{url}/health"
+            data = pd.read_json(url)
+            st.table(data.head(10))
+        except:
+            st.header("It wasn't possible to gather the data")
+            st.write("Please confirm that the server is running")
+
+    if selection == "Health variables":
+        try:
+            url = f"{url}/health-variables"
+            data = pd.read_json(url)
+            st.table(data.head(10))
+        except:
+            st.header("It wasn't possible to gather the data")
+            st.write("Please confirm that the server is running")
