@@ -1,6 +1,8 @@
 # My ignores
 0_Nutrition/data
 
+sql_server_settings.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
