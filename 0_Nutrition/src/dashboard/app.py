@@ -40,6 +40,20 @@ import utils.dashboard_tb as da
 ##################################################### LOADING DATA #####################################################
 ####
 @st.cache
+def get_documentation():
+    # Path to data
+    general_path = fo.path_to_folder(2, "")
+    documentation_path = fo.path_to_folder(2, "documentation")
+
+    # Data sources (for glossary)
+    with open(documentation_path + "Data_sources.md", "r") as file_:
+        sources_data = file_.read()
+
+    project_info = md.read_json_to_dict(general_path + "info.json")
+
+    return sources_data, project_info
+
+@st.cache
 def get_data():
     # Path to data
     environment_data_path = fo.path_to_folder(2, "data" + sep + "environment")
@@ -57,6 +71,8 @@ def get_data():
     # Object for the variables' names
     vardata = md.variables_data()
     vardata.load_data(health_data_path + "6_variables" + sep + "0_final_variables.csv")
+
+    
     
     return resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata
 
@@ -77,6 +93,7 @@ def get_models():
     return logistic, models1_insights, models2_insights
 
 # Save dataframes and models as variables
+sources_data, project_info = get_documentation() 
 resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
 logistic, models1_insights, models2_insights = get_models()
 
@@ -86,12 +103,14 @@ plotly_plotter = vi.plotly_plotter
 ##################################################### INTERFACE #####################################################
 ####
 menu = st.sidebar.selectbox("Menu:",
-                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API"])
+                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API", "About me"])
 
 ############################ Home ############################
 if menu == "Home":
     #da.home()
-    st.title("Food, Environment & Health")
+    st.title(project_info["project_name"])
+    st.subheader(project_info["project_title"])
+    st.write(project_info["project_description"])
 
 
 ############################ Resources Facts ############################
@@ -382,7 +401,7 @@ if menu == "Health Facts":
     #### Title
     st.title("This is the health facts section")
 
-    submenu = st.sidebar.radio(label = "Submenu:", options = ["Exploration", "Health Prediction"])
+    submenu = st.sidebar.radio(label = "Submenu:", options = ["Exploration", "Health Prediction", "ML Models"])
     st.sidebar.subheader("Play around")
 
     if submenu == "Exploration":
@@ -539,6 +558,7 @@ if menu == "Health Facts":
                 FEMALE = 1
                 MALE = 0
 
+                # Rest of the user input
                 RIDAGEYR = cols[0].text_input(fv["RIDAGEYR"], value = female_avg_val["RIDAGEYR"])
                 BPXDI1 = cols[0].text_input(fv["BPXDI1"], value = female_avg_val["BPXDI1"])
                 BPXSY1 = cols[0].text_input(fv["BPXSY1"], value = female_avg_val["BPXSY1"])
@@ -561,6 +581,7 @@ if menu == "Health Facts":
                 FEMALE = 0
                 MALE = 1
 
+                # Rest of the user input
                 RIDAGEYR = cols[0].text_input(fv["RIDAGEYR"], value = male_avg_val["RIDAGEYR"])
                 BPXDI1 = cols[0].text_input(fv["BPXDI1"], value = male_avg_val["BPXDI1"])
                 BPXSY1 = cols[0].text_input(fv["BPXSY1"], value = male_avg_val["BPXSY1"])
@@ -607,33 +628,42 @@ if menu == "Health Facts":
                 st.header("You are at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
             else:
-                st.subheader("You are not at risk of having a coronary disease")
+                st.header("You are not at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
 
             st.subheader("Your following values are above average:")
-            for ind, val in female_avg_val[1:-2].items():
-                to_write = f"{ind} {val}"
-                st.write(to_write)
+            st.markdown("<i>Average is calculated based on the data collected for this study</i>", unsafe_allow_html = True)
+            count = 1
+            if GENDER == "female":
+                for ind, val in female_avg_val[1:-2].items():
+                    if to_predict[count] > val:
+                        to_write = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
+                        st.write(to_write)
+                        count += 1
+            else:
+                for ind, val in male_avg_val[1:-2].items():
+                    if to_predict[count] > val:
+                        to_write = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
+                        st.write(to_write)
+                        count += 1
+        
+    if submenu == "ML Models":
+        st.header("Models without data scaling or balancing")
+        st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
+        st.table(models1_insights)
 
+        st.header("Models with data scaling and balancing")
+        st.write("These models were trained and tested using the modified data. This means, scaling and balancing the data")
+        st.table(models2_insights)
 
-############################ ML MODELS ############################
-if menu == "ML Models":
-    st.header("Models without data scaling or balancing")
-    st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
-    st.table(models1_insights)
-
-    st.header("Models with data scaling and balancing")
-    st.write("These models were trained and tested using the modified data. This means, scaling and balancing the data")
-    st.table(models2_insights)
-
-    st.header("Conclusions")
-    st.write("Although the models in the second table show lower scores, they reached higher recall levels, meaning that they were able to detect better positive cases of the coronary disease, which was the goal.\nFor this reason, the model used for the prediction section is the LogisticRegression with max_iter = 500 and warm start.")
-    
+        st.header("Conclusions")
+        st.write("Although the models in the second table show lower scores, they reached higher recall levels, meaning that they were able to detect better positive cases of the coronary disease, which was the goal.\nFor this reason, the model used for the prediction section is the LogisticRegression with max_iter = 500 and warm start.")
+        
 
 ############################ GLOSSARY ############################
 if menu == "Glossary":
     #da.glossary()
-    pass
+    st.write(data_sources)
 
 
 ############################ API ############################
@@ -681,3 +711,8 @@ if menu == "API":
         except:
             st.header("It wasn't possible to gather the data")
             st.write("Please confirm that the server is running")
+
+
+############################ About me ############################
+if menu == "About me":
+    pass
