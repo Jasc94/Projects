@@ -563,6 +563,24 @@ class variables_data:
 
         return var_names
 
+    @staticmethod
+    def final_variables():
+        f_variables = {"RIDAGEYR" : "Age",
+                       "BPXDI1" : "Diastolic: Blood pressure (mm Hg)",
+                       "BPXSY1" : "Systolic: Blood pressure (mm Hg)",
+                       "BMXWT" : "Weight (kg)",
+                       "BMXWAIST" : "Waist Circumference (cm)",
+                       "LBXTC" : "Total Cholesterol (mg/dL)",
+                       "LBXSGL" : "Glucose (mg/dL)",
+                       "MEANCHOL" : "Cholesterol (gm)",
+                       "MEANTFAT" : "Total Fat (g)",
+                       "MEANSFAT" : "Total Saturated Fatty Acis (g)",
+                       "MEANSUGR" : "Total Sugar (g)",
+                       "MEANFIBE" : "Total Fiber (g)",
+                       "MEANTVB6" : "Total Vitamin B6 (mg)"}
+                       
+        return f_variables
+
 ################# READING DATA FROM FILES #################
 class dataset:
     '''

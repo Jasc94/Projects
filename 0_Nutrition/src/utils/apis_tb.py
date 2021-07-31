@@ -48,13 +48,13 @@ def nutrition():
 ####
 @app.route("/health", methods = ["GET"])
 def health():
-    health = pd.read_csv(environment_path + "7_cleaned_data" + sep + "cleaned_data.csv", index_col = 0)
+    health = pd.read_csv(health_path + "7_cleaned_data" + sep + "cleaned_data.csv", index_col = 0)
     return health.to_json()
 
 ####
 @app.route("/health-variables", methods = ["GET"])
 def health_variables():
-    health_variables = pd.read_csv(environment_path + "6_variables" + sep + "0_final_variables.csv", index_col = 0)
+    health_variables = pd.read_csv(health_path + "6_variables" + sep + "0_final_variables.csv", index_col = 0)
     return health_variables.to_json()
 
 ##################################################### MAIN FUNCTION #####################################################
@@ -65,13 +65,15 @@ def main():
     settings_path = fo.path_to_folder(2, "src" + sep + "api") + "settings.json"
     print("settings path:\n", settings_path)
 
-    SERVER_RUNNING = md.read_json["SERVER_RUNNING"]
+    read_json = md.read_json(settings_path)
+
+    SERVER_RUNNING = read_json["SERVER_RUNNING"]
     print("SERVER_RUNNING", SERVER_RUNNING)
 
     if SERVER_RUNNING:
-        DEBUG = md.read_json["DEBUG"]
-        HOST = md.read_json["HOST"]
-        PORT = md.read_json["PORT"]
+        DEBUG = read_json["DEBUG"]
+        HOST = read_json["HOST"]
+        PORT = read_json["PORT"]
 
         app.run(debug = DEBUG, host = HOST, port = PORT)
 

@@ -34,6 +34,8 @@ sys.path.append(folder_)
 import utils.folder_tb as fo
 import utils.mining_data_tb as md
 import utils.visualization_tb as vi
+import utils.dashboard_tb as da
+
 
 ##################################################### LOADING DATA #####################################################
 ####
@@ -94,9 +96,9 @@ if menu == "Home":
 
 ############################ Resources Facts ############################
 if menu == "Resources Facts":
-    #da.resources_facts()
+    # da.resources_facts()
     # To choose between subsections
-    submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Food & Resources", "Comparator"])
+    submenu = st.sidebar.radio(label = "Submenu:", options = ["Food & Resources", "Comparator"])
 
     #### Title
     st.title("This is the resources facts section")
@@ -198,7 +200,8 @@ if menu == "Nutrition Facts":
 
     #### User input
     # To choose between subsections
-    submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Top products", "Food groups", "Foods"])
+    submenu = st.sidebar.radio(label = "Submenu:", options = ["Top products", "Food groups", "Foods"])
+    st.sidebar.subheader("Play around")
 
     # Common tools for this section
     filter_tool = md.filter_tool
@@ -379,8 +382,9 @@ if menu == "Health Facts":
     #### Title
     st.title("This is the health facts section")
 
-    submenu = st.sidebar.radio(label = "What do you want to do?", options = ["Exploration", "Health Prediction"])
-    
+    submenu = st.sidebar.radio(label = "Submenu:", options = ["Exploration", "Health Prediction"])
+    st.sidebar.subheader("Play around")
+
     if submenu == "Exploration":
         st.header("In this section, you can explore the relation between different health indicators: demographics, dietary, and more.")
 
@@ -512,36 +516,69 @@ if menu == "Health Facts":
         st.sidebar.write("Predict whether or not you can have a coronary disease")
         predict_button = st.sidebar.button("Predict health")
 
+        # Female average values
+        female_info = cleaned_health_df[cleaned_health_df["Female"] == 1].describe()
+        female_avg_val = female_info.loc["mean", :].map(lambda x: round(x, 0))
+
+        # Male average values
+        male_info = cleaned_health_df[cleaned_health_df["Male"] == 1].describe()
+        male_avg_val = male_info.loc["mean", :].map(lambda x: round(x, 0))
+
+        # Variable names
+        fv = vardata.final_variables()
+
         # Form for the prediction
         expander = st.beta_expander("Find out if you are at risk of heart disease")
 
         with expander:
             cols = st.beta_columns(3)
             # Col 1
-            GENDER = cols[0].text_input("Gender", value = "Female")
+            GENDER = cols[0].selectbox("Gender", options = ["Female", "Male"])
+
             if GENDER == "Female":
                 FEMALE = 1
                 MALE = 0
+
+                RIDAGEYR = cols[0].text_input(fv["RIDAGEYR"], value = female_avg_val["RIDAGEYR"])
+                BPXDI1 = cols[0].text_input(fv["BPXDI1"], value = female_avg_val["BPXDI1"])
+                BPXSY1 = cols[0].text_input(fv["BPXSY1"], value = female_avg_val["BPXSY1"])
+                BMXWT = cols[0].text_input(fv["BMXWT"], value = female_avg_val["BMXWT"])
+
+                # Col 2
+                BMXWAIST = cols[1].text_input(fv["BMXWAIST"], value = female_avg_val["BMXWAIST"])
+                LBXTC = cols[1].text_input(fv["LBXTC"] + "*", value = female_avg_val["LBXTC"])
+                LBXSGL = cols[1].text_input(fv["LBXSGL"] + "*", value = female_avg_val["LBXSGL"])
+                MEANCHOL = cols[1].text_input(fv["MEANCHOL"] + "**", value = female_avg_val["MEANCHOL"])
+                MEANTFAT = cols[1].text_input(fv["MEANTFAT"] + "**", value = female_avg_val["MEANTFAT"])
+
+                # Col 3
+                MEANSFAT = cols[2].text_input(fv["MEANSFAT"] + "**", value = female_avg_val["MEANSFAT"])
+                MEANSUGR = cols[2].text_input(fv["MEANSUGR"] + "**", value = female_avg_val["MEANSUGR"])
+                MEANFIBE = cols[2].text_input(fv["MEANFIBE"] + "**", value = female_avg_val["MEANFIBE"])
+                MEANTVB6 = cols[2].text_input(fv["MEANTVB6"] + "**", value = female_avg_val["MEANTVB6"])
+
             else:
                 FEMALE = 0
                 MALE = 1
-            RIDAGEYR = cols[0].text_input("Age", value = 43)
-            BPXDI1 = cols[0].text_input("Diastolic: Blood pressure (mm Hg)", value = 68)
-            BPXSY1 = cols[0].text_input("Systolic: Blood pressure (mm Hg)", value = 121) 
-            BMXWT = cols[0].text_input("Weight (kg)", value = 79)
 
-            # Col 2
-            BMXWAIST = cols[1].text_input("Waist Circumference (cm)", value = 97)
-            LBXTC = cols[1].text_input("Total Cholesterol (mg/dL) *", value = 183)
-            LBXSGL = cols[1].text_input("Glucose (mg/dL) *", value = 100)
-            MEANCHOL = cols[1].text_input("Cholesterol (gm) **", value = 290)
-            MEANTFAT = cols[1].text_input("Total Fat (g) **", value = 78)
+                RIDAGEYR = cols[0].text_input(fv["RIDAGEYR"], value = male_avg_val["RIDAGEYR"])
+                BPXDI1 = cols[0].text_input(fv["BPXDI1"], value = male_avg_val["BPXDI1"])
+                BPXSY1 = cols[0].text_input(fv["BPXSY1"], value = male_avg_val["BPXSY1"])
+                BMXWT = cols[0].text_input(fv["BMXWT"], value = male_avg_val["BMXWT"])
 
-            # Col 3
-            MEANSFAT = cols[2].text_input("Total Saturated Fatty Acis (g) **", value = 25)
-            MEANSUGR = cols[2].text_input("Total Sugar (g) **", value = 103)
-            MEANFIBE = cols[2].text_input("Total Fiber (g) **", value = 16)
-            MEANTVB6 = cols[2].text_input("Total Vitamin B6 (mg) **", value = 2)
+                # Col 2
+                BMXWAIST = cols[1].text_input(fv["BMXWAIST"], value = male_avg_val["BMXWAIST"])
+                LBXTC = cols[1].text_input(fv["LBXTC"] + "*", value = male_avg_val["LBXTC"])
+                LBXSGL = cols[1].text_input(fv["LBXSGL"] + "*", value = male_avg_val["LBXSGL"])
+                MEANCHOL = cols[1].text_input(fv["MEANCHOL"] + "**", value = male_avg_val["MEANCHOL"])
+                MEANTFAT = cols[1].text_input(fv["MEANTFAT"] + "**", value = male_avg_val["MEANTFAT"])
+
+                # Col 3
+                MEANSFAT = cols[2].text_input(fv["MEANSFAT"] + "**", value = male_avg_val["MEANSFAT"])
+                MEANSUGR = cols[2].text_input(fv["MEANSUGR"] + "**", value = male_avg_val["MEANSUGR"])
+                MEANFIBE = cols[2].text_input(fv["MEANFIBE"] + "**", value = male_avg_val["MEANFIBE"])
+                MEANTVB6 = cols[2].text_input(fv["MEANTVB6"] + "**", value = male_avg_val["MEANTVB6"])
+            
 
             # Annotations
             st.write("\* Blood levels", value = 68)
@@ -567,11 +604,17 @@ if menu == "Health Facts":
 
             #Showing the prediction
             if ml_prediction[0] == 1:
-                st.subheader("You are at risk of having a coronary disease")
+                st.header("You are at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
             else:
                 st.subheader("You are not at risk of having a coronary disease")
                 st.write("This results are an estimation and you should always check with your doctor.")
+
+            st.subheader("Your following values are above average:")
+            for ind, val in female_avg_val[1:-2].items():
+                to_write = f"{ind} {val}"
+                st.write(to_write)
+
 
 ############################ ML MODELS ############################
 if menu == "ML Models":
@@ -601,7 +644,7 @@ if menu == "API":
                                             "Nutrition",
                                             "Health",
                                             "Health variables"])
-    url = ""
+    url = "http://localhost:6060"
 
     if selection == "Resources":
         try:
