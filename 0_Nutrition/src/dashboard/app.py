@@ -103,14 +103,25 @@ plotly_plotter = vi.plotly_plotter
 ##################################################### INTERFACE #####################################################
 ####
 menu = st.sidebar.selectbox("Menu:",
-                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "ML Models", "Glossary", "API", "About me"])
+                            options = ["Home", "Resources Facts", "Nutrition Facts", "Health Facts", "Glossary", "API", "About me"])
 
 ############################ Home ############################
 if menu == "Home":
     #da.home()
+    resources_path = fo.path_to_folder(2, "resources")
+
     st.title(project_info["project_name"])
+    st.image(resources_path + "home.jpeg")
     st.subheader(project_info["project_title"])
     st.write(project_info["project_description"])
+
+    expander = st.beta_expander("Information on project structure")
+    with expander:
+        st.image(resources_path + "project_structure.png")
+        with open(resources_path + "project_structure_explanation.md", "r") as file_:
+            sources_data = file_.read()
+        st.markdown(sources_data)
+    
 
 
 ############################ Resources Facts ############################
@@ -344,7 +355,7 @@ if menu == "Nutrition Facts":
             fig = vi.full_comparison_plot(comparisons)
 
             st.write(fig)
-            st.table(comparisons[0].set_index("Food"))
+            st.table(comparator.daily_intake_table())
     
     if submenu == "Foods":
         #### User input
@@ -663,7 +674,7 @@ if menu == "Health Facts":
 ############################ GLOSSARY ############################
 if menu == "Glossary":
     #da.glossary()
-    st.write(data_sources)
+    st.write(sources_data)
 
 
 ############################ API ############################
