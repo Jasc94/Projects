@@ -777,10 +777,11 @@ class variables_data:
 
 ################# READING DATA FROM FILES #################
 class dataset:
-    '''
-    Object that will hold information about dataframe as well as do some useful transformations and save a copy in case we need to go back to the unprocessed version of the dataframe
-    '''
+    """Class to process the health dataframes
+    """
     def __init__(self):
+        """Constructor
+        """
         # Raw data
         self.__dfs_list = []
         self.__joined_dfs = {}
@@ -799,15 +800,22 @@ class dataset:
     ######### DATA PROCESSING #########
     #########
     def __read_data(self, data_path):
-        '''
-        It reads all the files from a folder as dataframes, and saves them all in a dict with the name of the file as a key.
-        args:
-        up_levels: steps to go up from current folder
-        folder: where the files are located
-        '''
+        """It reads all the files from a folder as dataframes, and saves them all in a dict with the name of the file as a key.
+
+        Args:
+            data_path (str): Path to data
+
+        Returns:
+            dict: Dict with pairs name:dataframe.
+        """
+        # Empty dict to save the dataframes
         data_dfs = {}
+
+        # Iterate over all the files in the folder
         for file_ in os.listdir(data_path):
+            # If different to history
             if file_ != "history":
+                # Try to process it
                 try:
                     # Path to file
                     filepath = data_path + sep + file_
@@ -820,6 +828,7 @@ class dataset:
                     # Saving it in a dictionary
                     dict_key = file_[:-4].lower()
                     data_dfs[dict_key] = df
+                # If error, go to the next one
                 except:
                     pass
 
@@ -827,65 +836,96 @@ class dataset:
 
     #########
     def __read_all_data(self, data_path, folders):
-        '''
-        It does the same as __read_data but for several folders at the same time
-        args: same as __read_data
-        '''
+        """It reads all the files from several folders as dataframes, and saves them all in dicts with the name of the file as a key.
+
+        Args:
+            data_path (str): Path to data
+            folders (list): List of strings with the folder names we want to process
+        """
+        # Iterate over all the folders
         for folder in folders:
+            # Calculate the path to the specific folder
             folder_path = data_path + folder
+            # Get the dict name:dataframe
             self.__dfs_list.append(self.__read_data(folder_path))
 
     #########
     def __concatenate_dfs(self, data_dfs):
-        '''
-        It receives a dict of dataframes and combines them by name
-        args:
-        data_dfs: dict with filename as key and dataframe as value
-        '''
+        """It receives a dict of dataframes and combines them by name
+
+        Args:
+            data_dfs (dict): Dict with filename as key and dataframe as value
+
+        Returns:
+            dict: Dict of combined dataframes
+        """
+        # Empty dict to save the combined dfs
         files = {}
         count = 0
 
+        # Iterate over all the elements in the given dict
         for key, dfs in data_dfs.items():
+            # Remove the last 2 characters of the name
+            # Example:
+            # DEMO_H -> DEMO
+            # DEMO_I -> DEMO
+            # DEMO_J -> DEMO
             key_ = key[:-2]
 
+            # For the first iteration...
             if count == 0:
+                # Add the first key:value pair to our empty dict
                 files[key_] = dfs
+            # After that....
             else:
+                # If the new key:value pair isn't in the dict...
                 if key_ not in files.keys():
+                    # Add a new one
                     files[key_] = dfs
+                # If the value already exists...
+                # Example:
+                # DEMO_H -> DEMO (first iteration)
+                # DEMO_I -> DEMO (second iteration)
                 else:
+                    # Then combine it with the existing dataframe
                     files[key_] = pd.concat([files[key_], dfs])
 
+            # Keep counting
             count +=1
 
         return files
 
     #########
     def __concatenate_all_dfs(self):
-        '''
-        It does the same as __concatenate_dfs but for multiple dicts
-        '''
+        """It's built on top of __concatenate_dfs to process multiple dicts of dataframes at once
+        """
+        # Iterate over all the dicts
         for data_dfs in self.__dfs_list:
+            # Save as variable the created dict of combined dfs (example: DEMO from DEMO_H, DEMO_I, DEMO_J)
             files = self.__concatenate_dfs(data_dfs)
+            # Joined all the dicts in one macro dict and save it as object attribute
             self.__joined_dfs = {**self.__joined_dfs, **files}
 
 
     #########
     def __merge_dfs(self):
-        '''
-        It combines all dfs processed into one
-        '''
+        """It joins all dataframes in the full dict into one macro dataframe
+        """
+        # Get the dict keys
         keys = list(self.__joined_dfs.keys())
+
+        # It saves all dataframes as object attribute
         self.df = self.__joined_dfs.pop(keys[0])
 
+        # Iterate over items of dict with all dataframes
         for name, df in self.__joined_dfs.items():
+            # It merges the existing df with every new dataframe pulled from the dict of dataframes and saves it as the object attribute
             self.df = pd.merge(self.df, df, how = "outer", on = "SEQN")
             
     #########
     def __clean_rows(self):
-        '''
-        It removes values (rows) of no interest for specific columns. Values such as 7 or 9 that represent either "No answer" or "No info"
-        '''
+        """It removes values (rows) of no interest for specific columns. Values such as 7 or 9 that represent either "No answer" or "No info"
+        """
         important_values = [7.0, 9.0]
         # Asthma
         self.df = self.df[~self.df.MCQ010.isin(important_values)]
@@ -897,9 +937,8 @@ class dataset:
         self.df = self.df[~self.df.MCQ160F.isin(important_values)]
 
     def __update_target_values(self):
-        '''
-        It replaces the 2s with 0s for potential target variables
-        '''
+        """It replaces the 2s with 0s for potential target variables, for better handling of categorical variables
+        """
         self.df.MCQ010 = self.df.MCQ010.replace(2, 0)
         self.df.MCQ160B = self.df.MCQ160B.replace(2, 0)
         self.df.MCQ160C = self.df.MCQ160C.replace(2, 0)
@@ -909,20 +948,19 @@ class dataset:
 
     #########
     def __clean_columns(self, correction_map):
-        '''
-        It removes duplicated columns.
-        args:
-        correction_map: dict which keys are the columns to rename and the values are the new names for those columns
-        '''
+        """It removes duplicated columns.
+
+        Args:
+            correction_map (dict): Dict whose keys are the columns to rename and the values are the new names for those columns
+        """
         to_drop = [key[:-2] + "_y" for key in correction_map.keys()]
         self.df = self.df.drop(to_drop, axis = 1)
         self.df = self.df.rename(columns = correction_map)
 
     #########
     def __heart_disease(self):
-        '''
-        It creates a new column using all cardiovascular-related ones as source. The objective is to have a new column where we can see if the participant has any kind of heart disease.
-        '''
+        """It creates a new column using all coronary-related diseases (variables) as source. The objective is to have a new column where we can see if the participant has any kind of heart disease.
+        """
         # We create the column and fill it in with NaN values, as the initial status (with no information) is that we don't know whether someone has o doesn't have a coronary disease
         self.df["MCQ160H"] = np.nan
 
@@ -947,9 +985,13 @@ class dataset:
 
     #########
     def load_data(self, data_path, folders, correction_map):
-        '''
-        It combines all previous steps to get clean and ready-to-use data
-        '''
+        """It loads the health data into the object
+
+        Args:
+            data_path (str): Path to data
+            folders (list): List of strings, being the strings the folder names
+            correction_map (dict): Dict whose keys are the columns to rename and the values are the new names for those columns
+        """
         self.__read_all_data(data_path, folders)
         self.__concatenate_all_dfs()
         self.__merge_dfs()
@@ -963,79 +1005,100 @@ class dataset:
     ######### SUPPORT FUNCTIONS #########
     #########
     def filter_columns(self, features, inplace = False):
-        '''
-        It filters the dataframe.
-        args:
-        features: columns we want to filter by
-        inplace: default = False. If True, it will modify the dataframe within the object.
-        '''
+        """It filters the dataframe.
+
+        Args:
+            features (list): List of columns we want to filter by
+            inplace (bool, optional): If True, it will modify the dataframe within the object. Defaults to False.
+
+        Returns:
+            [type]: [description]
+        """
+        # inplace == True
         if inplace:
+            # Replace the existing dataframe within the object by the new one filtered using the given features
             self.df = self.df.loc[:, features]
         else:
+            # Just return the filtered dataframe by the given features
             return self.df.loc[:, features]
 
     #########
     def drop_columns(self, columns):
-        '''
-        To drop columns
-        '''
+        """It drops columns from the object dataframe
+
+        Args:
+            columns (list): List of strings with the column names to drop
+        """
         self.df = self.df.drop(columns, axis = 1)
 
     #########
     def drop_nans(self):
-        '''
-        To drop nans
-        '''
+        """It drop nans
+        """
         self.df = self.df.dropna()
 
     #########
     def dummies_transform(self, variable, mapper):
-        '''
-        Transforms categorical variables into dummies.
-        args:
-        variable: target column to be transformed
-        mapper: To preprocess the values before transforming the column into dummies.
-        '''
+        """It transforms categorical variables into dummies.
+
+        Args:
+            variable ([type]): Target column to be transformed
+            mapper ([type]): To preprocess the values before transforming the column into dummies. The pair should be old_value:new_value. For instance, {0: "male", 1: "female}
+        """
         # Mapping values
         self.df.loc[:, variable] = self.df.loc[:, variable].map(mapper)
         # Getting dummies
         self.df = pd.get_dummies(self.df, prefix = "", prefix_sep = "", columns = [variable])
-        #return df
 
     #########
     def __pair_mean(self, pair_list, new_name, drop_old = False):
-        '''
-        It creates a new column by calculating the mean of two other.
-        args:
-        pair_list: columns to calculate the mean of
-        new_name: name for the new column
-        drop_old: set to False by default. If True, it will remove the columns we used to calculated the mean of
-        '''
+        """It creates a new column by calculating the mean of two other.
+
+        Args:
+            pair_list (list): List of columns to calculate the mean of. Example: ["DR1TCHOL", "DR2TCHOL"]
+            new_name (str): New column name
+            drop_old (bool, optional): If True, it will remove the columns we used to calculated the mean of. Defaults to False.
+        """
+        # Create a new column using the given new_name
+        # As values use the mean of the given columns
         self.df[new_name] = self.df.loc[:, pair_list].mean(axis = 1)
         
+        # if drop_old == True
         if drop_old:
+            # Then, replace the existing dataframe with the new one
             self.df = self.df.drop(pair_list, axis = 1)
 
     #########
     def pairs_mean(self, combination_list, drop_old = False):
-        '''
-        It does the same as __pair_mean but for several pairs at once.
-        args:
-        combination_list: [[var1, var2], new_var]
-        drop_old: By default set to False. If True, it will remove the variables used to calculated the mean.
-        '''
+        """It creates new columns in our dataframe by calculating the mean of a pair of existing columns
+
+        Args:
+            combination_list (list): List of lists, being every sublist the pair to calculate the name of and the new column name. Example: [["DR1TCHOL", "DR2TCHOL"], "DRTCHOL"] 
+            drop_old (bool, optional): If True, it will remove the columns we used to calculated the mean of. Defaults to False.
+        """
+        # Iterate over all the combinations [[col1, col2], new_name]
         for combination in combination_list:
+            # Create the new column based on the given ones
             self.__pair_mean(combination[0], combination[1], drop_old = drop_old)
 
     #########
     def reset_dataset(self):
-        '''
-        In case we want to restore the dataset to its first status (when used load_data method)
-        '''
+        """In case we want to restore the dataset to its first status (when used load_data method)
+        """
         self.df = self.__raw_df
 
     #########
     def model_data(self, split, cv, epochs = 1, scaler = False, balance = None, seed = 42): 
+        """This function prepares the data to feed it into a Machine Learning model
+
+        Args:
+            split (float): Value between 0 and 1 to split the data into train and test.
+            cv (int): Cross validation folds. It has to be a positive value
+            epochs (int, optional): Cross validation epochs. It has to be a positive value. Defaults to 1.
+            scaler (bool, optional): If True, it uses StandardScaler() to scale the data. Defaults to False.
+            balance (float, optional): It allows to balance data for imbalanced datasets. The given value will be the new ratio between positive and negatives. Defaults to None.
+            seed (int, optional): Seed pass into the random state of the balancer. Defaults to 42.
+        """
         '''
         It allows us to prepare the data for Machine Learning training
         '''
@@ -1063,6 +1126,16 @@ class dataset:
 
     #########
     def full_model_data(self, scaler = False, balance = None, seed = 42):
+        """This function returns the full data (no train-test split) to train the model once tested.
+
+        Args:
+            scaler (bool, optional): If True, it uses StandardScaler() to scale the data. Defaults to False.
+            balance (float, optional): It allows to balance data for imbalanced datasets. The given value will be the new ratio between positive and negatives. Defaults to None.
+            seed (int, optional): Seed pass into the random state of the balancer. Defaults to 42.
+
+        Returns:
+            tuple: Tuple of independent variables and target (X, y)
+        """
         # Independent variables
         X = np.array(self.df.iloc[:, 1:])
 
