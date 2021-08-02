@@ -49,9 +49,19 @@ def get_documentation():
     with open(documentation_path + "Data_sources.md", "r") as file_:
         sources_data = file_.read()
 
+    # Project info for home
     project_info = md.read_json_to_dict(general_path + "info.json")
 
-    return sources_data, project_info
+    # Structure - home
+    project_structure_image = documentation_path + "project_structure.png"
+    with open(documentation_path + "project_structure_explanation.md", "r") as file_:
+        project_structure_info = file_.read()
+
+    # About me
+    with open(documentation_path + "about_me.md", "r") as file_:
+        about_me = file_.read()
+
+    return sources_data, project_info, project_structure_image, project_structure_info, about_me
 
 @st.cache
 def get_data():
@@ -93,7 +103,7 @@ def get_models():
     return logistic, models1_insights, models2_insights
 
 # Save dataframes and models as variables
-sources_data, project_info = get_documentation() 
+sources_data, project_info, project_structure_image, project_structure_info, about_me = get_documentation() 
 resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
 logistic, models1_insights, models2_insights = get_models()
 
@@ -117,10 +127,8 @@ if menu == "Home":
 
     expander = st.beta_expander("Information on project structure")
     with expander:
-        st.image(resources_path + "project_structure.png")
-        with open(resources_path + "project_structure_explanation.md", "r") as file_:
-            sources_data = file_.read()
-        st.markdown(sources_data)
+        st.image(project_structure_image)
+        st.markdown(project_structure_info)
     
 
 
@@ -416,7 +424,7 @@ if menu == "Health Facts":
     st.sidebar.subheader("Play around")
 
     if submenu == "Exploration":
-        st.header("In this section, you can explore the relation between different health indicators: demographics, dietary, and more.")
+        st.subheader("In this section, you can explore the relation between different health indicators: demographics, dietary, and more.")
 
         sort_by = st.sidebar.radio("Sort by:", options = ["Variable nomenclature", "Variable description"])
 
@@ -443,10 +451,10 @@ if menu == "Health Facts":
         st.write(table)
     
         ##### SECTION 2: Chossing and plotting variables
-        st.header("2) Choose and plot some variables")
+        st.subheader("Choose and plot some variables")
 
         # Plot filters
-        st.sidebar.subheader("2) Data plotting")
+        st.sidebar.subheader("Data plotting")
         y = st.sidebar.text_input("Choose your target variable (y):")
         X = st.sidebar.text_area("Choose your explanatory variables (X):")
         X = X.split("\n")
@@ -548,11 +556,11 @@ if menu == "Health Facts":
 
         # Female average values
         female_info = cleaned_health_df[cleaned_health_df["Female"] == 1].describe()
-        female_avg_val = female_info.loc["mean", :].map(lambda x: round(x, 0))
+        female_avg_val = female_info.loc["mean", "RIDAGEYR":].map(lambda x: round(x, 0))
 
         # Male average values
         male_info = cleaned_health_df[cleaned_health_df["Male"] == 1].describe()
-        male_avg_val = male_info.loc["mean", :].map(lambda x: round(x, 0))
+        male_avg_val = male_info.loc["mean", "RIDAGEYR":].map(lambda x: round(x, 0))
 
         # Variable names
         fv = vardata.final_variables()
@@ -644,30 +652,32 @@ if menu == "Health Facts":
 
             st.subheader("Your following values are above average:")
             st.markdown("<i>Average is calculated based on the data collected for this study</i>", unsafe_allow_html = True)
+
             count = 1
-            if GENDER == "female":
+            if GENDER == "Female":
                 for ind, val in female_avg_val[1:-2].items():
                     if to_predict[count] > val:
-                        to_write = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
-                        st.write(to_write)
-                        count += 1
-            else:
-                for ind, val in male_avg_val[1:-2].items():
+                        analysis = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
+                        st.write(analysis)
+                    count += 1
+
+            if GENDER == "Male":
+                for ind, val in female_avg_val[1:-2].items():
                     if to_predict[count] > val:
-                        to_write = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
-                        st.write(to_write)
-                        count += 1
-        
+                        analysis = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
+                        st.write(analysis)
+                    count += 1
+    
     if submenu == "ML Models":
-        st.header("Models without data scaling or balancing")
+        st.subheader("Models without data scaling or balancing")
         st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
         st.table(models1_insights)
 
-        st.header("Models with data scaling and balancing")
+        st.subheader("Models with data scaling and balancing")
         st.write("These models were trained and tested using the modified data. This means, scaling and balancing the data")
         st.table(models2_insights)
 
-        st.header("Conclusions")
+        st.subheader("Conclusions")
         st.write("Although the models in the second table show lower scores, they reached higher recall levels, meaning that they were able to detect better positive cases of the coronary disease, which was the goal.\nFor this reason, the model used for the prediction section is the LogisticRegression with max_iter = 500 and warm start.")
         
 
@@ -726,4 +736,4 @@ if menu == "API":
 
 ############################ About me ############################
 if menu == "About me":
-    pass
+    st.markdown(about_me)

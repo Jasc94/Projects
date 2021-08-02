@@ -166,20 +166,24 @@ def read_json_to_dict(json_fullpath):
     except Exception as error:
         raise ValueError(error)
 
-## -----> CONTINUE HERE COMMENTING FUNCTIONS
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Resources ####################
 class merger:
+    """Toolkit class to merge columns
+    """
     @staticmethod
     def __merge_cols(df, column1, column2):
-        '''
-        This function combines two foods' values in the resources data. For instancem "Tofu" and "Tofu (soybeans)", as they are the same food, and one has the missing values of the other.
+        """This function combines two foods' values in the resources data. For instance, "Tofu" and "Tofu (soybeans)", as they are the same food, and one has the missing values of the other.
 
-        args :
-        column1 -> Should be the name of the food1 in the dataframe
-        column2 -> Should be the name of the food2 in the dataframe
-        df -> dataframe we pull the data from according to the given names
-        '''
+        Args:
+            df (dataframe): Dataframe where columns to combine are
+            column1 ([type]): It should be the name of the column 1 in the dataframe to merge
+            column2 ([type]): It should be the name of the column 2 in the dataframe to merge
+
+        Returns:
+            dataframe: dataframe with the columns combined in one
+        """
+
         # To store the new values of combining both columns
         new_values = []
 
@@ -199,6 +203,15 @@ class merger:
 
     @staticmethod
     def multiple_merge_cols(df, cols_list):
+        """This function allows you to combine multiple pairs of columns at the same time.
+
+        Args:
+            df (dataframe): Dataframe where columns are
+            cols_list (list): List of lists, being every sublist the column pair to combine. Example: [["Tofu", "Tofu (soybeans)"], [...]]
+
+        Returns:
+            dataframe: Dataframe with all the column pairs combined
+        """
         to_append = []
         for cols in cols_list:
             new = merger.__merge_cols(df, cols[0], cols[1])
@@ -208,14 +221,35 @@ class merger:
         return df.append(to_append)
 
 class resources_stats():
+    """Toolkit class to get stats from resources dataframe
+    """
     @staticmethod
     def table(df, columns, group_by):
+        """It calculates the mean and median of a dataframe grouping by a given column.
+
+        Args:
+            df (dataframe): Dataframe with data of interest
+            columns ([type]): Dataframe columns that we want to keep
+            group_by ([type]): Column to group by in order to calculate the stats
+
+        Returns:
+            dataframe: Stats' dataframe
+        """
         # Group by "group_by" and calculate the mean and median for every column in columns
         stats = df.groupby(group_by).agg({column : (np.mean, np.median) for column in columns})
         return stats
 
     @staticmethod
     def to_plot(stats, columns):
+        """It returns a dataframe ready to be plotted.
+
+        Args:
+            stats (dataframe): Stats' dataframe
+            columns ([type]): Dataframe columns that we want to filter by for later plotting
+
+        Returns:
+            dataframe: Ready-to-plot dataframe
+        """
         # Filter the data to plot
         to_plot = stats.loc[:, columns]
         # Some extra processing
@@ -231,20 +265,30 @@ class daily_intake:
     
     @staticmethod
     def __data_selection(df, gender, age):
-        '''
-        The function goes to the daily intake csv file, where all the links are stored and with the given parameters, returns the corresponding url.
+        """It returns the corresponding url based on age and gender.
 
-        args :
-        gender -> male / female
-        age -> multiple of 10, between 20 and 70
-        df -> dataframe with the urls
-        '''
+        Args:
+            df (dataframe): Dataframe where the urls are
+            gender (str): female/male
+            age (int): 10, 20, 30, 40, 50, 60, 70
+
+        Returns:
+            str: url to get daily intake data from
+        """
         url = df[(df["gender"] == gender) & (df["age"] == age)]["url"].values[0]
 
         return url
 
     @staticmethod
     def __clean_data(s):
+        """It prepares the data.
+
+        Args:
+            s (Series): Daily Intake Series returned from the scrapped url
+
+        Returns:
+            Series: Series with cleaned and ready-to-use data
+        """
         # Clear number formats
         data = mapper(s)
 
@@ -264,28 +308,42 @@ class daily_intake:
 
     @staticmethod
     def get_data(df, gender, age):
-        '''
-        This function takes the url (return by pick_daily_intake) and pulls the daily intake data from it. It returns a pandas Series
+        """It combines the two previous functions and returns ready-to-use data about recommended daily intake based on gender and age
 
-        args :
-        url -> url where daily intake data is stored
-        '''
+        Args:
+            df (dataframe): Dataframe with URLs
+            gender (str): female/male
+            age (int): 10, 20, 30, 40, 50, 60, 70
+
+        Returns:
+            Series: ready-to-use data about daily intake
+        """
+        # Get url from dataframe
         url = daily_intake.__data_selection(df, gender, age)
 
+        # Make BeautifulSoup object out of the url
         r = requests.get(url)
         soup = BeautifulSoup(r.text, "lxml")
 
+        # Get the table of the BeautifulSoup object
         di_table = soup.find(id = "tbl-calc")
+        # Get every row
         di_rows = di_table.find_all("tr")
 
+        # Empty dict to store the info
         di_dict = {}
 
+        # Iterate over every found row
         for row in di_rows:
             items = row.find_all("td")
+            # If the list has more than one element (this means, field name and field description)
             if len(items) > 1:
+                # Then, save it in our empty dict
                 di_dict[items[0].text] = items[1].text
 
+        # Make a Series out of the filled dict
         s = pd.Series(di_dict)
+        # Clean it
         data = daily_intake.__clean_data(s)
 
         return data
@@ -293,9 +351,20 @@ class daily_intake:
 #################### Nutritional values ####################
 ####
 class filter_tool:
+    """Filtering class
+    """
     ####
     @staticmethod
     def food_filter(key):
+        """Returns all subcategories within the chosen category.
+
+        Args:
+            key (str): Category to get data from
+
+        Returns:
+            list: list of subcategories included in the chosen category
+        """
+        # category = [subcategories]
         others = ['Formula, ready-to-feed', 'Formula, prepared from powder', 'Formula, prepared from concentrate', 'Sugar substitutes', 'Not included in a food category']
         baby_food = ['Baby food: yogurt', 'Baby food: snacks and sweets', 'Baby food: meat and dinners', ]
         desserts_and_snacks = ['Ice cream and frozen dairy desserts', 'Milk shakes and other dairy drinks', 'Cakes and pies', 'Candy not containing chocolate', 'Doughnuts, sweet rolls, pastries', 'Crackers, excludes saltines', 'Cookies and brownies', 'Biscuits, muffins, quick breads', 'Pancakes, waffles, French toast', 'Cereal bars', 'Nutrition bars', 'Saltine crackers', 'Pretzels/snack mix', 'Potato chips', 'Candy containing chocolate', 'Pancakes, waffles, French toast']
@@ -317,11 +386,14 @@ class filter_tool:
         nuts = ['Nuts and seeds']
         other_veggie_products = ['Peanut butter and jelly sandwiches (single code)', 'Oatmeal']
 
+        # Grouping categories in super-categories
         animal_products = milks + cheese + other_animal_products + meats + chicken + fish
         veggie_products = milk_substitutes + beans + soy_products + nuts + other_veggie_products
 
+        # All categories together
         full = animal_products + veggie_products
 
+        # Map to match the given key by the user with the corresponding list of subsections
         filters_map = {
                         "Others" : others,
                         "Baby Food" : baby_food,
@@ -351,6 +423,14 @@ class filter_tool:
     ####
     @staticmethod
     def multiple_filter(keys):
+        """It returns a list of multiple filters.
+
+        Args:
+            keys (list): List with all the categories we want to get the data from
+
+        Returns:
+            list: List of lists. Example: [['Fish', 'Shellfish'], [...]]
+        """
         final_list = []
         for key in keys:
             final_list = final_list + filter_tool.food_filter(key)
@@ -360,6 +440,16 @@ class filter_tool:
     ####
     @staticmethod
     def rows_selector(df, filter_, positive = True):
+        """It returns a dataframe filtered by row
+
+        Args:
+            df (dataframe): dataframe to filter
+            filter_ (list): List of categories to filter by
+            positive (bool, optional): If True, the function filters by the given list. If False, it filters out using the given list. Defaults to True.
+
+        Returns:
+            dataframe: Filtered dataframe
+        """
         if positive:
             filtered_df = df[df["Category name"].isin(filter_)]
         else:
@@ -370,6 +460,16 @@ class filter_tool:
     ####
     @staticmethod
     def rows_selectors(df, filters_, positive = True):
+        """It returns a dataframe filtered by row. This method can apply multiple filters at once
+
+        Args:
+            df (dataframe): Dataframe to filter
+            filters_ (list): List of list of categories to filter by
+            positive (bool, optional): If True, the function filters by the given list. If False, it filters out using the given list. Defaults to True.
+
+        Returns:
+            dataframe: Filtered dataframe
+        """
         dfs = []
         if positive:
             for filter_ in filters_:
@@ -386,13 +486,15 @@ class filter_tool:
     ####
     @staticmethod
     def column_selector(df, nutrient):
-        '''
-        This function allows us to filter the columns of the dataframe by nutrient.
+        """This function allows us to filter the columns of the dataframe by nutrient.
 
-        args:
-        nutrientname : nutrient to filter on
-        df : dataframe to apply the filter to
-        '''
+        Args:
+            df (dataframe): Dataframe to filter
+            nutrient (str): Nutrient to filter the dataframe by
+
+        Returns:
+            dataframe: Filtered dataframe
+        """
         try:
             columns = ["Food name", "Category name", "Category 2", "Category 3", nutrient]
             return df[columns].sort_values(by = nutrient, ascending = False)
@@ -402,6 +504,17 @@ class filter_tool:
     ####
     @staticmethod
     def create_category(df, new_category, initial_value, new_values):
+        """It creates a new category for a given dataframe
+
+        Args:
+            df (dataframe): Dataframe to create a new category for
+            new_category (str): Name for the new category
+            initial_value (any): Initial value that will be used for fill in the new dataframe's column
+            new_values (list): List with "new value" and "filter" to use when assigning the new value. Example: ["Milks", milks]
+
+        Returns:
+            [type]: [description]
+        """
         # Create new column
         df[new_category] = initial_value
 
@@ -415,6 +528,18 @@ class filter_tool:
 
 ####
 def nutrients_stats(df, category, measure = "mean", start = 3, end = -2):
+    """It calculates the mean/median for a given dataframe and category.
+
+    Args:
+        df (dataframe): Dataframe to calculate the stats for
+        category (str): Column name we want the stats to be calculated for
+        measure (str, optional): If "mean", it will calculate the mean. If "median", it will calculate the median. Defaults to "mean".
+        start (int, optional): Column to start at. Defaults to 3.
+        end (int, optional): Column to finish at. Defaults to -2.
+
+    Returns:
+        dataframe: Stats dataframe
+    """
     nutrients_list = list(df.iloc[:, start:end].columns)
 
     if measure == "mean":
@@ -428,10 +553,20 @@ def nutrients_stats(df, category, measure = "mean", start = 3, end = -2):
 #################### Daily Intake & Nutritional values ####################
 ####
 class comparator:
+    """Class to compare food and food groups
+    """
     def __init__(self, foods, daily_intake):
+        """Constructor
+
+        Args:
+            foods (list): foods or food groups to be compared
+            daily_intake (Series): Information about the daily intake. It will be used to compared foods/food groups
+        """
+        # Initial given values
         self.foods = foods
         self.daily_intake = daily_intake
 
+        # Calculated behind the scenes when object is created
         self.comparison_di = self.__daily_intake_comparator()
         self.comparison_fats = self.comparator(['Sugars, total (g)',
        'Carbohydrate (g)', 'Total Fat (g)', 'Fatty acids, total saturated (g)',
@@ -443,6 +578,11 @@ class comparator:
 
     ####
     def daily_intake_table(self):
+        """It puts together the info about the daily intake fullfilment for the different foods
+
+        Returns:
+            dataframe: Dataframe to show as table. It shows how good foods are with respect to the daily intake
+        """
         # Merge first foods series with daily intake series
         comparison_di = pd.merge(self.daily_intake, self.foods[0], how = "left", left_index = True, right_index = True)
 
@@ -462,6 +602,11 @@ class comparator:
 
     ####
     def __daily_intake_comparator(self):
+        """It returns a ready-to-plot dataframe with information about daily intake fullfilment
+
+        Returns:
+            dataframe: Ready-to-plot dataframe with the comparison between the food(s) and the daily intakec
+        """
         # We get the columns with the relative nutritional values of the foods
         rel_comparison = self.daily_intake_table().iloc[:, -len(self.foods):]
 
@@ -486,6 +631,14 @@ class comparator:
 
     ####
     def comparator(self, filter_):
+        """It returns a ready-to-plot dataframe with information about the chosen nutrients
+
+        Args:
+            filter_ (list): List of nutrients to use for the analysis
+
+        Returns:
+            dataframe: Ready-to-plot dataframe with the information about the chosen nutrients
+        """
         processed_foods = []
 
         for food in self.foods:
@@ -512,11 +665,26 @@ class comparator:
 #################### Data Prep for Visualization ####################
 #### 
 def color_mapper(df, column, mapper):
+    """It returns a dict matching value-color for a given dataframe column
+
+    Args:
+        df (dataframe): Dataframe where the info is
+        column (str): Column name that we want to color-map
+        mapper (dict): Dict with column values as keys and colors as values. Example: {"column value 1":"CSS Code"}
+
+    Returns:
+        dict: dict with pairs {column value:color}
+    """
+    # Empty dict
     color_map = {}
 
+    # Iterate over every row of the given dataframe
     for ind, row in df.iterrows():
+        # Iterate over every pair key:value of the given mapper
         for key, val in mapper.items():
+            # For the given column in every row, if the value matches one of the keys in the mapper...
             if row[column] == key:
+                # Add the pair to our empty dict
                 color_map[ind] = val
     
     return color_map
@@ -525,46 +693,72 @@ def color_mapper(df, column, mapper):
 ##################################################### HEALTH DATA FUNCTIONS #####################################################
 ################# VARIABLE NAMES #################
 class variables_data:
-    '''
-    Object that contains the dataframe with all the information about variables as well as some useful methods
-    '''
+    """Class that contains the dataframe with all the information about variables as well as some useful methods
+    """
     def __init__(self):
+        """Constructor
+        """
         self.df = None
 
     #########
     def load_data(self, data_path):
+        """Method to load the data to the object
+
+        Args:
+            data_path (str): Path to variables' data
+        """
         self.df = pd.read_csv(data_path, index_col = 0)
         #return self.df
 
     #########
     def var_descr_detector(self, var_name, cut = None, nom_included = False):
-        '''
-        It receives the variable code and returns the description with the nomenclature included is necessary.
-        args:
-        var_name: variable code
-        cut: to limit the string to X amount of characters
-        nom_included: if set to True, it will return variable code + variable name
-        '''
-        try:     
+        """It returns the variable description for a given variable nomenclature
+
+        Args:
+            var_name (str): Nomenclature we want the description for
+            cut ([type], optional): As some of the variable descriptions are too long, this parameters allows you to cut it by character amount. Defaults to None.
+            nom_included (bool, optional): If True, the function will return the nomenclature + description as follows: nomenclature : description. Defaults to False.
+
+        Returns:
+            str: It returns the variable description for a given nomenclature
+        """
+        # Try to find a description for the given nomenclature
+        try: 
+            # If nomenclature included...    
             if nom_included:
+                # Then, add the nomenclature and the description together
                 descr = var_name + ": " + self.df[self.df["vAr_nAmE"] == var_name]["var_descr"].values[0][:cut]
             else:
+                # Else, get just the description
                 descr = self.df[self.df["vAr_nAmE"] == var_name]["var_descr"].values[0][:cut]
             return descr
+        # If error, return the nomenclature
         except:
             return var_name
 
     #########
     def vars_descr_detector(self, var_names, cut = None, nom_included = False):
-        '''
-        It does the same as var_descr_detector but for multiple variables at the same time
-        '''
+        """It returns the variable descriptions for several variables at once
+
+        Args:
+            var_names (list): Nomenclatures we want the description for
+            cut ([type], optional): As some of the variable descriptions are too long, this parameters allows you to cut it by character amount. Defaults to None.
+            nom_included (bool, optional): If True, the function will return the nomenclature + description as follows: nomenclature : description. Defaults to False.
+
+        Returns:
+            list: List of descriptions
+        """
         var_names = [self.var_descr_detector(nom, cut, nom_included) for nom in var_names] 
 
         return var_names
 
     @staticmethod
     def final_variables():
+        """It returns the description for a given variable. This only applies to cleaned dataframe
+
+        Returns:
+            str: variable description
+        """
         f_variables = {"RIDAGEYR" : "Age",
                        "BPXDI1" : "Diastolic: Blood pressure (mm Hg)",
                        "BPXSY1" : "Systolic: Blood pressure (mm Hg)",
