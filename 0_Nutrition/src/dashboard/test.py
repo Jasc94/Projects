@@ -1,5 +1,3 @@
-import pandas as pd
-
 import sys, os
 
 # Helpers
@@ -13,8 +11,7 @@ for i in range(1): folder_ = dirname(folder_)
 sys.path.append(folder_)
 
 # In-house libraries
-import utils.folder_tb as fo
-import utils.mining_data_tb as md
-import utils.visualization_tb as vi
+import utils.dashboard_tb as da
 
-print(fo.path_to_folder(2, "models"))
+if __name__ == "__main__":
+    da.main()
