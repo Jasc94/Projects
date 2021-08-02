@@ -6,13 +6,15 @@ dirname = os.path.dirname
 sep = os.sep
 
 def path_to_folder(up, folder = ""):
-    '''
-    Function that calculates the path to a folder
+    """It that calculates the path to a folder
 
-    args :
-    up -> how many levels you want to go up
-    folder -> once you've gone up "up" levels, the folder you want to open
-    '''
+    Args:
+        up (int): Folders that you want to go up
+        folder (str, optional): Once you've gone up "up" folders, the folder you want to open. Defaults to "".
+
+    Returns:
+        str: New path
+    """
 
     # I start the way up
     path_up = dirname(abspath(__file__))

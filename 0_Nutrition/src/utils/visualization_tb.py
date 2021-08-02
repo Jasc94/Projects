@@ -29,8 +29,21 @@ import mining_data_tb as md
 ##################################################### ENVIRONMENT DATA FUNCTIONS #####################################################
 #################### Resources ####################
 class resources_plotter():
+    """Class to plot resources-related data
+    """
     @staticmethod
     def resources_plot(data, x, title = None, figsize = (12, 12)):
+        """It creates a barplot of the data and returns a matplotlib figure.
+
+        Args:
+            data (dataframe): Dataframe with data to be plotted
+            x (str): Column name that will go in the x axis
+            title (str, optional): Plot title. Defaults to None.
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (12, 12).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
         # 1) Filter & sort the data
         data = data.sort_values(by = x, ascending = False)
         
@@ -56,6 +69,7 @@ class resources_plotter():
                                 'fontweight' : "bold"},
                     pad = 15)
 
+        # Axes labels
         plt.xlabel(title)
         plt.ylabel("Foods")
         
@@ -67,6 +81,17 @@ class resources_plotter():
 
     @staticmethod
     def stats_plot(data, x, y, hue):
+        """It creates a barplot of the data and returns a matplotlib figure.
+
+        Args:
+            data (dataframe): Dataframe with data to be plotted
+            x (str): Column name that will go in the x axis
+            y (str): Column name that will go in the y axis
+            hue (str): Column name that will go be used to color the bars
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
         # calculate the number of axes depending on the resources in the dataframe
         number_of_axes = len(data[x].unique())
 
@@ -76,10 +101,12 @@ class resources_plotter():
         # Create a list with the resources for later use
         resources = list(data[x].unique())
 
-        # Plot in all the axes
+        # Iterate over all the axes
         for index in range(number_of_axes):
+            # Plot a bar graph in every axis
             sns.barplot(x = x, y = y, hue = hue,
                         data = data[data[x] == resources[index]], ax = axes[index], ci = None)
+            # Add the title to every axis
             axes[index].set_title(resources[index], fontdict = {'fontsize': 14, 'fontweight' : "bold"})
 
         return fig
@@ -88,24 +115,47 @@ class resources_plotter():
 #################### Daily Intake & Nutritional ####################
 ####
 def full_comparison_plot(comparisons, fontsize = 18, legendsize = 20, figsize = (20, 20)):
+    """It creates a figure with 4 axes and plots in them the comparisons as barplot.
+
+    Args:
+        comparisons (list): List of dataframes to plot
+        fontsize (int, optional): Fontsize. Defaults to 18.
+        legendsize (int, optional): Legend's fontsize. Defaults to 20.
+        figsize (tuple, optional): Matplotlib figure size. Defaults to (20, 20).
+
+    Returns:
+        figure: Matplotlib figure with the plot
+    """
+    # Unpack the comparisons into 4 dataframes that will be use to plot
     comparison_di, comparison_fats, comparison_chol, comparison_kcal = comparisons
 
+    # Set seaborn theme
     sns.set_theme()
+    # Calculate the number of colors depending on th eunique values of the "Food" column
     n_colors = len(comparison_kcal["Food"].unique())
+    # Create a color palette based on the number of colors required
     palette = sns.color_palette("Paired", n_colors = n_colors)
 
+    # Create matplotlib figure object
     fig, ax = plt.subplots(2, 2, figsize = (20, 20))
 
     # AX1
+    # Barplot
     sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_di, palette = palette, ax = ax[0][0])
+    # Vertical line at the value = 100, to mark when the recommended nutrient intake is accomplished
     ax[0][0].axvline(x = 100, color = "r", linestyle = "dashed")
 
+    # Set the title
     ax[0][0].set_title("% Of the Recommended Daily Intake", fontdict = {'fontsize': 20, 'fontweight' : "bold"}, pad = 15)
+    # Y-axis fontsize
     ax[0][0].tick_params(axis = 'y', which = 'major', labelsize = fontsize)
+    # Empty the x- and y-labels
     ax[0][0].set_xlabel("")
     ax[0][0].set_ylabel("")
+    # Legend size
     ax[0][0].legend(prop={'size': legendsize})
 
+    # The rest follow a similar structure
     # AX2
     sns.barplot(x = "Value", y = "Nutrient", hue = "Food", data = comparison_fats, palette = palette, ax = ax[0][1])
 
@@ -139,19 +189,29 @@ def full_comparison_plot(comparisons, fontsize = 18, legendsize = 20, figsize = 
 ##################################################### HEALTH DATA FUNCTIONS #####################################################
 ####
 class eda_plotter():
+    """Class to plot health exploratory graphs
+    """
     #####
     @staticmethod
     def __n_rows(df, n_columns):
-        '''
-        It calculates the number of rows (for the axes) depending on the number of variables to plot and the columns we want for the figure.
-        args:
-        n_columns: number of columns
-        '''
+        """It calculates the number of rows (for the axes) depending on the number of variables to plot and the columns we want for the figure.
+
+        Args:
+            df (dataframe): Dataframe with data to be plotter
+            n_columns (int): Number of columns that the figure should have
+
+        Returns:
+            int: Number of rows based on the number of columns in the figure and the number of variables in the dataframe
+        """
+        # List of dataframe columns
         columns = list(df.columns)
 
+        # If the length of the dataframe columns is even
         if len(columns) % n_columns == 0:
+            # Then calculate the absolute division
             axes_rows = len(columns) // n_columns
         else:
+            # Else, calculate the absolute division and add 1
             axes_rows = (len(columns) // n_columns) + 1
 
         return axes_rows
@@ -159,18 +219,24 @@ class eda_plotter():
     #####
     @staticmethod
     def rows_plotter(df, features_names, n_columns, kind = "box", figsize = (12, 6)):
-        '''
-        It plots all the variables in one row. It returns a figure
-        args:
-        n_columns: number of columns for the row
-        kind: ("strip", "dist", "box")
-        figsize: size of the figure
-        '''
+        """It plots all the variables in one row. It returns a figure
+
+        Args:
+            df (dataframe): Dataframe with data to be plotter
+            features_names (list): List of variable descriptions
+            n_columns (int): Number of columns that the figure should have
+            kind (str, optional): ("box", "strip", "dist") If box, it plots a box-plot. If strip, it plots a strip-plot. If "dist", it plots a dist-plot. Defaults to "box".
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (12, 6).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
         # creates a figure with one axis and n_columns
         fig, axes = plt.subplots(1, n_columns, figsize = figsize)
         count = 0
 
         # Loop thorugh the generated axes
+        # Depending of the given "kind", plot one graph or other
         for column in range(n_columns):
             if kind == "strip":
                 sns.stripplot(y = df.iloc[:, count], ax = axes[column])
@@ -181,13 +247,17 @@ class eda_plotter():
             else:
                 sns.histplot(df.iloc[:, count], ax = axes[column], bins = 30)
 
+            # Try to set features_names values as the xlabels
             try:
                 axes[column].set(xlabel = features_names[count])
             except:
                 pass
 
+            # If the count of plots is still lower than the amount of variables to be plotted, add 1 and continue the loop
             if (count + 1) < df.shape[1]:
                     count += 1
+
+            # Else, get out of the loop
             else:
                 break
 
@@ -196,12 +266,19 @@ class eda_plotter():
     #####
     @staticmethod
     def multi_axes_plotter(df, features_names, n_columns, kind = "box", figsize = (12, 12)):
-        '''
-        It creates a plot with multiple rows and columns. It returns a figure.
-        n_columns: number of columns for the row
-        kind: ("strip", "dist", "box")
-        figsize: size of the figure
-        '''
+        """It creates a plot with multiple rows and columns. It returns a figure.
+
+        Args:
+            df (dataframe): Dataframe with data to be plotter
+            features_names (list): List of variable descriptions
+            n_columns (int): Number of columns that the figure should have
+            kind (str, optional): ("box", "strip", "dist") If box, it plots a box-plot. If strip, it plots a strip-plot. If "dist", it plots a dist-plot. Defaults to "box".
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (12, 12).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
+
         # Calculating the number of rows from number of columns and variables to plot
         n_rows_ = eda_plotter.__n_rows(df, n_columns)
 
@@ -235,8 +312,10 @@ class eda_plotter():
                 except:
                     pass
 
+                # If the count of plots is still lower than the amount of variables to be plotted, add 1 and continue the loop
                 if (count + 1) < df.shape[1]:
                     count += 1
+                # Else, get out of the loop
                 else:
                     break
         return fig
@@ -244,10 +323,19 @@ class eda_plotter():
     #####
     @staticmethod
     def correlation_matrix(df, features_names, figsize = (12, 12)):
-        '''
-        It plots a correlation matrix. It returns a figure
-        '''
+        """It plots a correlation matrix. It returns a figure
+
+        Args:
+            df (dataframe): Dataframe with data to be plotter
+            features_names (list): List of variable descriptions
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (12, 12).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
+        # Create matplotlib figure
         fig = plt.figure(figsize = figsize)
+        # Heatmap
         sns.heatmap(df.corr(), annot = True, linewidths = .1,
                     cmap = "Blues", xticklabels = False,
                     yticklabels = features_names, cbar = False)
@@ -256,20 +344,29 @@ class eda_plotter():
 
 ####
 class ml_model_plotter():
-    '''
-    Class to plot machine learning model results
-    '''
+    """Class to plot machine learning metrics
+    """
     #####
     @staticmethod
     def train_val_plot(ml_model, figsize = (14, 6)):
-        '''
-        It plots training scores vs validation scores. It returns a figure
-        '''
+        """It plots a line-graph comparing training scores vs validation scores.
+
+        Args:
+            ml_model (object): ml_model object (already trained)
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (14, 6).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
+        # Create matplotlib figure
         fig = plt.figure(figsize = figsize)
+        # Set Seaborn theme
         sns.set_theme()
 
+        # Lineplot
         sns.lineplot(data = [ml_model.train_scores, ml_model.val_scores], markers = True, dashes = False)
 
+        # Labels & legend
         plt.ylabel("Score")
         plt.xlabel("Round")
         plt.legend(["Train score", "Validation score"])
@@ -279,9 +376,15 @@ class ml_model_plotter():
     #####
     @staticmethod
     def test_metrics(ml_model, figsize = (12, 12)):
-        '''
-        It plots the metrics after training with the full training data and testing with the test data. It returns a figure
-        '''
+        """It creates four axes, with a different version of the confusion matrix in each of them.
+
+        Args:
+            ml_model (object): ml_model object (already trained)
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (12, 12).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
         # Calculate the row/column totals for later use
         row_sums = ml_model.cm.sum(axis = 1, keepdims = True)
         column_sums = ml_model.cm.sum(axis = 0, keepdims = True)
@@ -290,29 +393,36 @@ class ml_model_plotter():
         rel_row = (ml_model.cm / row_sums) * 100
         rel_col = (ml_model.cm / column_sums) * 100
 
-        # Plot
+        # Create matplotlib figure and axes
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize = figsize, sharex = True, sharey = True)
 
+        # Color palettes for the first and second row of axes
         first_row_palette = sns.color_palette("light:b", as_cmap=True)
         second_row_palette = sns.light_palette("seagreen", as_cmap=True)
+
+        # Format
         fmt = "g"
 
-        # ax1
+        # AX1
+        # Plot
         sns.heatmap(ml_model.cm, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax1, cbar = False, fmt = fmt)
+        # y-label
         ax1.set_ylabel("Actual class")
+        # Title
         ax1.set_title("Confusion matrix")
 
-        # ax2
+        # The rest of the axes follow a similar structure
+        # AX2
         sns.heatmap((ml_model.cm / ml_model.cm.sum()) * 100, annot = True, linewidths = .1, cmap = first_row_palette, ax = ax2, cbar = False, fmt = fmt)
         ax2.set_ylabel("Actual class")
         ax2.set_title("Confusion matrix - relative")
 
-        # ax3
+        # AX3
         sns.heatmap(rel_row, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax3, cbar = False, fmt = fmt)
         ax3.set_xlabel("Predicted class")
         ax3.set_title("Relative to row sum (Recall)")
 
-        # ax4
+        # AX4
         sns.heatmap(rel_col, annot = True, linewidths = .1, cmap = second_row_palette, ax = ax4, cbar = False, fmt = fmt)
         ax4.set_xlabel("Predicted class")
         ax4.set_title("Relative to col sum (Precision)")
@@ -322,31 +432,47 @@ class ml_model_plotter():
 
 ####
 class nn_plotter():
-    '''
-    Class to plot neural network model results
-    '''
+    """Class to plot neural network metrics
+    """
     @staticmethod
     def model_progression(history):
-        '''
-        It plots model accuracy and loss function.
-        args:
-        history: keras history attribute
-        '''
+        """It plots neural network accuracy and loss function.
+
+        Args:
+            history (dict): Keras history dict
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
+        # Get the model accuracy and loss
         accuracy = history.history["binary_accuracy"]
         loss = history.history["loss"]
 
+        # Matplotlib figure and axes
         fig, ax = plt.subplots(1, 2, figsize = (12, 6))
+
+        # AX1
         ax[0].plot(accuracy)
         ax[0].set_title("Binary Accuracy")
+        
+        # AX2
         ax[1].plot(loss, c = "orange")
         ax[1].set_title("Loss")
+
         return fig
 
     @staticmethod
     def test_results(model, dataset, figsize = (14, 14)):
-        '''
-        It plots the metrics after training with the full training data and testing with the test data. It returns a figure
-        '''
+        """It creates four axes, with a different version of the confusion matrix in each of them.
+
+        Args:
+            model (object): Keras object
+            dataset (object): Dataset object
+            figsize (tuple, optional): Matplotlib figure size. Defaults to (14, 14).
+
+        Returns:
+            figure: Matplotlib figure with the plot
+        """
         X_train = dataset.X_train
         y_train = dataset.y_train
         X_test = dataset.X_test
@@ -403,11 +529,13 @@ class nn_plotter():
 
 ##################################################### STREAMLIT PLOTLY FUNCTIONS #####################################################
 class plotly_plotter:
+    """Plotter object for plotly graphs
+    """
 
     #################### Resources ####################
     @staticmethod
     def resources_table(data, header, height = 300):
-        """This function generates a table with plotly to show in Streamlit.
+        """This function generates a table with plotly.
 
         Args:
             data (dataframe): data to plot
@@ -417,13 +545,17 @@ class plotly_plotter:
         Returns:
             object: plotly table
         """
+        
+        # Create plotly go Figure and save it as table
         table = go.Figure(
             data = go.Table(
-                            columnwidth = [50, 50, 40],
+                            columnwidth = [50, 50, 40],         # Columns width
+                            # Header values and format
                             header = dict(values = header,
                                         fill_color  = "#5B5B5E",
                                         align = "left",
                                         font = dict(size = 20, color = "white")),
+                            # Rest of the table values and format
                             cells = dict(values = data,
                                         fill_color = "#CBCBD4",
                                         align = "left",
@@ -431,7 +563,9 @@ class plotly_plotter:
                                         height = 30)
                             ))
 
+        # Remove exterior margins of the plotly object ad set the height = given height
         table.update_layout(height = height, margin = dict(l = 0, r = 0, b = 0, t = 0))
+
         return table
 
     @staticmethod
@@ -450,13 +584,18 @@ class plotly_plotter:
         Returns:
             object: plotly graph
         """
+        # If kind foods, ...
         if kind == "foods":
+            # Then plot this graph without grouping by color
             fig = px.bar(data, x = x, y = y,
                         color = color, color_discrete_map = color_discrete_map,
                         labels = labels_map)
 
+            # And remove the legend
             fig.update(layout_showlegend=False)
+        # If food groups...
         elif kind == "groups":
+            # Then groupby colors
             fig = px.bar(data, x = x, y = y,
                          color = color, color_discrete_map = color_discrete_map,
                          barmode = "group", labels = labels_map)
@@ -502,13 +641,15 @@ class plotly_plotter:
         Returns:
             object: plotly table
         """
+        # Create plotly go Figure and save it as table
         table = go.Figure(data = go.Table(
-                        columnwidth = [40, 100],
+                        columnwidth = [40, 100],            # Columns width
+                        # Header values and format
                         header = dict(values = header,
                         fill_color = "#3D5475",
                         align = "left",
                         font = dict(size = 20, color = "white")),
-
+                        # Rest of the table values and format
                         cells = dict(values = data,
                         fill_color = "#7FAEF5",
                         align = "left",
@@ -516,6 +657,7 @@ class plotly_plotter:
                         height = 30)
                         ))
 
+        # Remove exterior margins of the plotly object ad set the height = given height
         table.update_layout(height = height, margin = dict(l = 0, r = 0, b = 0, t = 0))
 
         return table
@@ -532,6 +674,7 @@ class plotly_plotter:
         Returns:
             object: plotly graph
         """
+        # Create a plotly heatmap
         fig = ff.create_annotated_heatmap(corr,
                                           y = y,
                                           colorscale = colorscale)
@@ -550,8 +693,9 @@ class plotly_plotter:
             width (int, optional): Width in pixels of the table. Defaults to 600.
 
         Returns:
-            [type]: [description]
+            object: plotly graph
         """
+        # Create a plotly express histogram
         fig = px.histogram(data, x = x, color = color,
                            marginal = "box",
                            labels = labels,
