@@ -138,11 +138,16 @@ def main():
 
     ############################ Resources Facts ############################
     if menu == "Resources Facts":
-        # To choose between subsections
-        submenu = st.sidebar.radio(label = "Submenu:", options = ["Food & Resources", "Comparator"])
-
         #### Title
         st.title("This is the resources facts section")
+
+        # Section guide
+        guide = st.beta_expander("Section guide")
+        with guide:
+            pass
+
+        # To choose between subsections
+        submenu = st.sidebar.radio(label = "Submenu:", options = ["Food & Resources", "Comparator"])
 
         #### User input
         st.sidebar.subheader("Play around")
@@ -195,6 +200,8 @@ def main():
             #### Data visualization
             st.write(fig)       # Plot
             st.write(table)     # Table
+            # Note for the user
+            st.markdown("<i>You can scroll down within the table</i>")
 
         ########### Subsection 2: Comparator ###########
         if submenu == "Comparator":        
@@ -240,6 +247,11 @@ def main():
     if menu == "Nutrition Facts":
         #### Section title
         st.title("This is the nutrition facts section")
+
+        # Section guide
+        guide = st.beta_expander("Section guide")
+        with guide:
+            pass
 
         #### User input
         # To choose between subsections
@@ -293,6 +305,11 @@ def main():
                     checkbox = cols[1].checkbox(filter_)
                     if checkbox:
                         negative_checkboxes.append(filter_)
+
+                # Note for the user
+                st.markdown("<i>Red: animal-based products</i>")
+                st.markdown("<i>Blue: plant-based products</i>")
+                st.markdown("<i>grey: not classified products</i>")
 
             #### Data filtering and processing
             # If positive_checkboxes list isn't empty...
@@ -447,6 +464,11 @@ def main():
         #### Title
         st.title("This is the health facts section")
 
+        # Section guide
+        guide = st.beta_expander("Section guide")
+        with guide:
+            pass
+
         #### User input
         submenu = st.sidebar.radio(label = "Submenu:", options = ["Exploration", "Health Prediction", "ML Models"])
         st.sidebar.subheader("Play around")
@@ -485,8 +507,10 @@ def main():
             # It creates the plotly table
             table = plotly_plotter.health_table(table_data, table_header)
 
-            # data visualization            
+            #### Data visualization            
             st.write(table)
+            # Note for the user
+            st.markdown("<i>You can scroll down within the table</i>")
         
             #### Subsubsection 2: Chossing and plotting variables
             st.subheader("Choose and plot some variables")
@@ -542,6 +566,7 @@ def main():
                                 ))
 
                 # To adjust the height of the table and avoid as much as possible too much white space
+                # The only difference is the height
                 if len(features) < 6:
                     table.update_layout(autosize = False, width = 600, height = 150,
                                         margin = dict(l = 0, r = 0, b = 0, t = 0))
@@ -560,9 +585,11 @@ def main():
                     
                     # General information
                     st.write("**Number of observations**:")
+                    # Comparing the amount of values before and after dropping the NaNs
                     st.write(f"- Before dropping the NaN values:\t{data.shape[0]}")
                     st.write(f"- After dropping the NaN values:\t{filtered_data.shape[0]}")
                     st.write("\n")
+                    # To check the target possible results
                     st.write("**Target variable (y) values**:")
                     st.table(filtered_data.loc[:, y].value_counts())
 
@@ -571,41 +598,54 @@ def main():
                     st.write("More info in the following link:")
                     st.markdown(nahnes_url, unsafe_allow_html=True)
 
-                ### Correlation plot
+                # As the description of the target variable is usually large, we won't put it in the plot but rather as a section title
                 st.write(y_descr)
+                ### Correlation plot
+                # Scale of colors
                 colorscale = [[0, "white"], [1, "cornflowerblue"]]
-
+                # Plot
                 corr_plot = plotly_plotter.health_correlation(corr, descrs, colorscale)
                 # Show the correlation plot
                 st.write(corr_plot)
 
                 # Distribution plots for each chosen variable
                 for x in X:
+                    # Get the variable description for each independent variable
                     x_descr = vardata.var_descr_detector(x, cut = 30, nom_included = True)
+                    # Expander where user will find details about each chosen independent variable
                     expander = st.beta_expander(x_descr)
 
                     # within expanders to ease the navigability
                     with expander: 
+                        # Comparing every independent variable with the target variable one by one
                         to_plot = filtered_data.loc[:, [y, x]].dropna()
-                        labels = {x : x_descr}
+                        labels = {x : x_descr}      # variable descriptions as labels
 
+                        # Creating histogram
                         hist = plotly_plotter.health_hist(to_plot, x, y, labels)
+                        # Plotting histogram
                         st.write(hist)
 
-        ########### Subsection 2 ###########
+        ########### Subsection 2: Health prediction ###########
         if submenu == "Health Prediction":
+            #### User action
             st.sidebar.write("Predict whether or not you can have a coronary disease")
             predict_button = st.sidebar.button("Predict health")
 
+            #### Default values
+            # For the default values we get the average of the dataframe for both female and male
             # Female average values
+            # Female stats
             female_info = cleaned_health_df[cleaned_health_df["Female"] == 1].describe()
+            # Selecting just the mean and rounding it to 0 decimals
             female_avg_val = female_info.loc["mean", "RIDAGEYR":].map(lambda x: round(x, 0))
 
             # Male average values
+            # Same procedure as before
             male_info = cleaned_health_df[cleaned_health_df["Male"] == 1].describe()
             male_avg_val = male_info.loc["mean", "RIDAGEYR":].map(lambda x: round(x, 0))
 
-            # Variable names
+            # Final variable names -> the ones in the cleaned dataframe used to train the model
             fv = vardata.final_variables()
 
             # Form for the prediction
@@ -613,14 +653,17 @@ def main():
 
             with expander:
                 cols = st.beta_columns(3)
+                #### User input
                 # Col 1
                 GENDER = cols[0].selectbox("Gender", options = ["Female", "Male"])
 
+                # Depending on gender, we will show some average values or others
                 if GENDER == "Female":
                     FEMALE = 1
                     MALE = 0
 
                     # Rest of the user input
+                    # Rest of col1
                     RIDAGEYR = cols[0].text_input(fv["RIDAGEYR"], value = female_avg_val["RIDAGEYR"])
                     BPXDI1 = cols[0].text_input(fv["BPXDI1"], value = female_avg_val["BPXDI1"])
                     BPXSY1 = cols[0].text_input(fv["BPXSY1"], value = female_avg_val["BPXSY1"])
@@ -663,7 +706,7 @@ def main():
                     MEANTVB6 = cols[2].text_input(fv["MEANTVB6"] + "**", value = male_avg_val["MEANTVB6"])
                 
 
-                # Annotations
+                # Annotations/specifications
                 st.write("\* Blood levels", value = 68)
                 st.write("** Usual daily intake (diet habits)", value = 68)
                 st.markdown("<i>Predictions are made using a Logistic Regresion Machine Learning model. If you want some more insights about the accuracy of this models, please head to the 'Models' section</i>", unsafe_allow_html = True)
@@ -673,11 +716,12 @@ def main():
                             LBXSGL, MEANCHOL, MEANTFAT, MEANSFAT, MEANSUGR, MEANFIBE,
                             MEANTVB6, FEMALE, MALE]
 
-            # Predictions
+            #### Predictions
+            # If user clicks on the button
             if predict_button:
                 # Processing data for the model
-                to_predict = [md.to_float(val) for val in to_predict]
-                to_predict_arr = np.array(to_predict).reshape(1, -1)
+                to_predict = [md.to_float(val) for val in to_predict]   # transform everything to float and save it as list
+                to_predict_arr = np.array(to_predict).reshape(1, -1)    # transform the list into an array with the required shape
 
                 # Prediction
                 ml_prediction = logistic.predict(to_predict_arr)
@@ -687,23 +731,35 @@ def main():
 
                 #Showing the prediction
                 if ml_prediction[0] == 1:
+                    st.write("<---------------------------- x ---------------------------->")
                     st.header("You are at risk of having a coronary disease")
                     st.write("This results are an estimation and you should always check with your doctor.")
+                    st.write("<---------------------------- x ---------------------------->")
                 else:
+                    st.write("<---------------------------- x ---------------------------->")
                     st.header("You are not at risk of having a coronary disease")
                     st.write("This results are an estimation and you should always check with your doctor.")
+                    st.write("<---------------------------- x ---------------------------->")
 
-                st.subheader("Your following values are above average:")
-                st.markdown("<i>Average is calculated based on the data collected for this study</i>", unsafe_allow_html = True)
+                # Note to show the user which values he/she has above the average (in the used dataset)
+                st.subheader("The following values are above average")
+                st.markdown("<i>It will only show values if there is any above average.</i>", unsafe_allow_html = True)
+                st.markdown("<i>Please, keep in mind that the average is calculated based on the data collected for this study.</i>", unsafe_allow_html = True)
 
+                # Count to iterate over the list as the same time as we iterate over the dict
                 count = 1
                 if GENDER == "Female":
+                    # Iterate over key:value pair in female_avg_val
                     for ind, val in female_avg_val[1:-2].items():
+                        # If the value entered by the user is higher than default one for that specific parameter...
                         if to_predict[count] > val:
+                            # Show this message
                             analysis = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
                             st.write(analysis)
+                        # Keep the count
                         count += 1
 
+                # Same functioning as for "Female"
                 if GENDER == "Male":
                     for ind, val in female_avg_val[1:-2].items():
                         if to_predict[count] > val:
@@ -711,8 +767,9 @@ def main():
                             st.write(analysis)
                         count += 1
         
-        ########### Subsection 3 ###########
+        ########### Subsection 3: ML Models ###########
         if submenu == "ML Models":
+            # Shows the metrics of the saved models'
             st.subheader("Models without data scaling or balancing")
             st.write("These models were trained and tested using the raw data. This means, no scaling and no balancing of the data")
             st.table(models1_insights)
@@ -727,29 +784,48 @@ def main():
 
     ############################ GLOSSARY ############################
     if menu == "Glossary":
-        #da.glossary()
+        #### Title
+        st.title("Data sources used for this project")
+
+        # This data comes from get_documentation() and refers to all the data sources used for this project
         st.write(sources_data)
 
 
     ############################ API ############################
     if menu == "API":
-        #da.api()
+        #### Title
+        st.title("Flask API")
+
+        # Section guide
+        guide = st.beta_expander("Section guide")
+        with guide:
+            pass
+
+        #### User input
         selection = st.sidebar.radio("Choose data:",
                                     options = ["Resources",
                                                 "Nutrition",
                                                 "Health",
                                                 "Health variables"])
+        
+        # url where the Flask API is located
         url = "http://localhost:6060"
 
+        # If user chooses resources
         if selection == "Resources":
+            # Then try to pull the data from the API
             try:
-                url = f"{url}/resources"
+                url = f"{url}/resources"        # Specific url for this data
+                # We read from a json into a dataframe
                 data = pd.read_json(url)
+                # Show the top 10 values
                 st.table(data.head(10))
+            # Except -> error message
             except:
                 st.header("It wasn't possible to gather the data")
                 st.write("Please confirm that the server is running")
         
+        # Same functioning as for the first one
         if selection == "Nutrition":
             try:
                 url = f"{url}/nutrition"
@@ -759,6 +835,7 @@ def main():
                 st.header("It wasn't possible to gather the data")
                 st.write("Please confirm that the server is running")
 
+        # Same functioning as for the first one
         if selection == "Health":
             try:
                 url = f"{url}/health"
@@ -768,6 +845,7 @@ def main():
                 st.header("It wasn't possible to gather the data")
                 st.write("Please confirm that the server is running")
 
+        # Same functioning as for the first one
         if selection == "Health variables":
             try:
                 url = f"{url}/health-variables"
@@ -780,4 +858,8 @@ def main():
 
     ############################ About me ############################
     if menu == "About me":
+        #### Title
+        st.title("The man behind the project")
+
+        # This data comes from get_documentation() and refers to the project owner
         st.markdown(about_me)
