@@ -1,9 +1,17 @@
 # My ignores
+
+# Nutrition project
 0_Nutrition/data
 
 sql_server_settings.json
 settings.json
 nutrition_project.ppk
+
+
+# Others
+install_docker_yum.sh
+install_python_yum.sh
+additional_material
 
 __pycache__
 
