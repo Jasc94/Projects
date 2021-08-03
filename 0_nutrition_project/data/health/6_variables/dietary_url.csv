@@ -1,0 +1,753 @@
+,var_name,var_descr,file_name,file_descr,start_year,end_year,component,constraint
+0,DBD100,How often {do you/does SP} add this salt to {your/his/her/SP's} food at the table?  Would you say . . .,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+1,DBQ095Z,What type of salt {do you/does SP} usually add to {your/his/her/SP's} food at the table?  Would you say . . .,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+2,DR1_300,"Was the amount of food that {you/NAME} ate yesterday much more than usual, usual, or much less than usual?",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+3,DR1_320Z,"Total plain water drank yesterday - including plain tap water, water from a drinking fountain, water from a water cooler, bottled water, and spring water.",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+4,DR1_330Z,Total tap water drank yesterday - including filtered tap water and water from a drinking fountain.,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+5,DR1BWATZ,Total bottled water drank yesterday (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+6,DR1DAY,Intake day of the week,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+7,DR1DBIH,Number of days between intake day and the day of family questionnaire administered in the household.,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+8,DR1DRSTZ,Dietary recall status,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+9,DR1EXMER,Interviewer ID code,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+10,DR1HELP,Who helped in responding for this interview,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+11,DR1LANG,The respondent spoke mostly:,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+12,DR1MRESP,Who was the main respondent for this interview?,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+13,DR1SKY,"What type of salt was it? (Was it ordinary or sea salt, lite salt, or a salt substitute?)",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+14,DR1STY,"Did {you/SP} add any salt to {your/her/his} food at the table yesterday? Salt includes ordinary or sea salt, lite salt, or a salt substitute.",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+15,DR1TACAR,Alpha-carotene (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+16,DR1TALCO,Alcohol (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+17,DR1TATOA,Added alpha-tocopherol (Vitamin E) (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+18,DR1TATOC,Vitamin E as alpha-tocopherol (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+19,DR1TB12A,Added vitamin B12 (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+20,DR1TBCAR,Beta-carotene (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+21,DR1TCAFF,Caffeine (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+22,DR1TCALC,Calcium (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+23,DR1TCARB,Carbohydrate (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+24,DR1TCHL,Total choline (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+25,DR1TCHOL,Cholesterol (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+26,DR1TCOPP,Copper (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+27,DR1TCRYP,Beta-cryptoxanthin (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+28,DR1TFA,Folic acid (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+29,DR1TFDFE,Folate as dietary folate equivalents (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+30,DR1TFF,Food folate (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+31,DR1TFIBE,Dietary fiber (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+32,DR1TFOLA,Total folate (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+33,DR1TIRON,Iron (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+34,DR1TKCAL,Energy (kcal),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+35,DR1TLYCO,Lycopene (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+36,DR1TLZ,Lutein + zeaxanthin (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+37,DR1TM161,MFA 16:1 (Hexadecenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+38,DR1TM181,MFA 18:1 (Octadecenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+39,DR1TM201,MFA 20:1 (Eicosenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+40,DR1TM221,MFA 22:1 (Docosenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+41,DR1TMAGN,Magnesium (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+42,DR1TMFAT,Total monounsaturated fatty acids (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+43,DR1TMOIS,Moisture (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+44,DR1TNIAC,Niacin (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+45,DR1TNUMF,Total number of foods/beverages reported in the individual foods file,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+46,DR1TP182,PFA 18:2 (Octadecadienoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+47,DR1TP183,PFA 18:3 (Octadecatrienoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+48,DR1TP184,PFA 18:4 (Octadecatetraenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+49,DR1TP204,PFA 20:4 (Eicosatetraenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+50,DR1TP205,PFA 20:5 (Eicosapentaenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+51,DR1TP225,PFA 22:5 (Docosapentaenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+52,DR1TP226,PFA 22:6 (Docosahexaenoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+53,DR1TPFAT,Total polyunsaturated fatty acids (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+54,DR1TPHOS,Phosphorus (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+55,DR1TPOTA,Potassium (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+56,DR1TPROT,Protein (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+57,DR1TRET,Retinol (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+58,DR1TS040,SFA 4:0 (Butanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+59,DR1TS060,SFA 6:0 (Hexanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+60,DR1TS080,SFA 8:0 (Octanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+61,DR1TS100,SFA 10:0 (Decanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+62,DR1TS120,SFA 12:0 (Dodecanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+63,DR1TS140,SFA 14:0 (Tetradecanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+64,DR1TS160,SFA 16:0 (Hexadecanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+65,DR1TS180,SFA 18:0 (Octadecanoic) (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+66,DR1TSELE,Selenium (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+67,DR1TSFAT,Total saturated fatty acids (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+68,DR1TSODI,Sodium (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+69,DR1TSUGR,Total sugars (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+70,DR1TTFAT,Total fat (gm),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+71,DR1TTHEO,Theobromine (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+72,DR1TVARA,Vitamin A as retinol activity equivalents (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+73,DR1TVB1,Thiamin (Vitamin B1) (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+74,DR1TVB12,Vitamin B12 (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+75,DR1TVB2,Riboflavin (Vitamin B2) (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+76,DR1TVB6,Vitamin B6 (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+77,DR1TVC,Vitamin C (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+78,DR1TVD,Vitamin D (D2 + D3) (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+79,DR1TVK,Vitamin K (mcg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+80,DR1TWSZ,"When you drink tap water, what is the main source of the tap water? ",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+81,DR1TZINC,Zinc (mg),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+82,DRABF,"Indicates whether the sample person was an infant who was breast-fed on either of the two recall days.  
+",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+83,DRD340,"Please look at this list of shellfish. During the past 30 days did you eat any types of shellfish listed on this card? Include any foods that had shellfish in them such as sandwiches, soups, or salads.",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+84,DRD350A,Clams eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+85,DRD350AQ,Number of times clams were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+86,DRD350B,Crabs eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+87,DRD350BQ,Number of times crab was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+88,DRD350C,Crayfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+89,DRD350CQ,Number of times crayfish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+90,DRD350D,Lobsters eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+91,DRD350DQ,Number of times lobster was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+92,DRD350E,Mussels eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+93,DRD350EQ,Number of times mussels were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+94,DRD350F,Oysters eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+95,DRD350FQ,Number of times oysters were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+96,DRD350G,Scallops eaten during the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+97,DRD350GQ,Number of times scallops were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+98,DRD350H,Shrimp eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+99,DRD350HQ,Number of times shrimp was eaten in the last 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+100,DRD350I,"Other shellfish ( ex. octopus, squid) eaten during past 30 days",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+101,DRD350IQ,"Number of times other shellfish (ex. octopus, squid) was eaten in the past 30 days",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+102,DRD350J,Other unknown shellfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+103,DRD350JQ,Number of times other unknown shellfish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+104,DRD350K,Refused to give detailed information on shellfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+105,DRD360,"Please look at this list of fish. During the past 30 days did you eat any types of fish listed on this card? Include any foods that had fish in them such as sandwiches, soups, or salads.",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+106,DRD370A,Breaded fish products eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+107,DRD370AQ,Number of times breaded fish products were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+108,DRD370B,Tuna eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+109,DRD370BQ,Number of times tuna was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+110,DRD370C,Bass eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+111,DRD370CQ,Number of times bass was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+112,DRD370D,Catfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+113,DRD370DQ,Number of times catfish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+114,DRD370E,Cod eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+115,DRD370EQ,Number of times cod was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+116,DRD370F,Flatfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+117,DRD370FQ,Number of times flatfish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+118,DRD370G,Haddock eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+119,DRD370GQ,Number of times haddock was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+120,DRD370H,Mackerel eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+121,DRD370HQ,Number of times mackerel was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+122,DRD370I,Perch eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+123,DRD370IQ,Number of times perch was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+124,DRD370J,Pike eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+125,DRD370JQ,Number of times pike was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+126,DRD370K,Pollock eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+127,DRD370KQ,Number of times pollock was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+128,DRD370L,Porgy eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+129,DRD370LQ,Number of times porgy was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+130,DRD370M,Salmon eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+131,DRD370MQ,Number of times salmon was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+132,DRD370N,Sardines eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+133,DRD370NQ,Number of times sardines were eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+134,DRD370O,Sea bass eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+135,DRD370OQ,Number of times sea bass was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+136,DRD370P,Shark eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+137,DRD370PQ,Number of times shark was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+138,DRD370Q,Swordfish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+139,DRD370QQ,Number of times swordfish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+140,DRD370R,Trout eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+141,DRD370RQ,Number of times trout was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+142,DRD370S,Walleye eaten during the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+143,DRD370SQ,Number of times walleye was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+144,DRD370T,Other type of fish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+145,DRD370TQ,Number of times other type of fish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+146,DRD370U,Other unknown type eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+147,DRD370UQ,Number of times other unknown type of fish was eaten in the past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+148,DRD370V,Refused to give detailed information on fish eaten during past 30 days,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+149,DRDINT,Indicates whether the sample person has intake data for one or two days.,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+150,DRQSDIET,"Are you currently on any kind of diet, either to lose weight or for some other health-related reason?",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+151,DRQSDT1,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+152,DRQSDT10,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+153,DRQSDT11,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+154,DRQSDT12,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+155,DRQSDT2,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+156,DRQSDT3,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+157,DRQSDT4,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+158,DRQSDT5,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+159,DRQSDT6,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+160,DRQSDT7,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+161,DRQSDT8,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+162,DRQSDT9,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+163,DRQSDT91,What kind of diet are you on? (Is it a weight loss or low calorie diet: low fat or cholesterol diet; low salt or sodium diet; sugar free or low sugar diet; low fiber diet; high fiber diet; diabetic diet; or another type of diet?),DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+164,DRQSPREP,"How often is ordinary salt or seasoned salt added in cooking or preparing foods in your household?  Is it never, rarely, occasionally, or very often?",DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+165,SEQN,Respondent sequence number.,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+166,WTDR2D,Dietary two-day sample weight,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+167,WTDRD1,Dietary day one sample weight,DR1TOT_J,"Dietary Interview - Total Nutrient Intakes, First Day",2017,2018,Dietary,None
+168,DR2_300,"Was the amount of food that {you/NAME} ate yesterday much more than usual, usual, or much less than usual?",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+169,DR2_320Z,"Total plain water drank yesterday - including plain tap water, water from a drinking fountain, water from a water cooler, bottled water, and spring water.",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+170,DR2_330Z,Total tap water drank yesterday - including filtered tap water and water from a drinking fountain.,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+171,DR2BWATZ,Total bottled water drank yesterday. (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+172,DR2DAY,Intake day of the week,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+173,DR2DBIH,Number of days between intake day and the day of family questionnaire administered in the household.,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+174,DR2DRSTZ,Dietary recall status,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+175,DR2EXMER,Interviewer ID code,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+176,DR2HELP,Who helped in responding for this interview,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+177,DR2LANG,The respondent spoke mostly:,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+178,DR2MRESP,Who was the main respondent for this interview?,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+179,DR2SKY,"What type of salt was it? (Was it ordinary or sea salt, lite salt, or a salt substitute?)",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+180,DR2STY,"Did {you/SP} add any salt to {your/her/his} food at the table yesterday? Salt includes ordinary or sea salt, lite salt, or a salt substitute.",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+181,DR2TACAR,Alpha-carotene (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+182,DR2TALCO,Alcohol (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+183,DR2TATOA,Added alpha-tocopherol (Vitamin E) (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+184,DR2TATOC,Vitamin E as alpha-tocopherol (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+185,DR2TB12A,Added vitamin B12 (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+186,DR2TBCAR,Beta-carotene (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+187,DR2TCAFF,Caffeine (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+188,DR2TCALC,Calcium (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+189,DR2TCARB,Carbohydrate (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+190,DR2TCHL,Total choline (mg) ,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+191,DR2TCHOL,Cholesterol (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+192,DR2TCOPP,Copper (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+193,DR2TCRYP,Beta-cryptoxanthin (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+194,DR2TFA,Folic acid (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+195,DR2TFDFE,Folate as dietary folate equivalents (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+196,DR2TFF,Food folate (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+197,DR2TFIBE,Dietary fiber (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+198,DR2TFOLA,Total folate (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+199,DR2TIRON,Iron (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+200,DR2TKCAL,Energy (kcal),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+201,DR2TLYCO,Lycopene (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+202,DR2TLZ,Lutein + zeaxanthin (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+203,DR2TM161,MFA 16:1 (Hexadecenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+204,DR2TM181,MFA 18:1 (Octadecenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+205,DR2TM201,MFA 20:1 (Eicosenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+206,DR2TM221,MFA 22:1 (Docosenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+207,DR2TMAGN,Magnesium (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+208,DR2TMFAT,Total monounsaturated fatty acids (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+209,DR2TMOIS,Moisture (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+210,DR2TNIAC,Niacin (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+211,DR2TNUMF,Total number of foods/beverages reported in the individual foods file,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+212,DR2TP182,PFA 18:2 (Octadecadienoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+213,DR2TP183,PFA 18:3 (Octadecatrienoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+214,DR2TP184,PFA 18:4 (Octadecatetraenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+215,DR2TP204,PFA 20:4 (Eicosatetraenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+216,DR2TP205,PFA 20:5 (Eicosapentaenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+217,DR2TP225,PFA 22:5 (Docosapentaenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+218,DR2TP226,PFA 22:6 (Docosahexaenoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+219,DR2TPFAT,Total polyunsaturated fatty acids (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+220,DR2TPHOS,Phosphorus (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+221,DR2TPOTA,Potassium (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+222,DR2TPROT,Protein (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+223,DR2TRET,Retinol (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+224,DR2TS040,SFA 4:0 (Butanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+225,DR2TS060,SFA 6:0 (Hexanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+226,DR2TS080,SFA 8:0 (Octanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+227,DR2TS100,SFA 10:0 (Decanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+228,DR2TS120,SFA 12:0 (Dodecanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+229,DR2TS140,SFA 14:0 (Tetradecanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+230,DR2TS160,SFA 16:0 (Hexadecanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+231,DR2TS180,SFA 18:0 (Octadecanoic) (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+232,DR2TSELE,Selenium (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+233,DR2TSFAT,Total saturated fatty acids (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+234,DR2TSODI,Sodium (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+235,DR2TSUGR,Total sugars (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+236,DR2TTFAT,Total fat (gm),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+237,DR2TTHEO,Theobromine (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+238,DR2TVARA,Vitamin A as retinol activity equivalents (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+239,DR2TVB1,Thiamin (Vitamin B1) (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+240,DR2TVB12,Vitamin B12 (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+241,DR2TVB2,Riboflavin (Vitamin B2) (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+242,DR2TVB6,Vitamin B6 (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+243,DR2TVC,Vitamin C (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+244,DR2TVD,Vitamin D (D2 + D3) (mcg) ,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+245,DR2TVK,Vitamin K (mcg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+246,DR2TWSZ,"When you drink tap water, what is the main source of the tap water? ",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+247,DR2TZINC,Zinc (mg),DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+248,DRABF,"Indicates whether the sample person was an infant who was breast-fed on either of the two recall 
+
+days.  
+",DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+249,DRDINT,Indicates whether the sample person has intake data for one or two days.,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+250,SEQN,Respondent sequence number.,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+251,WTDR2D,Dietary two-day sample weight,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+252,WTDRD1,Dietary day one sample weight,DR2TOT_J,"Dietary Interview - Total Nutrient Intakes, Second Day",2017,2018,Dietary,None
+253,DR1_020,What time did you begin to eat/drink the meal/food?,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+254,DR1_030Z,Name of eating occasion,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+255,DR1_040Z,Did you eat this meal at home? ,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+256,DR1CCMNM,Combination food number (sequential number),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+257,DR1CCMTX,Combination food type,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+258,DR1DAY,Intake day of the week,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+259,DR1DBIH,Number of days between intake day and the day of family questionnaire administered in the household.,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+260,DR1DRSTZ,Dietary recall status,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+261,DR1EXMER,Interviewer ID code,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+262,DR1FS,Where did you get (this/most of the ingredients for this) {FOODNAME}?,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+263,DR1IACAR,Alpha-carotene (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+264,DR1IALCO,Alcohol (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+265,DR1IATOA,Added alpha-tocopherol (Vitamin E) (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+266,DR1IATOC,Vitamin E as alpha-tocopherol (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+267,DR1IB12A,Added vitamin B12 (mcg) ,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+268,DR1IBCAR,Beta-carotene (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+269,DR1ICAFF,Caffeine (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+270,DR1ICALC,Calcium (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+271,DR1ICARB,Carbohydrate (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+272,DR1ICHL,Total choline (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+273,DR1ICHOL,Cholesterol (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+274,DR1ICOPP,Copper (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+275,DR1ICRYP,Beta-cryptoxanthin (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+276,DR1IFA,Folic acid (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+277,DR1IFDCD,USDA food code,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+278,DR1IFDFE,Folate as dietary folate equivalents (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+279,DR1IFF,Food folate (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+280,DR1IFIBE,Dietary fiber (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+281,DR1IFOLA,Total folate (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+282,DR1IGRMS,Gram weight of the food/individual component,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+283,DR1IIRON,Iron (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+284,DR1IKCAL,Energy (kcal),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+285,DR1ILINE,Food/Individual component number,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+286,DR1ILYCO,Lycopene (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+287,DR1ILZ,Lutein + zeaxanthin (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+288,DR1IM161,MFA 16:1 (Hexadecenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+289,DR1IM181,MFA 18:1 (Octadecenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+290,DR1IM201,MFA 20:1 (Eicosenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+291,DR1IM221,MFA 22:1 (Docosenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+292,DR1IMAGN,Magnesium (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+293,DR1IMFAT,Total monounsaturated fatty acids (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+294,DR1IMOIS,Moisture (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+295,DR1INIAC,Niacin (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+296,DR1IP182,PFA 18:2 (Octadecadienoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+297,DR1IP183,PFA 18:3 (Octadecatrienoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+298,DR1IP184,PFA 18:4 (Octadecatetraenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+299,DR1IP204,PFA 20:4 (Eicosatetraenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+300,DR1IP205,PFA 20:5 (Eicosapentaenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+301,DR1IP225,PFA 22:5 (Docosapentaenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+302,DR1IP226,PFA 22:6 (Docosahexaenoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+303,DR1IPFAT,Total polyunsaturated fatty acids (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+304,DR1IPHOS,Phosphorus (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+305,DR1IPOTA,Potassium (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+306,DR1IPROT,Protein (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+307,DR1IRET,Retinol (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+308,DR1IS040,SFA 4:0 (Butanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+309,DR1IS060,SFA 6:0 (Hexanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+310,DR1IS080,SFA 8:0 (Octanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+311,DR1IS100,SFA 10:0 (Decanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+312,DR1IS120,SFA 12:0 (Dodecanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+313,DR1IS140,SFA 14:0 (Tetradecanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+314,DR1IS160,SFA 16:0 (Hexadecanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+315,DR1IS180,SFA 18:0 (Octadecanoic) (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+316,DR1ISELE,Selenium (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+317,DR1ISFAT,Total saturated fatty acids (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+318,DR1ISODI,Sodium (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+319,DR1ISUGR,Total sugars (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+320,DR1ITFAT,Total fat (gm),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+321,DR1ITHEO,Theobromine (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+322,DR1IVARA,Vitamin A as retinol activity equivalents (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+323,DR1IVB1,Thiamin (Vitamin B1) (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+324,DR1IVB12,Vitamin B12 (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+325,DR1IVB2,Riboflavin (Vitamin B2) (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+326,DR1IVB6,Vitamin B6 (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+327,DR1IVC,Vitamin C (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+328,DR1IVD,Vitamin D (D2 + D3) (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+329,DR1IVK,Vitamin K (mcg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+330,DR1IZINC,Zinc (mg),DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+331,DR1LANG,The respondent spoke mostly:,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+332,DRABF,"Indicates whether the sample person was an infant who was breast-fed on either of the two recall 
+
+days.  
+",DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+333,DRDINT,Indicates whether the sample person has intake data for one or two days.,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+334,SEQN,Respondent sequence number.,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+335,WTDR2D,Dietary two-day sample weight,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+336,WTDRD1,Dietary day one sample weight,DR1IFF_J,"Dietary Interview - Individual Foods, First Day",2017,2018,Dietary,None
+337,DR2_020,What time did you begin to eat/drink the meal/food?,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+338,DR2_030Z,Name of eating occasion,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+339,DR2_040Z,Did you eat this meal at home?,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+340,DR2CCMNM,Combination food number (sequential number),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+341,DR2CCMTX,Combination food type,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+342,DR2DAY,Intake day of the week,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+343,DR2DBIH,Number of days between intake day and the day of family questionnaire administered in the household.,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+344,DR2DRSTZ,Dietary recall status,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+345,DR2EXMER,Interviewer ID code,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+346,DR2FS,Where did you get (this/most of the ingredients for this) {FOODNAME}?,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+347,DR2IACAR,Alpha-carotene (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+348,DR2IALCO,Alcohol (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+349,DR2IATOA,Added alpha-tocopherol (Vitamin E) (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+350,DR2IATOC,Vitamin E as alpha-tocopherol (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+351,DR2IB12A,Added vitamin B12 (mcg) ,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+352,DR2IBCAR,Beta-carotene (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+353,DR2ICAFF,Caffeine (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+354,DR2ICALC,Calcium (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+355,DR2ICARB,Carbohydrate (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+356,DR2ICHL,Total choline (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+357,DR2ICHOL,Cholesterol (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+358,DR2ICOPP,Copper (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+359,DR2ICRYP,Beta-cryptoxanthin (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+360,DR2IFA,Folic acid (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+361,DR2IFDCD,USDA food code,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+362,DR2IFDFE,Folate as dietary folate equivalents (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+363,DR2IFF,Food folate (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+364,DR2IFIBE,Dietary fiber (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+365,DR2IFOLA,Total folate (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+366,DR2IGRMS,Gram weight of the food/individual component,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+367,DR2IIRON,Iron (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+368,DR2IKCAL,Energy (kcal),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+369,DR2ILINE,Food/Individual component number,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+370,DR2ILYCO,Lycopene (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+371,DR2ILZ,Lutein + zeaxanthin (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+372,DR2IM161,MFA 16:1 (Hexadecenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+373,DR2IM181,MFA 18:1 (Octadecenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+374,DR2IM201,MFA 20:1 (Eicosenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+375,DR2IM221,MFA 22:1 (Docosenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+376,DR2IMAGN,Magnesium (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+377,DR2IMFAT,Total monounsaturated fatty acids (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+378,DR2IMOIS,Moisture (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+379,DR2INIAC,Niacin (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+380,DR2IP182,PFA 18:2 (Octadecadienoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+381,DR2IP183,PFA 18:3 (Octadecatrienoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+382,DR2IP184,PFA 18:4 (Octadecatetraenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+383,DR2IP204,PFA 20:4 (Eicosatetraenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+384,DR2IP205,PFA 20:5 (Eicosapentaenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+385,DR2IP225,PFA 22:5 (Docosapentaenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+386,DR2IP226,PFA 22:6 (Docosahexaenoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+387,DR2IPFAT,Total polyunsaturated fatty acids (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+388,DR2IPHOS,Phosphorus (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+389,DR2IPOTA,Potassium (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+390,DR2IPROT,Protein (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+391,DR2IRET,Retinol (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+392,DR2IS040,SFA 4:0 (Butanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+393,DR2IS060,SFA 6:0 (Hexanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+394,DR2IS080,SFA 8:0 (Octanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+395,DR2IS100,SFA 10:0 (Decanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+396,DR2IS120,SFA 12:0 (Dodecanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+397,DR2IS140,SFA 14:0 (Tetradecanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+398,DR2IS160,SFA 16:0 (Hexadecanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+399,DR2IS180,SFA 18:0 (Octadecanoic) (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+400,DR2ISELE,Selenium (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+401,DR2ISFAT,Total saturated fatty acids (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+402,DR2ISODI,Sodium (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+403,DR2ISUGR,Total sugars (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+404,DR2ITFAT,Total fat (gm),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+405,DR2ITHEO,Theobromine (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+406,DR2IVARA,Vitamin A as retinol activity equivalents (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+407,DR2IVB1,Thiamin (Vitamin B1) (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+408,DR2IVB12,Vitamin B12 (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+409,DR2IVB2,Riboflavin (Vitamin B2) (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+410,DR2IVB6,Vitamin B6 (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+411,DR2IVC,Vitamin C (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+412,DR2IVD,Vitamin D (D2 + D3) (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+413,DR2IVK,Vitamin K (mcg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+414,DR2IZINC,Zinc (mg),DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+415,DR2LANG,The respondent spoke mostly:,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+416,DRABF,"Indicates whether the sample person was an infant who was breast fed on either of the two recall days.  
+",DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+417,DRDINT,Indicates whether the sample person has intake data for one or two days.,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+418,SEQN,Respondent sequence number.,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+419,WTDR2D,Dietary two-day sample weight,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+420,WTDRD1,Dietary day one sample weight,DR2IFF_J,"Dietary Interview - Individual Foods, Second Day",2017,2018,Dietary,None
+421,DR1DAY,Intake day of the week,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+422,DR1DBIH,# of days b/w intake and HH interview,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+423,DR1DRSTZ,Dietary recall status,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+424,DR1EXMER,Interviewer ID code,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+425,DR1LANG,The respondent spoke mostly:,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+426,DRDINT,Indicates whether the sample person has intake data for one or two days.,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+427,DS1ACTSS,Reported serving size/label serving size,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+428,DS1ANTA,Antacid containing calcium/magnesium,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+429,DS1ICAFF,Caffeine (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+430,DS1ICALC,Calcium (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+431,DS1ICARB,Carbohydrate (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+432,DS1ICHL,Total choline (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+433,DS1ICHOL,Cholesterol (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+434,DS1ICOPP,Copper (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+435,DS1IFA,Folic acid (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+436,DS1IFDFE,"Folate, DFE (mcg)",DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+437,DS1IFIBE,Dietary fiber (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+438,DS1IIODI,Iodine (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+439,DS1IIRON,Iron (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+440,DS1IKCAL,Energy (kcal),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+441,DS1ILYCO,Lycopene (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+442,DS1ILZ,Lutein + zeaxanthin (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+443,DS1IMAGN,Magnesium (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+444,DS1IMFAT,Total monounsaturated fatty acids (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+445,DS1INIAC,Niacin (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+446,DS1IPFAT,Total polyunsaturated fatty acids (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+447,DS1IPHOS,Phosphorus (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+448,DS1IPOTA,Potassium (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+449,DS1IPROT,Protein (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+450,DS1ISELE,Selenium (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+451,DS1ISFAT,Total saturated fatty acids (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+452,DS1ISODI,Sodium (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+453,DS1ISUGR,Total sugars (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+454,DS1ITFAT,Total fat (gm),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+455,DS1IVB1,Thiamin (Vitamin B1) (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+456,DS1IVB12,Vitamin B12 (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+457,DS1IVB2,Riboflavin (Vitamin B2) (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+458,DS1IVB6,Vitamin B6 (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+459,DS1IVC,Vitamin C (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+460,DS1IVD,Vitamin D (D2 + D3) (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+461,DS1IVK,Vitamin K (mcg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+462,DS1IZINC,Zinc (mg),DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+463,DS1LOC,Location supplement originally recorded,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+464,DS1MTCH,DSDMTCH,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+465,DSDPID,NCHS Supplement ID,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+466,DSDSUPP,Supplement Name,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+467,SEQN,Respondent sequence number.,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+468,WTDR2D,Dietary two-day sample weight,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+469,WTDRD1,Dietary day one sample weight,DS1IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, First Day",2017,2018,Dietary,None
+470,DSD010,"The next questions are about {your/SP's} use of dietary supplements and medications during the past month. {Have you/Has SP} used or taken any vitamins, minerals or other dietary supplements in the past month? Include those products prescribed by a health professional such as a doctor or dentist, and those that do not require a prescription. This card lists some examples of different types of dietary supplements.",DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+471,DSD010AN, ,DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+472,DSDANCNT,Includes all antacids reported with medications.,DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+473,DSDCOUNT,"Includes all supplements and the antacids reported with supplements, but not antacids reported with medications.",DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+474,DSQTCAFF,Caffeine (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+475,DSQTCALC,Calcium (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+476,DSQTCARB,Carbohydrate (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+477,DSQTCHL,Total choline (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+478,DSQTCHOL,Cholesterol (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+479,DSQTCOPP,Copper (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+480,DSQTFA,Folic acid (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+481,DSQTFDFE,"Folate, DFE (mcg)",DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+482,DSQTFIBE,Dietary fiber (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+483,DSQTIODI,Iodine (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+484,DSQTIRON,Iron (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+485,DSQTKCAL,Energy (kcal),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+486,DSQTLYCO,Lycopene (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+487,DSQTLZ,Lutein + zeaxanthin (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+488,DSQTMAGN,Magnesium (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+489,DSQTMFAT,Total monosaturated fatty acids (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+490,DSQTNIAC,Niacin (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+491,DSQTPFAT,Total polyunsaturated fatty acids (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+492,DSQTPHOS,Phosphorus (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+493,DSQTPOTA,Potassium (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+494,DSQTPROT,Protein (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+495,DSQTSELE,Selenium (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+496,DSQTSFAT,Total saturated fatty acids (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+497,DSQTSODI,Sodium (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+498,DSQTSUGR,Total sugars (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+499,DSQTTFAT,Total fat (gm),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+500,DSQTVB1,Thiamin (Vitamin B1) (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+501,DSQTVB12,Vitamin B12 (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+502,DSQTVB2,Riboflavin (Vitamin B2) (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+503,DSQTVB6,Vitamin B6 (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+504,DSQTVC,Vitamin C (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+505,DSQTVD,Vitamin D (D2 + D3) (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+506,DSQTVK,Vitamin K (mcg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+507,DSQTZINC,Zinc (mg),DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+508,SEQN,Respondent sequence number.,DSQTOT_J,Dietary Supplement Use 30-Day - Total Dietary Supplements ,2017,2018,Dietary,None
+509,DR2DAY,Intake day of the week,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+510,DR2DBIH,# of days b/w intake and HH interview,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+511,DR2DRSTZ,Dietary recall status,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+512,DR2EXMER,Interviewer ID code,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+513,DR2LANG,The respondent spoke mostly:,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+514,DRDINT,Indicates whether the sample person has intake data for one or two days.,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+515,DS2ACTSS,Reported serving size/label serving size,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+516,DS2ANTA,Antacid containing calcium/magnesium,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+517,DS2ICAFF,Caffeine (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+518,DS2ICALC,Calcium (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+519,DS2ICARB,Carbohydrate (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+520,DS2ICHL,Total choline (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+521,DS2ICHOL,Cholesterol (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+522,DS2ICOPP,Copper (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+523,DS2IFA,Folic acid (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+524,DS2IFDFE,"Folate, DFE (mcg)",DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+525,DS2IFIBE,Dietary fiber (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+526,DS2IIODI,Iodine (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+527,DS2IIRON,Iron (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+528,DS2IKCAL,Energy (kcal),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+529,DS2ILYCO,Lycopene (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+530,DS2ILZ,Lutein + zeaxanthin (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+531,DS2IMAGN,Magnesium (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+532,DS2IMFAT,Total monounsaturated fatty acids (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+533,DS2INIAC,Niacin (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+534,DS2IPFAT,Total polyunsaturated fatty acids (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+535,DS2IPHOS,Phosphorus (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+536,DS2IPOTA,Potassium (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+537,DS2IPROT,Protein (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+538,DS2ISELE,Selenium (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+539,DS2ISFAT,Total saturated fatty acids (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+540,DS2ISODI,Sodium (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+541,DS2ISUGR,Total sugars (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+542,DS2ITFAT,Total fat (gm),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+543,DS2IVB1,Thiamin (Vitamin B1) (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+544,DS2IVB12,Vitamin B12 (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+545,DS2IVB2,Riboflavin (Vitamin B2) (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+546,DS2IVB6,Vitamin B6 (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+547,DS2IVC,Vitamin C (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+548,DS2IVD,Vitamin D (D2 + D3) (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+549,DS2IVK,Vitamin K (mcg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+550,DS2IZINC,Zinc (mg),DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+551,DS2LOC,Location supplement originally recorded,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+552,DS2MTCH,Matching code,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+553,DSDPID,NCHS Supplement ID,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+554,DSDSUPP,Supplement Name,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+555,SEQN,Respondent sequence number.,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+556,WTDR2D,Dietary two-day sample weight,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+557,WTDRD1,Dietary day one sample weight,DS2IDS_J,"Dietary Supplement Use 24-Hour - Individual Dietary Supplements, Second Day",2017,2018,Dietary,None
+558,DR1DAY,Intake day of the week,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+559,DR1DBIH,# of days b/w intake and HH interview,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+560,DR1DRSTZ,Dietary recall status,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+561,DR1EXMER,Interviewer ID code,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+562,DR1HELP,Who helped in responding for this interview,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+563,DR1LANG,The respondent spoke mostly:,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+564,DR1MRESP,Who was the main respondent for this interview?,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+565,DRDINT,Indicates whether the sample person has intake data for one or two days.,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+566,DS1AN,Any Antacids Taken?,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+567,DS1ANCNT,Total # of Antacids Taken,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+568,DS1DS,Any Dietary Supplements taken in the past 24 hour?,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+569,DS1DSCNT,Total # of Dietary Supplements Taken,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+570,DS1TCAFF,Caffeine (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+571,DS1TCALC,Calcium (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+572,DS1TCARB,Carbohydrate (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+573,DS1TCHL,Total choline (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+574,DS1TCHOL,Cholesterol (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+575,DS1TCOPP,Copper (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+576,DS1TFA,Folic acid (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+577,DS1TFDFE,"Folate, DFE (mcg)",DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+578,DS1TFIBE,Dietary fiber (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+579,DS1TIODI,Iodine (mcg) ,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+580,DS1TIRON,Iron (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+581,DS1TKCAL,Energy (kcal),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+582,DS1TLYCO,Lycopene (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+583,DS1TLZ,Lutein + zeaxanthin (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+584,DS1TMAGN,Magnesium (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+585,DS1TMFAT,Total monounsaturated fatty acids (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+586,DS1TNIAC,Niacin (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+587,DS1TPFAT,Total polyunsaturated fatty acids (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+588,DS1TPHOS,Phosphorus (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+589,DS1TPOTA,Potassium (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+590,DS1TPROT,Protein (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+591,DS1TSELE,Selenium (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+592,DS1TSFAT,Total saturated fatty acids (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+593,DS1TSODI,Sodium (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+594,DS1TSUGR,Total sugars (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+595,DS1TTFAT,Total fat (gm),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+596,DS1TVB1,Thiamin (Vitamin B1) (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+597,DS1TVB12,Vitamin B12 (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+598,DS1TVB2,Riboflavin (Vitamin B2) (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+599,DS1TVB6,Vitamin B6 (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+600,DS1TVC,Vitamin C (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+601,DS1TVD,Vitamin D (D2 + D3) (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+602,DS1TVK,Vitamin K (mcg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+603,DS1TZINC,Zinc (mg),DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+604,SEQN,Respondent sequence number.,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+605,WTDR2D,Dietary two-day sample weight,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+606,WTDRD1,Dietary day one sample weight,DS1TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, First Day ",2017,2018,Dietary,None
+607,DR2DAY,Intake day of the week,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+608,DR2DBIH,# of days b/w intake and HH interview,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+609,DR2DRSTZ,Dietary recall status,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+610,DR2EXMER,Interviewer ID code,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+611,DR2HELP,Who helped in responding for this interview,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+612,DR2LANG,The respondent spoke mostly:,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+613,DR2MRESP,Who was the main respondent for this interview?,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+614,DRDINT,Indicates whether the sample person has intake data for one or two days.,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+615,DS2AN,Any Antacids Taken?,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+616,DS2ANCNT,Total # of Antacids Taken,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+617,DS2DS,Any Dietary Supplements taken in the past 24 hour?,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+618,DS2DSCNT,Total # of Dietary Supplements Taken,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+619,DS2TCAFF,Caffeine (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+620,DS2TCALC,Calcium (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+621,DS2TCARB,Carbohydrate (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+622,DS2TCHL,Total choline (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+623,DS2TCHOL,Cholesterol (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+624,DS2TCOPP,Copper (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+625,DS2TFA,Folic acid (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+626,DS2TFDFE,"Folate, DFE (mcg)",DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+627,DS2TFIBE,Dietary fiber (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+628,DS2TIODI,Iodine (mcg) ,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+629,DS2TIRON,Iron (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+630,DS2TKCAL,Energy (kcal),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+631,DS2TLYCO,Lycopene (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+632,DS2TLZ,Lutein + zeaxanthin (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+633,DS2TMAGN,Magnesium (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+634,DS2TMFAT,Total monounsaturated fatty acids (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+635,DS2TNIAC,Niacin (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+636,DS2TPFAT,Total polyunsaturated fatty acids (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+637,DS2TPHOS,Phosphorus (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+638,DS2TPOTA,Potassium (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+639,DS2TPROT,Protein (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+640,DS2TSELE,Selenium (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+641,DS2TSFAT,Total saturated fatty acids (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+642,DS2TSODI,Sodium (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+643,DS2TSUGR,Total sugars (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+644,DS2TTFAT,Total fat (gm),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+645,DS2TVB1,Thiamin (Vitamin B1) (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+646,DS2TVB12,Vitamin B12 (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+647,DS2TVB2,Riboflavin (Vitamin B2) (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+648,DS2TVB6,Vitamin B6 (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+649,DS2TVC,Vitamin C (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+650,DS2TVD,Vitamin D (D2 + D3) (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+651,DS2TVK,Vitamin K (mcg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+652,DS2TZINC,Zinc (mg),DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+653,SEQN,Respondent sequence number.,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+654,WTDR2D,Dietary two-day sample weight,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+655,WTDRD1,Dietary day one sample weight,DS2TOT_J,"Dietary Supplement Use 24-Hour - Total Dietary Supplements, Second Day ",2017,2018,Dietary,None
+656,DSD070,Was container seen?,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+657,DSD090,For how long have you been taking {PRODUCT NAME} or a similar type of product?,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+658,DSD103,"In the past 30 days, on how many days did you take {PRODUCT NAME}?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+659,DSD122Q,"On the days that (you/SP) took (PRODUCT NAME), how much did (you/SP), usually take on a single day?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+660,DSD122U,"On the days that {you/SP} took {PRODUCT NAME}, how much did {you/SP} usually take on a single day?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+661,DSD128AA,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+662,DSD128BB,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+663,DSD128DD,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+664,DSD128EE,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+665,DSD128FF,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+666,DSD128GG,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+667,DSD128HH,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+668,DSD128II,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+669,DSD128JJ,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+670,DSD128KK,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+671,DSD128LL,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+672,DSD128MM,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+673,DSD128OO,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+674,DSD128PP,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+675,DSD128T,What is the reason you take {PRODUCT NAME}? (Did you decide to take it for reasons of your own or did a doctor or other health provider tell you to take it?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+676,DSD128V,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+677,DSD128W,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+678,DSD128X,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+679,DSD128Z,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+680,DSDACTSS,Reported serving size/label serving size,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+681,DSDANTA,Antacid reported as a dietary supplement,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+682,DSDDAY1,"Was Supplement taken during the 24 Hour Recall, Day 1?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+683,DSDDAY2,"Was Supplement taken during the 24 Hour Recall, Day 2?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+684,DSDMTCH,Matching code,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+685,DSDPID,Supplement ID Number,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+686,DSDSUPP, ,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+687,DSQ124,What is the reason you take {PRODUCT NAME}? (Did you decide to take it for reasons of your own or did a doctor or other health provider tell you to take it?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+688,DSQ128A,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+689,DSQ128B,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+690,DSQ128C, For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+691,DSQ128D,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+692,DSQ128E,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+693,DSQ128F,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+694,DSQ128G,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+695,DSQ128H,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+696,DSQ128I,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+697,DSQ128J,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+698,DSQ128K,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+699,DSQ128L,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+700,DSQ128M,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+701,DSQ128N,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+702,DSQ128NN,For what reason or reasons do you take {PRODUCT NAME}?} (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+703,DSQ128O,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+704,DSQ128P,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+705,DSQ128Q,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+706,DSQ128R,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+707,DSQ128S,For what reason or reasons do you take {PRODUCT NAME}? (For what reason or reasons did the doctor or other health professional tell you to take {PRODUCT}?),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+708,DSQICAFF,Caffeine (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+709,DSQICALC,Calcium (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+710,DSQICARB,Carbohydrate (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+711,DSQICHL,Total choline (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+712,DSQICHOL,Cholesterol (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+713,DSQICOPP,Copper (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+714,DSQIFA,Folic acid (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+715,DSQIFDFE,"Folate, DFE (mcg)",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+716,DSQIFIBE,Dietary fiber (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+717,DSQIIODI, ,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+718,DSQIIRON,Iron (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+719,DSQIKCAL,Energy (kcal),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+720,DSQILYCO,Lycopene (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+721,DSQILZ,Lutein + zeaxanthin (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+722,DSQIMAGN,Magnesium (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+723,DSQIMFAT,Total monounsaturated fatty acids (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+724,DSQINIAC,Niacin (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+725,DSQIPFAT,Total polyunsaturated fatty acids (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+726,DSQIPHOS,Phosphorus (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+727,DSQIPOTA,Potassium (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+728,DSQIPROT,Protein (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+729,DSQISELE,Selenium (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+730,DSQISFAT,Total saturated fatty acids (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+731,DSQISODI,Sodium (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+732,DSQISUGR,Total sugars (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+733,DSQITFAT,Total fat (gm),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+734,DSQIVB1,Thiamin (Vitamin B1) (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+735,DSQIVB12,Vitamin B12 (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+736,DSQIVB2,Riboflavin (Vitamin B2) (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+737,DSQIVB6,Vitamin B6 (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+738,DSQIVC,Vitamin C (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+739,DSQIVD,Vitamin D (D2 + D3) (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+740,DSQIVK,Vitamin K (mcg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+741,DSQIZINC,Zinc (mg),DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+742,RXQ215A,"Did you take {PRODUCT NAME} as an antacid, as a calcium supplement, or both?",DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
+743,SEQN,Respondent sequence number.,DSQIDS_J,Dietary Supplement Use 30-Day - Individual Dietary Supplements,2017,2018,Dietary,None
