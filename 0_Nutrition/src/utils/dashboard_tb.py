@@ -42,27 +42,43 @@ def main():
     ####
     @st.cache
     def get_documentation():
-        # Path to data
+        ### Path to data
         general_path = fo.path_to_folder(2, "")
         documentation_path = fo.path_to_folder(2, "documentation")
 
-        # Data sources (for glossary)
+        ### Section guides
+        # Get files in the folder and sort them
+        files = os.listdir(documentation_path + "section_guides")
+        files.sort()
+
+        # Empty list to save the texts
+        guides = []
+
+        # Iterate over all the files
+        for _ in files:
+            # Open every file
+            with open(documentation_path + "section_guides" + sep + _) as file_:
+                guide = file_.read()
+            # Append it to the empty list
+            guides.append(guide)
+
+        ### Data sources (for glossary)
         with open(documentation_path + "Data_sources.md", "r") as file_:
             sources_data = file_.read()
 
-        # Project info for home
+        ### Project info for home
         project_info = md.read_json_to_dict(general_path + "info.json")
 
-        # Structure - home
+        ### Structure - home
         project_structure_image = documentation_path + "project_structure.png"
         with open(documentation_path + "project_structure_explanation.md", "r") as file_:
             project_structure_info = file_.read()
 
-        # About me
+        ### About me
         with open(documentation_path + "about_me.md", "r") as file_:
             about_me = file_.read()
 
-        return sources_data, project_info, project_structure_image, project_structure_info, about_me
+        return guides, sources_data, project_info, project_structure_image, project_structure_info, about_me
 
     ####
     @st.cache
@@ -104,7 +120,7 @@ def main():
 
     ##################################################### LOAD DATA #####################################################
     # Project info and resources
-    sources_data, project_info, project_structure_image, project_structure_info, about_me = get_documentation() 
+    guides, sources_data, project_info, project_structure_image, project_structure_info, about_me = get_documentation() 
     # Dataframes and objects
     resources_df, nutrition_df, daily_intake_df, cleaned_health_df, raw_health_df, vardata = get_data()
     # Machine learning models
@@ -144,7 +160,7 @@ def main():
         # Section guide
         guide = st.beta_expander("Section guide")
         with guide:
-            pass
+            st.markdown(guides[0])
 
         # To choose between subsections
         submenu = st.sidebar.radio(label = "Submenu:", options = ["Food & Resources", "Comparator"])
@@ -201,7 +217,7 @@ def main():
             st.write(fig)       # Plot
             st.write(table)     # Table
             # Note for the user
-            st.markdown("<i>You can scroll down within the table</i>")
+            st.markdown("<i>You can scroll down within the table</i>", unsafe_allow_html = True)
 
         ########### Subsection 2: Comparator ###########
         if submenu == "Comparator":        
@@ -251,7 +267,7 @@ def main():
         # Section guide
         guide = st.beta_expander("Section guide")
         with guide:
-            pass
+            st.markdown(guides[1])
 
         #### User input
         # To choose between subsections
@@ -307,9 +323,9 @@ def main():
                         negative_checkboxes.append(filter_)
 
                 # Note for the user
-                st.markdown("<i>Red: animal-based products</i>")
-                st.markdown("<i>Blue: plant-based products</i>")
-                st.markdown("<i>grey: not classified products</i>")
+                st.markdown("<i>Red: animal-based products</i>", unsafe_allow_html = True)
+                st.markdown("<i>Blue: plant-based products</i>", unsafe_allow_html = True)
+                st.markdown("<i>grey: not classified products</i>", unsafe_allow_html = True)
 
             #### Data filtering and processing
             # If positive_checkboxes list isn't empty...
@@ -467,7 +483,7 @@ def main():
         # Section guide
         guide = st.beta_expander("Section guide")
         with guide:
-            pass
+            st.markdown(guides[2])
 
         #### User input
         submenu = st.sidebar.radio(label = "Submenu:", options = ["Exploration", "Health Prediction", "ML Models"])
@@ -480,11 +496,11 @@ def main():
             st.subheader("In this section, you can explore the relation between different health indicators: demographics, dietary, and more.")
 
             # To sort the table
-            sort_by = st.sidebar.radio("Sort by:", options = ["Variable nomenclature", "Variable description"])
+            sort_by = st.sidebar.radio("Sort by:", options = ["Variable name", "Variable description"])
 
             # To replace the names in the original dataframe so that they are easier to understand in the front
             translation = {
-                "Variable nomenclature" : "vAr_nAmE",
+                "Variable name" : "vAr_nAmE",
                 "Variable description" : "var_descr",
             }
 
@@ -510,7 +526,7 @@ def main():
             #### Data visualization            
             st.write(table)
             # Note for the user
-            st.markdown("<i>You can scroll down within the table</i>")
+            st.markdown("<i>You can scroll down within the table</i>", unsafe_allow_html = True)
         
             #### Subsubsection 2: Chossing and plotting variables
             st.subheader("Choose and plot some variables")
@@ -541,7 +557,7 @@ def main():
                 corr = np.array(filtered_data.corr().applymap(lambda x: round(x, 2)))
 
                 # Get variables' descriptions
-                y_descr = vardata.var_descr_detector(y)
+                y_descr = vardata.var_descr_detector(y, nom_included = True)
                 X_descr = vardata.vars_descr_detector(X, cut = 30)
                 descrs = [y] + X_descr
 
@@ -799,7 +815,7 @@ def main():
         # Section guide
         guide = st.beta_expander("Section guide")
         with guide:
-            pass
+            st.markdown(guides[3])
 
         #### User input
         selection = st.sidebar.radio("Choose data:",
