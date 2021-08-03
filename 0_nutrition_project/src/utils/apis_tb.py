@@ -34,7 +34,7 @@ def home():
     return "Gracias por venir"
 
 ####
-@app.route("/resources", methods = ["GET"])
+@app.route("/resources")
 def resources():
     """It returns the resources data as json
     """
@@ -44,7 +44,7 @@ def resources():
     return resources.to_json()
 
 ####
-@app.route("/nutrition", methods = ["GET"])
+@app.route("/nutrition")
 def nutrition():
     """It returns the nutrition data as json
     """
@@ -54,7 +54,7 @@ def nutrition():
     return nutrition.to_json()
 
 ####
-@app.route("/health", methods = ["GET"])
+@app.route("/health")
 def health():
     """It returns the health data as json
     """
@@ -64,7 +64,7 @@ def health():
     return health.to_json()
 
 ####
-@app.route("/health-variables", methods = ["GET"])
+@app.route("/health-variables")
 def health_variables():
     """It returns the health variables data as json
     """

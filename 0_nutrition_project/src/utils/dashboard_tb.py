@@ -825,7 +825,7 @@ def main():
                                                 "Health variables"])
         
         # url where the Flask API is located
-        url = "15.188.80.136"
+        url = "http://0.0.0.0:6060"
 
         # If user chooses resources
         if selection == "Resources":
