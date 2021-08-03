@@ -1,7 +1,7 @@
 # My ignores
 
 # Nutrition project
-0_Nutrition/data
+data
 
 sql_server_settings.json
 settings.json
