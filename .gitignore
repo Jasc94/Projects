@@ -7,6 +7,9 @@ sql_server_settings.json
 settings.json
 nutrition_project.ppk
 
+__EXECUTOR__.sh
+Dockerfile
+
 
 # Others
 install_docker_yum.sh
