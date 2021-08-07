@@ -1,8 +1,10 @@
 # My ignores
 
-# Nutrition project
-0_nutrition_project/data
+# General
+data
+*.db
 
+# Nutrition project
 sql_server_settings.json
 settings.json
 nutrition_project.ppk

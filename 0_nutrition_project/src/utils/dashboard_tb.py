@@ -777,7 +777,7 @@ def main():
 
                 # Same functioning as for "Female"
                 if GENDER == "Male":
-                    for ind, val in female_avg_val[1:-2].items():
+                    for ind, val in male_avg_val[1:-2].items():
                         if to_predict[count] > val:
                             analysis = f"{fv[ind]} | Average: {val} | Your value: {to_predict[count]}"
                             st.write(analysis)
