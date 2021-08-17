@@ -4,21 +4,25 @@
 data
 *.db
 
-# Nutrition project
-sql_server_settings.json
-settings.json
-nutrition_project.ppk
-
-__EXECUTOR__.sh
-Dockerfile
-
-
 # Others
 install_docker_yum.sh
 install_python_yum.sh
 additional_material
 
+__EXECUTOR__.sh
+Dockerfile
+
 __pycache__
+
+###############
+
+# canadian_food_database
+useful_links.md
+
+# nutrition_and_health_app
+sql_server_settings.json
+settings.json
+nutrition_project.ppk
 
 
 ########################################################################

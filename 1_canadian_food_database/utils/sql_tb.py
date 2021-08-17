@@ -4,11 +4,11 @@ import sys, os
 
 
 def tables_to_sql(connection, data):
-    """[summary]
+    """It creates tables in a database using the dictionary key as table name and dictionary value as data.
 
     Args:
-        connection ([type]): [description]
-        data ([type]): [description]
+        connection (object): sql connection object
+        data (dict): Dictionary with name of the files as keys and table data as values. 
     """
     try:
         for key, val in data.items():

@@ -4,13 +4,13 @@ import sys, os
 
 
 def data_to_tables(path):
-    """[summary]
+    """It reads all csv files in a folder as dataframes and stores them in a dictionary as values with the file name in lowercase and spaces replaced with "_" as keys,
 
     Args:
-        path ([type]): [description]
+        path (str): Path to folder
 
     Returns:
-        [type]: [description]
+        dict: Dictionary with file name as key and dataframe as value
     """
     tables = {}
 
